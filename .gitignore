@@ -1,0 +1,27 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+client-dev/tmp
+
+# dependencies
+client-dev/node_modules
+
+# misc
+client-dev/.sass-cache
+client-dev/connect.lock
+client-dev/coverage/*
+client-dev/libpeerconnection.log
+client-dev/npm-debug.log
+client-dev/testem.log
+client-dev/typings
+
+# e2e
+client-dev/e2e/*.js
+client-dev/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
+
+
+app/config.php
