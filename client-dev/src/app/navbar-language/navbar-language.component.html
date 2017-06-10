@@ -1,0 +1,12 @@
+<ul id="nav-mobile" class="right">
+	<li>
+		<!-- Dropdown Trigger -->
+		<a class='dropdown-button' href='#' data-activates='dropdown1'>{{_translate._currentLang}} <i class="material-icons">arrow_drop_down</i></a>
+	</li>
+	<li>
+		<!-- Dropdown Structure -->
+		<ul id='dropdown1' class='dropdown-content'>
+			<li *ngFor="let lang of supportedLangs"><a (click)="selectLang(lang.value)">{{lang.display}}</a></li>
+		</ul>
+	</li>
+</ul>

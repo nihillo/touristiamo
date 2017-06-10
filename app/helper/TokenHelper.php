@@ -14,8 +14,8 @@ use touristiamo\models\UsersModel as UserModel;
 class TokenHelper
 {
     /**
-     * Generate the private token. This token is used to generate the public 
-     * token.
+     * Generate the private token. This token is used to generate the public
+          * token.
      * @param string $email
      * @param string $pass
      * @return string
@@ -24,7 +24,7 @@ class TokenHelper
     {
         return sha1(time(). $email. sha1($pass));
     }
-    
+
     /**
      * Generate the public token.
      * @param Object $data
@@ -34,9 +34,9 @@ class TokenHelper
     {
         return JWT::encode($data, $privateToken, APP_HASH);
     }
-    
-    
-    
+
+
+
     /**
      * Get data from the public token.
      * @param string $token
@@ -50,7 +50,7 @@ class TokenHelper
         }
         return json_decode( JWT::urlsafeB64Decode(explode('.', $token)[1]) );
     }
-    
+
     /**
      * Check if the token was modified by a hacker.
      * @param \ArrayIterator $publicToken

@@ -36,9 +36,9 @@ class UserHelper
         {
             HttpError::send(400, $e->getBdMessage());
         }
-        
+
     }
-    
+
     /**
      * Check if the user is banned
      * @param integer $id
@@ -57,9 +57,9 @@ class UserHelper
         {
             HttpError::send(400, $e->getBdMessage());
         }
-        
+
     }
-    
+
     /**
      * Admin User (1)
      * @param integer $id
@@ -78,7 +78,7 @@ class UserHelper
             HttpError::send(400, $e->getBdMessage());
         }
     }
-    
+
     /**
      * Touristiamo user (2)
      */
@@ -96,7 +96,7 @@ class UserHelper
             HttpError::send(400, $e->getBdMessage());
         }
     }
-    
+
     /**
      * Standard user (3)
      */

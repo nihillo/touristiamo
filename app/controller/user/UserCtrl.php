@@ -18,7 +18,7 @@ use touristiamo\View as Json;
  * @author I.E.S Francisco Ayala
  */
 class UserCtrl
-{    
+{
     /**
      * This method is used to login users and returns their tokens.
      * @param \ArrayIterator $args
@@ -49,7 +49,7 @@ class UserCtrl
             HttpError::send(401, 'Email or password incorrect');
         }
     }
-    
+
     /**
      * This method generates a new token for the user.
      * @param \ArrayIterator $args
@@ -61,7 +61,7 @@ class UserCtrl
         try
         {
             $userModel = TokenHelper::checkSign($publicToken);
-            
+
             if (!UserHelper::isActive($userModel->id) || UserHelper::isBanned($userModel->id))
             {
                 HttpError::send(401, 'The user '. $userModel->email. ' is not activated or was banned');
@@ -77,7 +77,7 @@ class UserCtrl
         {
             HttpError::send(500, $e->getBdMessage());
         }
-        
+
     }
 
     /**
@@ -92,7 +92,7 @@ class UserCtrl
         try
         {
             $userModel = TokenHelper::checkSign($publicToken);
-            
+
             if (!UserHelper::isActive($userModel->id) || UserHelper::isBanned($userModel->id))
             {
                 HttpError::send(401, 'The user '. $userModel->email. ' is not activated or was banned');
@@ -103,7 +103,7 @@ class UserCtrl
             }
             $userModel->name = ( !isset($args['name'])) ? $userModel->name : htmlentities(trim($args['name']) , ENT_QUOTES );
             $userModel->setPassword( (!isset($args['password'])) ? $userModel->getPass() : sha1($args['password']) );
-        
+
             if ($userModel->update())
             {
                 $json = new Json();
@@ -115,9 +115,9 @@ class UserCtrl
             HttpError::send(400, $e->getBdMessage());
         }
     }
-    
+
     /**
-     * 
+     *
      * @param integer $id
      * @param \ArrayIterator $publicToken
      * @param ArrayIterator $args
@@ -128,25 +128,25 @@ class UserCtrl
         try
         {
             $userModel = TokenHelper::checkSign($publicToken);
-            
+
             if ($id != $userModel->id && !UserHelper::isAdmin($id))
             {
                 HttpError::send(401, "You don't have permissions to delete this user");
             }
-            
+
             $userModel->activated = false;
             if ($userModel->update())
             {
                 $json = new Json();
                 $json->message = 'The user was disabled successfuly';
-                
+
                 $subject = 'Delete acount';
                 $message = '<h1>'. APP_NAME. '</h1>';
                 $message .= '<p>The account that you have in '. APP_NAME. ' has been deleted successfuly</p>';
                 $message .= '<p>Thank you for your visit</p>';
                 $json->mailSent = (EmailService::sendEmail($userModel->email, $subject, 
                         $message, $userModel->name)) ? true : false;
-                
+
                 return $json->render();
             }
         } catch (BDException $e)
@@ -154,7 +154,7 @@ class UserCtrl
             HttpError::send(400, $e->getBdMessage());
         }
     }
-    
+
     /**
      * 
      * @param integer $id
@@ -167,7 +167,7 @@ class UserCtrl
         try
         {
             $userModel = TokenHelper::checkSign($publicToken);
-            
+
             if ($id != $userModel->id && !UserHelper::isAdmin($id))
             {
                 HttpError::send(401, "You don't have permissions to see comments of other users.");
@@ -187,6 +187,6 @@ class UserCtrl
             HttpError::send(400, $e->getBdMessage());
         }
 
-        
+
     }
 }

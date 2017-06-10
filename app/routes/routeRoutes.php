@@ -59,7 +59,7 @@ $app->group('/routes', function()
     $this->post('', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write( RouteAdminCtrl::create($request->getHeader('Authorization'), 
+                ->write( RouteAdminCtrl::create($request->getHeader('Auth'), 
                         $request->getQueryParams()) );
     });
     
@@ -69,7 +69,7 @@ $app->group('/routes', function()
     $this->put('/{id:[0-9]+}', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write(RouteAdminCtrl::edit($args['id'], $request->getHeader('Authorization'),
+                ->write(RouteAdminCtrl::edit($args['id'], $request->getHeader('Auth'),
                         $request->getQueryParams()));
     });
     
@@ -79,7 +79,7 @@ $app->group('/routes', function()
     $this->delete('/{id:[0-9]+}', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write(RouteAdminCtrl::delete($args['id'], $request->getHeader('Authorization') ));
+                ->write(RouteAdminCtrl::delete($args['id'], $request->getHeader('Auth') ));
     });
     
     /**
@@ -88,7 +88,7 @@ $app->group('/routes', function()
     $this->post('/{routeId:[0-9]+}/comments', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write( RouteCommentCtrl::newComment($args['routeId'], $request->getHeader('Authorization'), 
+                ->write( RouteCommentCtrl::newComment($args['routeId'], $request->getHeader('Auth'), 
                         $request->getQueryParams()) );
     });
     
@@ -99,7 +99,7 @@ $app->group('/routes', function()
     {
         return $response->getBody()
                 ->write(RouteCommentCtrl::editComment($args['routeId'], $args['commentId'], 
-                        $request->getHeader('Authorization'), $request->getQueryParams()));
+                        $request->getHeader('Auth'), $request->getQueryParams()));
     });
     
     /**
@@ -109,7 +109,7 @@ $app->group('/routes', function()
     {
         return $response->getBody()
                 ->write(RouteCommentCtrl::delete($args['routeId'], $args['commentId'], 
-                        $request->getHeader('Authorization'), $request->getQueryParams()));
+                        $request->getHeader('Auth'), $request->getQueryParams()));
     });
     
     
@@ -130,7 +130,7 @@ $app->group('/routes', function()
     {
         return $response->getBody()
                 ->write(RouteImageCtrl::newImage($args['id'], 
-                        $request->getHeader('Authorization')));
+                        $request->getHeader('Auth')));
     });
     
     /**
@@ -140,6 +140,6 @@ $app->group('/routes', function()
     {
         return $response->getBody()
                 ->write(RouteImageCtrl::deleteImage($args['routeId'], $args['imageId'], 
-                        $request->getHeader('Authorization')));
+                        $request->getHeader('Auth')));
     });
 });

@@ -17,9 +17,9 @@ use touristiamo\error\HttpError as HttpError;
 class EmailServcie
 {
     /**
-     * 
+     *
      * This method send an email through SMTP
-     * 
+     *
      * @param string $to
      * @param string $subject
      * @param string $message

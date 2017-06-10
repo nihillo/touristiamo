@@ -23,7 +23,7 @@ if (!APP_MODE_DEBUG)
             return $c['response']
                 ->withStatus(404)
                 ->write(json_encode([
-                        'message' =>  "This resource haven't been found"
+                        'message' =>  "Resource not found"
                     ])
                 );
         };
@@ -50,7 +50,18 @@ $app = (!isset($c)) ? new \Slim\App() : new \Slim\App($c);
 // Register routes
 require APP_DIRECTORY. DS. 'routes.php';
 
+// Configure CORS
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
+});
 
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+});
 
 // Run app
 $app->run();

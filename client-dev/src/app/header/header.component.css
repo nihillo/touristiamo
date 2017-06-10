@@ -1,0 +1,14 @@
+nav {
+    height: 64px;
+    line-height: 64px;
+}
+
+nav .brand-logo, nav .brand-logo.left, nav .brand-logo.right {
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+.brand-logo img{
+	max-height: 45px;
+	width: auto;
+}

@@ -27,16 +27,16 @@ class RegisterCtrl
      * @param \ArrayIterator $args
      */
     public static function register($args)
-    {        
+    {
         $email = $args['email'];
         $pass = $args['pass'];
         $userName = trim(htmlentities($args['userName'], ENT_QUOTES));
         $appToken = $args['appToken'];
-        
+
         // Checking
         if ($appToken !== APP_TOKEN)
         {
-            HttpError::send(400, 'The app token is incorrect.');
+            HttpError::send(400, 'The app token is incorrect. App token is ' . APP_TOKEN . '. You sent ' . $appToken);
         }
         if (empty($email) || empty($pass) || empty($userName))
         {
@@ -46,31 +46,31 @@ class RegisterCtrl
         {
             HttpError::send(400, 'The email is not valid.');
         }
-        
+
         // Create model
         $userModel = new UserModel();
         $userModel->email = $email;
         $userModel->setPassword(sha1($pass));
         $userModel->name = $userName;
         $userModel->setToken(TokenHelper::generate($email, $pass));
-        
+
         try
         {
             if ($userModel->save())
             {
                 $json = new Json();
                 $json->email = $userModel->email;
-                
-                $subject = 'Activate acount';
+
+                $subject = 'Activate account';
                 $message = '<h1>Welcome to '. APP_NAME. '</h1>';
                 $message .= '<p>To finish the register process, click on the link below</p>';
-                $message .= '<a href="'. APP_URL. '/users/register/active/'. $userModel->getToken(). '">';
-                $message .= APP_URL. '/users/register/active/'. $userModel->getToken(). '</a>';
+                $message .= '<a href="'. APP_URL_UI . '/users/register/activate/'. $userModel->getToken(). '">';
+                $message .= APP_URL_UI . '/users/register/activate/'. $userModel->getToken(). '</a>';
                 if (EmailService::sendEmail($userModel->email, $subject, $message, $userModel->name))
                 {
                     $json->message = 'The mail was sent successfuly.';
                 }
-                
+
                 return $json->render();
             }
         } catch (BDException $e)
@@ -78,12 +78,12 @@ class RegisterCtrl
             HttpError::send(400, $e->getBdMessage());
         }
     }
-    
+
     /**
      * Active the user in the app
      * @param String $token
      */
-    public static function active($token)
+    public static function activate($token)
     {
         $userModel = new UserModel();
         if (!$userModel->fillByToken($token))
@@ -97,10 +97,10 @@ class RegisterCtrl
             {
                 $json = new Json();
                 $json->email = $userModel->email;
-                $json->message = 'The user was activated sucessful.';
+                $json->message = 'The user was activated sucessfully.';
                 return $json->render();
             }
-              
+
         } catch (BDException $e)
         {
             return $e->getBdMessage();

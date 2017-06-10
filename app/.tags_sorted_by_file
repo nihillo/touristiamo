@@ -12,24 +12,25 @@ connection	Model.php	/^    protected $connection;$/;"	v
 View	View.php	/^class View $/;"	c
 render	View.php	/^    public function render()$/;"	f
 APP_BD_HOST	config.php	/^define('APP_BD_HOST', 'localhost');$/;"	d
-APP_BD_NAME	config.php	/^define('APP_BD_NAME', 'touristiamo');$/;"	d
-APP_BD_PASSWORD	config.php	/^define('APP_BD_PASSWORD', 'root');$/;"	d
+APP_BD_NAME	config.php	/^define('APP_BD_NAME', 'touristiamo_api');$/;"	d
+APP_BD_PASSWORD	config.php	/^define('APP_BD_PASSWORD', '$tr4t0cast3R');$/;"	d
 APP_BD_USER	config.php	/^define('APP_BD_USER', 'root');$/;"	d
 APP_DIRECTORY	config.php	/^define('APP_DIRECTORY', dirname(__FILE__));$/;"	d
-APP_EMAIL	config.php	/^define('APP_EMAIL', 'cristobillas_22@hotmail.com');$/;"	d
-APP_EMAIL_DEBUG_MODE	config.php	/^define('APP_EMAIL_DEBUG_MODE', 1);$/;"	d
+APP_EMAIL	config.php	/^define('APP_EMAIL', 'juanbarrancoesteban@gmail.com');$/;"	d
+APP_EMAIL_DEBUG_MODE	config.php	/^define('APP_EMAIL_DEBUG_MODE', 0);$/;"	d
 APP_EMAIL_ENCRYPT	config.php	/^define('APP_EMAIL_ENCRYPT', 'tls');$/;"	d
-APP_EMAIL_HOST	config.php	/^define('APP_EMAIL_HOST', 'smtp-mail.outlook.com');$/;"	d
-APP_EMAIL_PASS	config.php	/^define('APP_EMAIL_PASS', 'cf947f3ce605bffc261fee07bbbe8d139444d683957ba05fde9c6af6d75bdb21');$/;"	d
+APP_EMAIL_HOST	config.php	/^define('APP_EMAIL_HOST', 'smtp.gmail.com');$/;"	d
+APP_EMAIL_PASS	config.php	/^define('APP_EMAIL_PASS', '$tr4t0cast3R');$/;"	d
 APP_EMAIL_PORT	config.php	/^define('APP_EMAIL_PORT', 587);$/;"	d
 APP_HASH	config.php	/^define('APP_HASH', 'HS512');$/;"	d
 APP_IMAGES_DIRECTORY	config.php	/^define('APP_IMAGES_DIRECTORY', APP_DIRECTORY. DS. '..'. DS. 'public'. DS. 'images');$/;"	d
 APP_IMAGES_UPLOAD_NAME	config.php	/^define('APP_IMAGES_UPLOAD_NAME', 'images');$/;"	d
 APP_MODE_DEBUG	config.php	/^define('APP_MODE_DEBUG', false);/;"	d
-APP_NAME	config.php	/^define('APP_NAME', 'Touristiamo');$/;"	d
+APP_NAME	config.php	/^define('APP_NAME', 'Touristiamo Database');$/;"	d
 APP_PROTOCOL	config.php	/^define('APP_PROTOCOL', (!isset($_SERVER['HTTPS'])) ? 'http' : 'https');$/;"	d
 APP_TOKEN	config.php	/^define('APP_TOKEN', '815c7f63628608a65582e6aead6fcb9eb178b3ef24bf4677fb185ddb187c6da2'); \/\/ Touristiamo_2016 - sha256$/;"	d
-APP_URL	config.php	/^define('APP_URL', APP_PROTOCOL. ':\/\/localhost');$/;"	d
+APP_URL_API	config.php	/^define('APP_URL_API', APP_PROTOCOL. ':\/\/api.touristiamo');$/;"	d
+APP_URL_UI	config.php	/^define('APP_URL_UI', APP_PROTOCOL. ':\/\/touristiamo');$/;"	d
 DS	config.php	/^define('DS', DIRECTORY_SEPARATOR);$/;"	d
 PROHIBIT_LIMIT_SCORE	config.php	/^define('PROHIBIT_LIMIT_SCORE', 6);$/;"	d
 CityCtrl	controller/city/CityCtrl.php	/^class CityCtrl$/;"	c
@@ -109,14 +110,14 @@ pictureModel	controller/route/RouteImagesCtrl.php	/^            $pictureModel = 
 routeModel	controller/route/RouteImagesCtrl.php	/^            $routeModel = new RouteModel($routeId);$/;"	v
 userModel	controller/route/RouteImagesCtrl.php	/^            $userModel = TokenHelper::checkSign($publicToken);$/;"	v
 RegisterCtrl	controller/user/RegisterCtrl.php	/^class RegisterCtrl$/;"	c
-active	controller/user/RegisterCtrl.php	/^    public static function active($token)$/;"	f
+activate	controller/user/RegisterCtrl.php	/^    public static function activate($token)$/;"	f
 appToken	controller/user/RegisterCtrl.php	/^        $appToken = $args['appToken'];$/;"	v
 email	controller/user/RegisterCtrl.php	/^        $email = $args['email'];$/;"	v
 json	controller/user/RegisterCtrl.php	/^                $json = new Json();$/;"	v
 message	controller/user/RegisterCtrl.php	/^                $message = '<h1>Welcome to '. APP_NAME. '<\/h1>';$/;"	v
 pass	controller/user/RegisterCtrl.php	/^        $pass = $args['pass'];$/;"	v
 register	controller/user/RegisterCtrl.php	/^    public static function register($args)$/;"	f
-subject	controller/user/RegisterCtrl.php	/^                $subject = 'Activate acount';$/;"	v
+subject	controller/user/RegisterCtrl.php	/^                $subject = 'Activate account';$/;"	v
 userModel	controller/user/RegisterCtrl.php	/^        $userModel = new UserModel();$/;"	v
 userName	controller/user/RegisterCtrl.php	/^        $userName = trim(htmlentities($args['userName'], ENT_QUOTES));$/;"	v
 UserCtrl	controller/user/UserCtrl.php	/^class UserCtrl$/;"	c

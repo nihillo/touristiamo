@@ -30,11 +30,11 @@ class CountryCtrl
         $countryModel = new CountryModel();
         $json = new Json();
         $json->countries = $countryModel->getAll();
-        
+
         return $json->render();
     }
-    
-    
+
+
     /**
      * Create a new country in the data base.
      * @param \ArrayIterator $args
@@ -43,6 +43,7 @@ class CountryCtrl
      */
     public static function newCountry($args, $publicToken)
     {
+
         $userModel = TokenHelper::checkSign($publicToken);
         if (!isset($args['name']))
         {
@@ -61,8 +62,8 @@ class CountryCtrl
             return $json->render();
         }
     }
-    
-    
+
+
     /**
      * Update the country
      * @param integer $countryId
@@ -91,8 +92,8 @@ class CountryCtrl
             HttpError::send(400, $e->getBdMessage());
         }
     }
-    
-    
+
+
     /**
      * This method delete all routes, cities and
      * @param integer $countryId

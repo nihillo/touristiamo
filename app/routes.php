@@ -2,7 +2,7 @@
 /**
  * This file is used to router the request to the controller and to response.
  * We must be careful with the token because it's the user credential.
- * On the other hand, We split the routes in different files to do 
+ * On the other hand, We split the routes in different files to do
  * this one easier readable.
  */
 

@@ -18,17 +18,17 @@ $app->group('/cities', function()
     $this->post('', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write(CityCtrl::newCity($request->getQueryParams(), $request->getHeader('Authorization')));
+                ->write(CityCtrl::newCity($request->getQueryParams(), $request->getHeader('Auth')));
     });
     $this->put('/{id:[0-9]+}', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write(CityCtrl::edit($args['id'], $request->getHeader('Authorization'), $request->getQueryParams()));
+                ->write(CityCtrl::edit($args['id'], $request->getHeader('Auth'), $request->getQueryParams()));
     });
     $this->delete('/{id:[0-9]+}', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write(CityCtrl::delete($args['id'], $request->getHeader('Authorization')));
+                ->write(CityCtrl::delete($args['id'], $request->getHeader('Auth')));
     });
 });
 

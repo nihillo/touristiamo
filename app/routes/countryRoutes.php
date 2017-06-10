@@ -17,20 +17,21 @@ $app->group('/countries', function()
     });
     $this->post('', function(Request $request, Response $response, $args)
     {
+
         return $response->getBody()
-                ->write(CountryCtrl::newCountry($request->getQueryParams(), 
-                        $request->getHeader('Authorization')));
+                ->write(CountryCtrl::newCountry($request->getQueryParams(),
+                                        $request->getHeader('Auth')));
     });
     $this->put('/{id:[0-9]+}', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write(CountryCtrl::editCountry($args['id'], $request->getHeader('Authorization'), 
-                        $request->getQueryParams()));
+                ->write(CountryCtrl::editCountry($args['id'], $request->getHeader('Auth'),
+                                        $request->getQueryParams()));
     });
     $this->delete('/{id:[0-9]+}', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write(CountryCtrl::deleteCountry($args['id'], $request->getHeader('Authorization')));
+                ->write(CountryCtrl::deleteCountry($args['id'], $request->getHeader('Auth')));
     });
 });
 
