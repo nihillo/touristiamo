@@ -13,6 +13,11 @@ $app->group('/users', function ()
 {
     $this->group('/register', function ()
     {
+        // Allow preflight
+        $this->options('', function(Request $request, Response $response, $args)
+        {
+            return true;
+        });
         /**
          * This route is used to register new users
          */
@@ -30,6 +35,12 @@ $app->group('/users', function ()
             return $response->getBody()
                     ->write(RegisterCtrl::activate($args['token']) );
         });
+    });
+
+    // Allow preflight
+    $this->options('', function(Request $request, Response $response, $args)
+    {
+        return true;
     });
 
     /**

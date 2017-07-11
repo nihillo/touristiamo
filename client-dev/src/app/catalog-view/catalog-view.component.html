@@ -1,3 +1,53 @@
-<p>
-  catalog-view works!
-</p>
+<div class="row">
+	<div class="col s12 l6 offset-l3">
+		<h4>{{ 'catalog' | translate | capitalize}}</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col s12 l1 offset-l3" materialize="dropdown">
+		<!-- Dropdown Trigger -->
+		<a class='dropdown-button' href="#" data-activates='country-dropdown'>
+		<span *ngIf="selectedCountry != null" [innerHtml]="selectedCountry.name[translate.currentLang]"></span>
+		<span *ngIf="selectedCountry == null">{{ 'select country' | translate | capitalize }}</span>
+		 <i class="material-icons">arrow_drop_down</i></a>
+		<!-- Dropdown Structure -->
+		<ul id='country-dropdown' class='dropdown-content'>
+			<li *ngFor="let country of countries"><a (click)="selectCountry(country);" [innerHtml]="country.name[translate.currentLang]"></a></li>
+		</ul>
+	</div>
+	<div class="col s12 l1" [hidden]="selectedCountry == null" materialize="dropdown">
+		<!-- Dropdown Trigger -->
+		<a class='dropdown-button' href="#" data-activates='city-dropdown'>
+		<span *ngIf="selectedCity != null" [innerHtml]="selectedCity.name[translate.currentLang]"></span>
+		<span *ngIf="selectedCity == null">{{ 'select city' | translate | capitalize }}</span>
+		 <i class="material-icons">arrow_drop_down</i></a>
+		<!-- Dropdown Structure -->
+		<ul id='city-dropdown' class='dropdown-content'>
+			<li *ngFor="let city of cities"><a [innerHtml]="city.name[translate.currentLang]" (click)="selectCity(city);"></a></li>
+		</ul>
+	</div>
+</div>
+<div class="row" *ngIf="routes != null">
+	<div class="col s12 l6 offset-l3">
+		<h6>{{ 'routes' | translate | capitalize }}</h6>
+		<div class="row">
+			<div class="col s12 l4" *ngFor="let route of routes">
+				<div class="card">
+		            <div class="card-image" *ngIf="route.images">
+		              <img src="{{route.images[0].path}}">
+		            </div>
+		            <div class="card-content">
+		            	<h6 class="card-title" [innerHTML]="route.name[translate.currentLang]"></h6>
+		              	<p [innerHTML]="route.slogan[translate.currentLang]"></p>
+		            </div>
+		            <div class="card-action">
+		                <a [routerLink]="'/routes/' + route.id">{{ 'open route' | translate | capitalize }}</a>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<!-- <div class="collection">
+	      <a *ngFor="let route of routes" class="collection-item" [innerHtml]="route.name[translate.currentLang]" [routerLink]="'/routes/' + route.id"></a>
+	    </div> -->
+	</div>
+</div>

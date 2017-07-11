@@ -10,10 +10,25 @@ use touristiamo\controller\city\CityCtrl as CityCtrl;
  */
 $app->group('/cities', function()
 {
+    // Allow preflight
+    $this->options('', function(Request $request, Response $response, $args)
+    {
+        return true;
+    });
     $this->get('', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
                 ->write(CityCtrl::getAll());
+    });
+    $this->get('/{id:[0-9]+}', function(Request $request, Response $response, $args)
+    {
+        return $response->getBody()
+                ->write(CityCtrl::getById($args['id']));
+    });
+    $this->get('/country/{id:[0-9]+}', function(Request $request, Response $response, $args)
+    {
+        return $response->getBody()
+                ->write(CityCtrl::getByCountry($args['id']));
     });
     $this->post('', function(Request $request, Response $response, $args)
     {

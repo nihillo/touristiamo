@@ -45,20 +45,23 @@ class CountryCtrl
     {
 
         $userModel = TokenHelper::checkSign($publicToken);
-        if (!isset($args['name']))
+        if (!isset($args['name_en']) || !isset($args['name_es']) || !isset($args['name_it']))
         {
-            HttpError::send(400, 'You must fill the country name');
+            HttpError::send(400, 'country-missingInfo', 'You must fill the country name');
         }
         if (!UserHelper::isTouristiamo($userModel->id) && !UserHelper::isAdmin($userModel->id))
         {
-            HttpError::send(401, "The user doesn't have permissions to create countries");
+            HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to create countries");
         }
         $countryModel = new CountryModel();
-        $countryModel->name = htmlentities(trim($args['name']));
+        $countryModel->name_en = htmlentities(trim($args['name_en']));
+        $countryModel->name_es = htmlentities(trim($args['name_es']));
+        $countryModel->name_it = htmlentities(trim($args['name_it']));
         if ($countryModel->save())
         {
             $json = new Json();
-            $json->message = "The country $countryModel->name was saved successfuly.";
+            $json->msgKey = 'country-saveSuccess';
+            $json->message = "The country $countryModel->name_en was saved successfuly.";
             return $json->render();
         }
     }
@@ -78,18 +81,21 @@ class CountryCtrl
             $countryModel = new CountryModel($countryId);
             if (!UserHelper::isTouristiamo($userModel->id) && !UserHelper::isAdmin($userModel->id))
             {
-                HttpError::send(401, "The user doesn't have permissions to update this country");
+                HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to update this country");
             }
-            $countryModel->name = (!isset($args['name'])) ? $countryModel->name : htmlentities(trim($args['name']));
+            $countryModel->name_en = (!isset($args['name_en'])) ? $countryModel->name_en : htmlentities(trim($args['name_en']));
+            $countryModel->name_es = (!isset($args['name_es'])) ? $countryModel->name_es : htmlentities(trim($args['name_es']));
+            $countryModel->name_itn = (!isset($args['name_it'])) ? $countryModel->name_it : htmlentities(trim($args['name_it']));
             if ($countryModel->update())
             {
                 $json = new Json();
+                $json->msgKey = 'country-modifySuccess';
                 $json->message = "The country was modified successfuly.";
                 return $json->render();
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 
@@ -106,7 +112,7 @@ class CountryCtrl
             $userModel = TokenHelper::checkSign($publicToken);
             if (!UserHelper::isTouristiamo($userModel->id) && !UserHelper::isAdmin($userModel->id))
             {
-                HttpError::send(401, "The user doesn't have permissions to delete countries.");
+                HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to delete countries.");
             }
             $countryModel = new CountryModel($countryId);
             $cityModel = new CityModel();
@@ -123,7 +129,7 @@ class CountryCtrl
                     $routeMod = new RouteModel($route->id);
                     if (!$pictureModel->deleteAllByRouteId($routeMod->id) || !$commentModel->deleteAllByRouteId($routeMod->id))
                     {
-                        HttpError::send(500, 'Fail to delete images or comments from this route');
+                        HttpError::send(500, 'image-deleteError', 'Fail to delete images or comments from this route');
                     }
                     $routeMod->delete();
                 }
@@ -132,12 +138,13 @@ class CountryCtrl
             if ($countryModel->delete())
             {
                 $json = new Json();
+                $json->msgKey = 'country-deleteSuccess';
                 $json->message = "The country was deleted successfuly.";
                 return $json->render();
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 }

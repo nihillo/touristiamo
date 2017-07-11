@@ -1,7 +1,15 @@
 <ul id="nav-mobile" class="right">
 	<!-- <li><a href="sass.html">Sass</a></li>
 	<li><a href="badges.html">Components</a></li> -->
-	<li><a (click)="openModal();"><i class="material-icons">person</i> <span class=" hide-on-med-and-down">{{ 'login' | translate | capitalize}}</span></a></li>
+	<li *ngIf="!logged"><a (click)="openModal();"><i class="material-icons">person</i> <span class=" hide-on-med-and-down">{{ 'login' | translate | capitalize}}</span></a></li>
+	<li [hidden]="!logged">
+		<a class='dropdown-button' id="user-dropdown-trigger" data-activates='user-dropdown'><i class="material-icons">person</i> <span class=" hide-on-med-and-down">{{user.name}}</span> <i class="material-icons">arrow_drop_down</i></a>
+		<ul id='user-dropdown' class='dropdown-content'>
+			<li><a class="dropdown-header">{{user.name}}</a></li>
+			<li class="divider"></li>
+			<li><a (click)="logout()">{{ 'logout' | translate | capitalize }}</a></li>
+		</ul>
+	</li>
 </ul>
 
 <div id="login" class="modal " materialize="modal" [materializeActions]="modalActions">
@@ -21,8 +29,11 @@
 	          <label for="password">{{ 'password' | translate | capitalize}}</label>
 	        </div>
 	      </div>
-				<div class="modal-form-row center">
-	      	<button class="waves-effect waves-light btn-large" (click)="login()">{{ 'login' | translate | capitalize}}</button>
+	      <div class="modal-form-row">
+	        <div *ngIf="errorMsg!=''"id="error-message" class="error-message red-text">Error: {{errorMsg | translate | capitalize}}</div>
+	      </div>
+		  <div class="modal-form-row center">
+	      	<button class="waves-effect waves-light btn-large light-green" (click)="login()">{{ 'login' | translate | capitalize}}</button>
 	      </div>
 	    </form>
 	  </div>
@@ -31,7 +42,7 @@
 		<div class="col s12">
 			<h5 class="center">{{ 'no account?' | translate | capitalize}}</h5>
 			<div class="center">
-				<a class="waves-effect waves-light btn-large" [routerLink]="'/signup'" (click)="closeModal();">{{ 'signup' | translate | capitalize}}</a>
+				<a class="waves-effect waves-light btn-large light-green" [routerLink]="'/signup'" (click)="closeModal();">{{ 'signup' | translate | capitalize}}</a>
 			</div>
 		</div>
 	</div>

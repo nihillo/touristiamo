@@ -24,7 +24,19 @@
          *
          * @var String
          */
-        public $name;
+        public $name_en;
+
+        /**
+         *
+         * @var String
+         */
+        public $name_es;
+
+        /**
+         *
+         * @var String
+         */
+        public $name_it;
         
         /**
          *
@@ -44,7 +56,7 @@
             parent::__construct();	
             if ($id != null) 
             {
-                $st = $this->connection->prepare('select id, name, countryId from city where id = :id');
+                $st = $this->connection->prepare('select id, name_en, name_es, name_it, countryId from city where id = :id');
                 $st->bindParam(':id', $id, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -52,13 +64,15 @@
                 }
                 if ( !($rs = $st->fetch(\PDO::FETCH_OBJ)))
                 {
-                    throw new BDException('Not exist any '. get_class($this). ' with id '. $id);
+                    throw new BDException('No '. get_class($this). ' exists with id '. $id);
                 }
 
                 // Load values into model
-                $this->id = $rs->id;	
-                $this->name = $rs->name;
+                $this->id = $rs->id;
                 $this->countryId = $rs->countryId;
+                $this->name_en = $rs->name_en;
+                $this->name_es = $rs->name_es;
+                $this->name_it = $rs->name_it;
             }
 
         }
@@ -69,13 +83,15 @@
          * @return boolean
          * @throws BDException
          */
-        public function save() 
+        public function save()
         {
             try
             {
-                $st = $this->connection->prepare('insert into city (id, name, countryId) values (:id, :name, :countryId)');
+                $st = $this->connection->prepare('insert into city (id, name_en, name_es, name_it, countryId) values (:id, :name_en, :name_es, :name_it, :countryId)');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
-                $st->bindParam(':name', $this->name, \PDO::PARAM_INT);
+                $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_INT);
+                $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_INT);
+                $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_INT);
                 $st->bindParam(':countryId', $this->countryId, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -97,12 +113,16 @@
         {
             try
             {
-                $st = $this->connection->prepare('update city '
-                        . 'set name = :name, '
+                $st = $this->connection->prepare('update city set '
+                        . 'name_en = :name_en, '
+                        . 'name_es = :name_es, '
+                        . 'name_it = :name_it, '
                         . 'countryId = :countryId '
                         . 'where id = :id');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
-                $st->bindParam(':name', $this->name, \PDO::PARAM_STR);
+                $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_INT);
+                $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_INT);
+                $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_INT);
                 $st->bindParam(':countryId', $this->countryId, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -127,7 +147,7 @@
             {
                 $st = $this->connection->prepare('DELETE FROM city where id = :id');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
@@ -136,8 +156,8 @@
             {
                 HttpError::send(400, $e->getMessage());
             }
-        }	
-        
+        }
+
         /**
          * Get all cities from the data base.
          * @return \PDOStatement
@@ -148,18 +168,21 @@
             try
             {
                 $st = $this->connection->prepare('select * from city');
+                
                 if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
+
+
                 return $st->fetchAll(\PDO::FETCH_OBJ);
             } catch (\PDOException $e) 
             {
                 HttpError::send(400, $e->getMessage());
             }
         }
-        
-        
+
+
         /**
          * Get all cities by country id
          * @param integer $countryId
@@ -177,6 +200,29 @@
                     throw new BDException($st->errorInfo());
                 }
                 return $st->fetchAll(\PDO::FETCH_OBJ);
+            } catch (\PDOException $e)
+            {
+                HttpError::send(400, $e->getMessage());
+            }
+        }
+
+         /**
+         * Get city by id
+         * @param integer $id
+         * @return \PDOStatement
+         * @throws BDException
+         */
+        public function getById($id)
+        {
+            try
+            {
+                $st = $this->connection->prepare('select * from city where id = :id');
+                $st->bindParam(':id', $id, \PDO::PARAM_INT);
+                if (!$st->execute())
+                {
+                    throw new BDException($st->errorInfo());
+                }
+                return $st->fetch(\PDO::FETCH_OBJ);
             } catch (\PDOException $e)
             {
                 HttpError::send(400, $e->getMessage());

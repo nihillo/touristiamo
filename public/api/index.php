@@ -8,13 +8,17 @@ if (PHP_SAPI == 'cli-server') {
         return false;
     }
 }
-require __DIR__. DIRECTORY_SEPARATOR. '..'. DIRECTORY_SEPARATOR. '..'. 
+require __DIR__. DIRECTORY_SEPARATOR. '..'. DIRECTORY_SEPARATOR. '..'.
         DIRECTORY_SEPARATOR. 'app'. DIRECTORY_SEPARATOR. 'config.php';
 require APP_DIRECTORY . DS. 'vendor'. DS. 'autoload.php';
 
-if (!APP_MODE_DEBUG) 
+if (!APP_MODE_DEBUG)
 {
     header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: X-Requested-With, Content-Type, Accept, Origin, Authorization, Auth');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+
     $c = new \Slim\Container(); //Create Your container
 
     // Error 404 handler
@@ -28,7 +32,7 @@ if (!APP_MODE_DEBUG)
                 );
         };
     };
-    
+
     // Error 405 handler
     $c['notAllowedHandler'] = function ($c) {
         return function ($request, $response, $methods) use ($c) {
@@ -50,18 +54,6 @@ $app = (!isset($c)) ? new \Slim\App() : new \Slim\App($c);
 // Register routes
 require APP_DIRECTORY. DS. 'routes.php';
 
-// Configure CORS
-$app->options('/{routes:.+}', function ($request, $response, $args) {
-    return $response;
-});
-
-$app->add(function ($req, $res, $next) {
-    $response = $next($req, $res);
-    return $response
-            ->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-});
 
 // Run app
 $app->run();

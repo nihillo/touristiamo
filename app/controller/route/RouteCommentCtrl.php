@@ -45,7 +45,7 @@ class RouteCommentCtrl
             
             if (empty($args['comment']) || empty($args['score']) )
             {
-                HttpError::send(400, "You must fill comment and score.");
+                HttpError::send(400, 'comment-missingInfo', "You must fill comment and score.");
             }
             $routeModel = new RouteModel($routeId);
             $commentModel = new CommentModel();
@@ -58,12 +58,13 @@ class RouteCommentCtrl
             if ($commentModel->save())
             {
                 $json = new Json();
+                $json->msgKey = 'comment-saveSuccess';
                 $json->message = 'The comment was saved successfuly.';
                 return $json->render();
             }
         } catch (BDException $e) 
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         } 
     }
     
@@ -85,11 +86,11 @@ class RouteCommentCtrl
             $commentModel = new CommentModel($commentId);
             if ($routeModel->id != $commentModel->routeId)
             {
-                HttpError::send(400, 'You cannot change comments of other routes');
+                HttpError::send(400, 'user-notAllowed', 'You cannot change comments of other routes');
             }
             if ($commentModel->userId != $userModel->id)
             {
-                HttpError::send(401, 'You cannot change comments of other users');
+                HttpError::send(401, 'user-notAllowed', 'You cannot change comments of other users');
             }
             $commentModel->comment = (!$args['comment']) ? $commentModel->comment : htmlentities(trim($args['comment']));
             $commentModel->date = date("Y-m-d");
@@ -97,12 +98,13 @@ class RouteCommentCtrl
             if ($commentModel->update())
             {
                 $json = new Json();
+                $json->msgKey = 'comment-modifySuccess';
                 $json->message = 'The comment was modified successfuly';
                 return $json->render();
             }
         } catch (BDException $e) 
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
     
@@ -125,21 +127,22 @@ class RouteCommentCtrl
             $commentModel = new CommentModel($commentId);
             if ($routeModel->id != $commentModel->routeId)
             {
-                HttpError::send(400, 'You cannot delete comments of other routes');
+                HttpError::send(400, 'user-notAllowed', 'You cannot delete comments of other routes');
             }
             if ($commentModel->userId != $userModel->id && !UserHelper::isAdmin($userModel->id))
             {
-                HttpError::send(401, 'You cannot delete comments of other users');
+                HttpError::send(401, 'user-notAllowed', 'You cannot delete comments of other users');
             }
             if ($commentModel->delete())
             {
                 $json = new Json();
+                $json->msgKey = 'comment-deleteSuccess';
                 $json->message = 'The comment was deleted successfuly';
                 return $json->render();
             }
         } catch (BDException $e) 
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 }

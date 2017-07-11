@@ -1,0 +1,26 @@
+<div class="row" *ngIf="route != undefined" style="margin-bottom: 0">
+  <div class="col s12 l3 card side-panel">
+    <div class="card-image">
+      <img *ngIf="route.images != undefined" src="{{route.images[0].path}}">
+    </div>
+  	<div class="card-content">
+      <h4 class="card-title">{{route.name[translate.currentLang]}}</h4>
+      <p class="slogan">{{route.slogan[translate.currentLang]}}</p>
+      <div class="icons">
+        <div><i *ngIf="route.accesible" class="material-icons">accessible</i>{{'accesible' | translate | capitalize}}</div>
+        <div><i *ngIf="route.walkable" class="material-icons">directions_walk</i>{{'walkable' | translate | capitalize}}</div>
+        <div><i *ngIf="route.bikeable" class="material-icons">directions_bike</i>{{'bikeable' | translate | capitalize}}</div>
+      </div>
+	    <p>{{route.description[translate.currentLang]}}</p>
+    </div>
+  </div>
+  <agm-map *ngIf="route.latlngs != undefined" class="map" [latitude]="route.centerLat" [longitude]="route.centerLng" [zoom]="16">
+    <agm-marker *ngFor="let point of route.points" [latitude]="point.lat" [longitude]="point.lng">
+      <agm-info-window>
+        <h6>{{point.name[translate.currentLang]}}</h6>
+        <p>{{point.description[translate.currentLang]}}</p>
+      </agm-info-window>
+    </agm-marker>
+    <agm-directions [points]="route.latlngs"></agm-directions>
+  </agm-map>
+</div>

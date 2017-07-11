@@ -1,3 +1,11 @@
-<p>
-  map-view works!
-</p>
+<agm-map class="map map-view" [latitude]="47" [longitude]="6" [zoom]="5">
+	<span *ngFor="let route of routes">
+		<agm-marker *ngIf="route.point != undefined" [latitude]="route.point.lat" [longitude]="route.point.lng">
+		  <agm-info-window>
+		    <h6 [innerHTML]="route.name[translate.currentLang]"></h6>
+		    <p [innerHTML]="route.slogan[translate.currentLang]"></p>
+		    <a [routerLink]="'/routes/' + route.id">{{ 'open route' | translate | capitalize }}</a>
+		  </agm-info-window>
+		</agm-marker>
+	</span>
+</agm-map>

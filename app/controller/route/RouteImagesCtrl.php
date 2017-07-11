@@ -2,7 +2,7 @@
 
 namespace touristiamo\controller\route;
 
-use touristiamo\models\PictureModel as PictureModel;
+use touristiamo\models\RouteImageModel as RouteImageModel;
 use touristiamo\models\RouteModel as RouteModel;
 use touristiamo\error\HttpError as HttpError;
 use touristiamo\helper\TokenHelper as TokenHelper;
@@ -26,17 +26,20 @@ class RouteImagesCtrl
     {
         try 
         {
-            $pictureModel = new PictureModel();
+            $routeImageModel = new RouteImageModel();
             $json = new Json();
-            $json->images = $pictureModel->getAllByRouteId($routeId);
+            $json->images = $routeImageModel->getAllByRouteId($routeId);
+            foreach ($json->images as $image) {
+                $image->path = APP_URL_API . '/' . $image->path;
+            }
             if (!$json->images)
             {
-                HttpError::send(400, "There isn't any image from this route");
+                HttpError::send(400, 'route-noImagesFound', "There isn't any image from this route");
             }
             return $json->render();
         } catch (BDException $e) 
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }       
     }
     
@@ -53,22 +56,23 @@ class RouteImagesCtrl
             $userModel = TokenHelper::checkSign($publicToken);
             if ( (!UserHelper::isTouristiamo($userModel->id) && !UserHelper::isAdmin($userModel->id)) )
             {
-                HttpError::send(401, "The user doesn't have permissions to upload images.");
+                HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to upload images.");
             }
             if (empty($_FILES[APP_IMAGES_UPLOAD_NAME]))
             {
-                HttpError::send(400, "The images array must be called ". APP_IMAGES_UPLOAD_NAME);
+                HttpError::send(400, 'images-nameError', "The images array must be called ". APP_IMAGES_UPLOAD_NAME);
             }
             
             $routeModel = new RouteModel($routeId);
             $imagesUploaded = ImageHelper::upload($routeModel->id, APP_IMAGES_UPLOAD_NAME);
             $json = new Json();
             $json->numImages = count($imagesUploaded);
+            $json->msgKey = 'images-uploadSuccess';
             $json->message = "Images were uploaded successfuly.";
             return $json->render();
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
     
@@ -87,15 +91,16 @@ class RouteImagesCtrl
 
             if ($routeModel->userId != $userModel->id && !UserHelper::isAdmin($userModel->id))
             {
-                HttpError::send(401, "You cannot delete images of other user's routes.");
+                HttpError::send(401, 'user-notAllowed', "You cannot delete images of other user's routes.");
             }
             $fileDeleted = ImageHelper::delete($routeId, $imageId);
             $json = new Json();
+            $json->msgKey = 'images-deleteSuccess';
             $json->message = 'The file '. $fileDeleted. ' was deleted successfuly.';
             return $json->render();
         } catch (BDException $e) 
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 }

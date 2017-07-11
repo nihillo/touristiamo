@@ -1,0 +1,171 @@
+<div *ngIf="!usersSrv.userHasEditPermission()">
+	<div class="row">
+		<div class="col s12 l6 offset-l3">
+			<h4>{{'not allowed-title' | translate | capitalize }}</h4>
+			<p>{{'not allowed-text' | translate | capitalize }}</p>
+		</div>
+	</div>
+</div>
+<div *ngIf="usersSrv.userHasEditPermission()">
+	<div class="row">
+		<div class="col s12 l6 offset-l3">
+			<h4>{{'add route' | translate | capitalize }}</h4>
+			<p>{{ 'all fields mandatory' | translate | capitalize }}</p>
+		</div>
+	</div>
+	<div class="row">
+		<form class="col s12 l6 offset-l3">
+		  <div class="row">
+		  	<h6>{{ 'route name' | translate | capitalize }}:</h6>
+	        <div class="input-field col s12">
+	          <input id="name_en" name="name_en" type="text" class="validate" [(ngModel)]="route.name_en">
+	          <label for="name_en">{{ 'english' | translate | capitalize}}</label>
+	        </div>
+	        <div class="input-field col s12">
+	          <input id="name_es" name="name_es" type="text" class="validate" [(ngModel)]="route.name_es">
+	          <label for="name_es">{{ 'spanish' | translate | capitalize}}</label>
+	        </div>
+	        <div class="input-field col s12">
+	          <input id="name_it" name="name_it" type="text" class="validate" [(ngModel)]="route.name_it">
+	          <label for="name_it">{{ 'italian' | translate | capitalize}}</label>
+	        </div>
+	      </div>
+	      <div class="row">
+	        <h6>{{ 'route location' | translate | capitalize }}:</h6>
+	        <div class="input-field col s8">
+			    <select name="country" materialize="material_select" [materializeSelectOptions]="countries" [(ngModel)]="selectedCountry" (change)="loadCities();">
+			      <option value="" selected>{{ 'select country' | translate | capitalize }}</option>
+			      <option *ngFor="let country of countries" [ngValue]="country" [innerHTML]="country.name[translate.currentLang]"></option>
+			    </select>
+			    <label>{{ 'country' | translate | capitalize }}</label>
+			</div>
+			<div class="input-field col s4">
+				<a class="waves-effect waves-light btn light-green" (click)="openModalCountry();">{{ 'add country' | translate | capitalize }}</a>
+			</div>
+	        <div class="input-field col s8" [hidden]="!selectedCountry">
+			    <select name="city" materialize="material_select" [materializeSelectOptions]="cities" [(ngModel)]="route.cityId">
+			      <option value="" selected>{{ 'select city' | translate | capitalize }}</option>
+			      <option *ngFor="let city of cities" value="{{city.id}}" [innerHTML]="city.name[translate.currentLang]"></option>
+			    </select>
+			    <label>{{ 'city' | translate | capitalize }}</label>
+			</div>
+			<div class="input-field col s4" [hidden]="!selectedCountry">
+				<a class="waves-effect waves-light btn light-green" (click)="openModalCity();">{{ 'add city' | translate | capitalize }}</a>
+			</div>
+	      </div>
+	      <div class="row">
+	        <h6>{{ 'route tagline' | translate | capitalize }}:</h6>
+	        <div class="input-field col s12">
+	        	<textarea id="slogan_en" name="slogan_en" class="materialize-textarea" materialize="characterCounter" [(ngModel)]="route.slogan_en"></textarea>
+                <label for="slogan_en">{{ 'english' | translate | capitalize}}</label>
+			</div>
+			<div class="input-field col s12">
+	        	<textarea id="slogan_es" name="slogan_es" class="materialize-textarea" materialize="characterCounter" [(ngModel)]="route.slogan_es"></textarea>
+                <label for="slogan_es">{{ 'spanish' | translate | capitalize}}</label>
+			</div>
+			<div class="input-field col s12">
+	        	<textarea id="slogan_it" name="slogan_it" class="materialize-textarea" materialize="characterCounter" [(ngModel)]="route.slogan_it"></textarea>
+                <label for="slogan_it">{{ 'italian' | translate | capitalize}}</label>
+			</div>
+		  </div>
+		  <div class="row">
+	        <h6>{{ 'route description' | translate | capitalize }}:</h6>
+	        <div class="input-field col s12">
+	        	<textarea id="description_en" name="description_en" class="materialize-textarea" materialize="characterCounter" [(ngModel)]="route.description_en"></textarea>
+                <label for="description_en">{{ 'english' | translate | capitalize}}</label>
+			</div>
+			<div class="input-field col s12">
+	        	<textarea id="description_es" name="description_es" class="materialize-textarea" materialize="characterCounter" [(ngModel)]="route.description_es"></textarea>
+                <label for="description_es">{{ 'spanish' | translate | capitalize}}</label>
+			</div>
+			<div class="input-field col s12">
+	        	<textarea id="description_it" name="description_it" class="materialize-textarea" materialize="characterCounter" [(ngModel)]="route.description_it"></textarea>
+                <label for="description_it">{{ 'italian' | translate | capitalize}}</label>
+			</div>
+		  </div>
+		  <div class="row">
+		  	<h6>{{ 'access information' | translate | capitalize }}:</h6>
+		  	<div class="input-field col s12">
+                <input type="checkbox" id="accesible" name="accesible" [(ngModel)]="route.accesible"/>
+                <label for="accesible">{{ 'accesible' | translate | capitalize }}</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="checkbox" id="walkable" name="walkable" [(ngModel)]="route.walkable"/>
+                <label for="walkable">{{ 'walkable' | translate | capitalize }}</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="checkbox" id="bikeable" name="bikeable" [(ngModel)]="route.bikeable"/>
+                <label for="bikeable">{{ 'bikeable' | translate | capitalize }}</label>
+            </div>
+          </div>
+          <div class="row center">
+			<div class="input-field col s12">
+				<a class="waves-effect waves-light btn light-green" (click)="addRoute();">{{ 'next' | translate | capitalize }} <i class="material-icons icon-next">navigate_next</i></a>
+			</div>
+          </div>
+	    </form>
+	</div>
+</div>
+
+
+
+<!-- MODAL ADD COUNTRY -->
+<div id="login" class="modal " materialize="modal" [materializeActions]="modalCountryActions">
+  <div class="modal-content">
+	  <div class="row">
+	  	<h4 class="center">{{ 'add country' | translate | capitalize }}</h4>
+	    <form materialize class="col s12">
+	      <h6>{{ 'country name' | translate | capitalize }}:</h6>
+	        <div class="input-field col s12">
+	          <input id="name_en" name="name_en" type="text" class="validate" [(ngModel)]="newCountry.name_en">
+	          <label for="name_en">{{ 'english' | translate | capitalize}}</label>
+	        </div>
+	        <div class="input-field col s12">
+	          <input id="name_es" name="name_es" type="text" class="validate" [(ngModel)]="newCountry.name_es">
+	          <label for="name_es">{{ 'spanish' | translate | capitalize}}</label>
+	        </div>
+	        <div class="input-field col s12">
+	          <input id="name_it" name="name_it" type="text" class="validate" [(ngModel)]="newCountry.name_it">
+	          <label for="name_it">{{ 'italian' | translate | capitalize}}</label>
+	        </div>
+	        <div class="modal-form-row center">
+	      	<button class="waves-effect waves-light btn-large light-green" (click)="addCountry()">{{ 'add' | translate | capitalize}}</button>
+	      </div>
+	    </form>
+	  </div>
+  </div>
+</div>
+
+
+<!-- MODAL ADD CITY -->
+<div id="login" class="modal " materialize="modal" [materializeActions]="modalCityActions">
+  <div class="modal-content">
+	  <div class="row">
+	  	<h4 class="center">{{ 'add city' | translate | capitalize }}</h4>
+	    <form materialize class="col s12">
+	        <div class="input-field col s12">
+			    <select name="country" materialize="material_select" [materializeSelectOptions]="countries" [(ngModel)]="selectedCountry">
+			      <option value="selectedCountry.id" selected disabled [innerHTML]="selectedCountry.name[translate.currentLang]"></option>
+			    </select>
+			    <label>{{ 'country' | translate | capitalize }}</label>
+			</div>
+			<h6>{{ 'city name' | translate | capitalize }}:</h6>
+			<div class="input-field col s12">
+	          <input id="name_en" name="name_en" type="text" class="validate" [(ngModel)]="newCity.name_en">
+	          <label for="name_en">{{ 'english' | translate | capitalize}}</label>
+	        </div>
+	        <div class="input-field col s12">
+	          <input id="name_es" name="name_es" type="text" class="validate" [(ngModel)]="newCity.name_es">
+	          <label for="name_es">{{ 'spanish' | translate | capitalize}}</label>
+	        </div>
+	        <div class="input-field col s12">
+	          <input id="name_it" name="name_it" type="text" class="validate" [(ngModel)]="newCity.name_it">
+	          <label for="name_it">{{ 'italian' | translate | capitalize}}</label>
+	        </div>
+	        <div class="modal-form-row center">
+	      	<button class="waves-effect waves-light btn-large light-green" (click)="addCity()">{{ 'add' | translate | capitalize}}</button>
+	      </div>
+	    </form>
+	  </div>
+  </div>
+</div>

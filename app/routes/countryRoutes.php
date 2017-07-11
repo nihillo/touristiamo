@@ -10,6 +10,11 @@ use touristiamo\controller\country\CountryCtrl as CountryCtrl;
  */
 $app->group('/countries', function()
 {
+    // Allow preflight
+    $this->options('', function(Request $request, Response $response, $args)
+    {
+        return true;
+    });
     $this->get('', function(Request $request, Response $response, $args)
     {
         return $response->getBody()

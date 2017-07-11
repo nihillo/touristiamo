@@ -12,7 +12,13 @@ use touristiamo\controller\route\RouteImagesCtrl as RouteImageCtrl;
  * Routes for Routes Zone - Using Route controller
  */
 $app->group('/routes', function()
-{
+{   
+    // Allow preflight
+    $this->options('', function(Request $request, Response $response, $args)
+    {
+        return true;
+    });
+
     /**
      * Get all routes from the data base
      */
@@ -20,6 +26,14 @@ $app->group('/routes', function()
     {
         return $response->getBody()
                 ->write(RouteCtrl::getAll());
+    });
+    /**
+     * Get a route by its id
+     */
+    $this->get('/{id:[0-9]+}', function(Request $request, Response $response, $args)
+    {
+        return $response->getBody()
+                ->write(RouteCtrl::getById($args['id']));
     });
     /**
      * Get all routes by country id
@@ -54,12 +68,33 @@ $app->group('/routes', function()
                 ->write(RouteCtrl::getScore($args['id']));
     });
     /**
+     * Get route points
+     */
+    $this->get('/{id:[0-9]+}/points', function(Request $request, Response $response, $args)
+    {
+        return $response->getBody()
+                ->write(RouteCtrl::getPoints($args['id']));
+    });
+    $this->options('/{id:[0-9]+}/points', function(Request $request, Response $response, $args)
+    {
+        return true;
+    });
+    /**
+     * Create route point
+     */
+    $this->post('/{id:[0-9]+}/points', function(Request $request, Response $response, $args)
+    {
+        return $response->getBody()
+                ->write(RouteAdminCtrl::addPoint($args['id'], $request->getHeader('Auth'),
+                        $request->getQueryParams()));
+    });
+    /**
      * Create a new route. Only the user with accesslevel 2 and 1 can post new routes.
      */
     $this->post('', function(Request $request, Response $response, $args)
     {
         return $response->getBody()
-                ->write( RouteAdminCtrl::create($request->getHeader('Auth'), 
+                ->write( RouteAdminCtrl::create($request->getHeader('Auth'),
                         $request->getQueryParams()) );
     });
     
@@ -118,7 +153,7 @@ $app->group('/routes', function()
      * Get all route images by route id.
      */
     $this->get('/{id:[0-9]+}/images', function(Request $request, Response $response, $args)
-    {
+    {   
         return $response->getBody()
                 ->write(RouteImageCtrl::getImages($args['id']));
     });

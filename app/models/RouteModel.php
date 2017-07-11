@@ -24,25 +24,73 @@
          *
          * @var boolean 
          */
-        public $handicapped;
+        public $accesible;
+
+        /**
+         *
+         * @var boolean 
+         */
+        public $walkable;
+
+        /**
+         *
+         * @var boolean 
+         */
+        public $bikeable;
         
         /**
          *
          * @var string
          */
-        public $name;
+        public $name_en;
+
+        /**
+         *
+         * @var string
+         */
+        public $name_es;
         
+        /**
+         *
+         * @var string
+         */
+        public $name_it;
+
         /**
          *
          * @var string 
          */
-        public $description;
+        public $description_en;
+
+        /**
+         *
+         * @var string 
+         */
+        public $description_es;
+
+        /**
+         *
+         * @var string 
+         */
+        public $description_it;
         
         /**
          *
          * @var string
          */
-        public $slogan;
+        public $slogan_en;
+
+        /**
+         *
+         * @var string
+         */
+        public $slogan_es;
+
+        /**
+         *
+         * @var string
+         */
+        public $slogan_it;
         
         /**
          *
@@ -66,8 +114,8 @@
             parent::__construct();	
             if ($id != null) 
             {
-                $st = $this->connection->prepare('select id, handicapped, name, description, '
-                        . 'slogan, cityId, userId from route where id = :id');
+                $st = $this->connection->prepare('select id, accesible, name_en, name_es, name_it, description_en, description_es, description_it, '
+                        . 'slogan_en, slogan_es, slogan_it, cityId, userId, walkable, bikeable from route where id = :id');
                 $st->bindParam(':id', $id, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -80,10 +128,18 @@
 
                 //Insert value
                 $this->id = $rs->id;
-                $this->handicapped = $rs->handicapped;
-                $this->name = $rs->name;
-                $this->description = $rs->description;	
-                $this->slogan = $rs->slogan;	
+                $this->accesible = $rs->accesible;
+                $this->walkable = $rs->walkable;
+                $this->bikeable = $rs->bikeable;
+                $this->name_en = $rs->name_en;
+                $this->name_es = $rs->name_es;
+                $this->name_it = $rs->name_it;
+                $this->description_en = $rs->description_en;
+                $this->description_es = $rs->description_es;
+                $this->description_it = $rs->description_it;
+                $this->slogan_en = $rs->slogan_en;
+                $this->slogan_es = $rs->slogan_es;
+                $this->slogan_it = $rs->slogan_it;
                 $this->cityId = $rs->cityId;
                 $this->userId = $rs->userId;
             }
@@ -99,13 +155,21 @@
             try
             {
                 $st = $this->connection->prepare('insert into route '.
-                    '(id, handicapped, name, description, slogan, cityId, userId) '.
-                    ' values (:id, :handicapped, :name, :description, :slogan, :cityId, :userId)');
+                    '(id, accesible, name_en, name_es, name_it, description_en, description_es, description_it, slogan_en, slogan_es, slogan_it, cityId, userId, walkable, bikeable) '.
+                    ' values (:id, :accesible, :name_en, :name_es, :name_it, :description_en, :description_es, :description_it, :slogan_en, :slogan_es, :slogan_it, :cityId, :userId, :walkable, :bikeable)');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
-                $st->bindParam(':handicapped', $this->handicapped, \PDO::PARAM_BOOL);
-                $st->bindParam(':name', $this->name, \PDO::PARAM_STR);
-                $st->bindParam(':description', $this->description, \PDO::PARAM_STR);
-                $st->bindParam(':slogan', $this->slogan, \PDO::PARAM_STR);
+                $st->bindParam(':accesible', $this->accesible, \PDO::PARAM_BOOL);
+                $st->bindParam(':walkable', $this->walkable, \PDO::PARAM_BOOL);
+                $st->bindParam(':bikeable', $this->bikeable, \PDO::PARAM_BOOL);
+                $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_STR);
+                $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_STR);
+                $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_STR);
+                $st->bindParam(':description_en', $this->description_en, \PDO::PARAM_STR);
+                $st->bindParam(':description_es', $this->description_es, \PDO::PARAM_STR);
+                $st->bindParam(':description_it', $this->description_it, \PDO::PARAM_STR);
+                $st->bindParam(':slogan_en', $this->slogan_en, \PDO::PARAM_STR);
+                $st->bindParam(':slogan_es', $this->slogan_es, \PDO::PARAM_STR);
+                $st->bindParam(':slogan_it', $this->slogan_it, \PDO::PARAM_STR);
                 $st->bindParam(':cityId', $this->cityId, \PDO::PARAM_INT);
                 $st->bindParam(':userId', $this->userId, \PDO::PARAM_INT);
                 if (!$st->execute()) 
@@ -128,17 +192,25 @@
         {
             try
             {
-                // id, handicapped, name, description, slogan, cityId, userId
+                // id, accesible, name, description, slogan, cityId, userId
                 $st = $this->connection->prepare('UPDATE route SET id = :id ,'
-                        . 'name = :name, description = :description, slogan = :slogan, '
-                        . 'cityId = :cityId, userId = :userId, handicapped = :handicapped where id = :id');
+                        . 'name_en = :name_en, name_es = :name_es, name_it = :name_it, description_en = :description_en, description_es = :description_es, description_it = :description_it, slogan_en = :slogan_en, slogan_es = :slogan_es, slogan_it = :slogan_it, '
+                        . 'cityId = :cityId, userId = :userId, accesible = :accesible, walkable = :walkable, bikeable = :bikeable where id = :id');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
-                $st->bindParam(':name', $this->name, \PDO::PARAM_STR);
-                $st->bindParam(':description', $this->description, \PDO::PARAM_STR);
-                $st->bindParam(':slogan', $this->slogan, \PDO::PARAM_STR);
+                $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_STR);
+                $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_STR);
+                $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_STR);
+                $st->bindParam(':description_en', $this->description_en, \PDO::PARAM_STR);
+                $st->bindParam(':description_es', $this->description_es, \PDO::PARAM_STR);
+                $st->bindParam(':description_it', $this->description_it, \PDO::PARAM_STR);
+                $st->bindParam(':slogan_en', $this->slogan_en, \PDO::PARAM_STR);
+                $st->bindParam(':slogan_es', $this->slogan_es, \PDO::PARAM_STR);
+                $st->bindParam(':slogan_it', $this->slogan_it, \PDO::PARAM_STR);
                 $st->bindParam(':cityId', $this->cityId, \PDO::PARAM_INT);
                 $st->bindParam(':userId', $this->userId, \PDO::PARAM_INT);
-                $st->bindParam(':handicapped', $this->handicapped, \PDO::PARAM_STR);
+                $st->bindParam(':accesible', $this->accesible, \PDO::PARAM_STR);
+                $st->bindParam(':walkable', $this->walkable, \PDO::PARAM_STR);
+                $st->bindParam(':bikeable', $this->bikeable, \PDO::PARAM_STR);
                 if (!$st->execute()) 
                 {
                     throw new BDException($st->errorInfo());
@@ -194,8 +266,57 @@
                 HttpError::send(400, $e->getMessage());
             }
         }
-        
-        
+
+        /**
+         * Return route by id.
+         * @param integer $id
+         * @return \ArrayIterator
+         * @throws BDException
+         */
+        public function getById($id)
+        {
+            try
+            {
+                $st = $this->connection->prepare('select * from route where route.id = :id');
+                $st->bindParam(':id', $id, \PDO::PARAM_INT);
+                if (!$st->execute())
+                {
+                    throw new BDException($st->errorInfo());
+                }
+
+                return $st->fetchAll(\PDO::FETCH_OBJ);
+            } catch (\PDOException $e)
+            {
+                HttpError::send(400, $e->getMessage());
+            }
+        }
+
+        /**
+         * Return route by english name.
+         * @param string $name_en
+         * @return \ArrayIterator
+         * @throws BDException
+         */
+        public function getByName($name_en)
+        {
+            try
+            {
+                $st = $this->connection->prepare('select * from route where route.name_en = :name_en');
+                $st->bindParam(':name_en', $name_en, \PDO::PARAM_INT);
+                if (!$st->execute())
+                {
+                    throw new BDException($st->errorInfo());
+                }
+
+                return $st->fetch(\PDO::FETCH_OBJ);
+            } catch (\PDOException $e)
+            {
+                HttpError::send(400, $e->getMessage());
+            }
+        }
+
+
+
         /**
          * Return all routes from the data base by country id.
          * @return \ArrayIterator
@@ -205,9 +326,9 @@
         {
             try
             {
-                $st = $this->connection->prepare('select route.id, route.name, '
-                    . 'route.slogan, route.description, '
-                    . 'route.handicapped, route.cityId, route.userId from route '
+                $st = $this->connection->prepare('select route.id, route.name_en, route.name_es, route.name_it, '
+                    . 'route.slogan_en,route.slogan_es,route.slogan_it, route.description_en, route.description_es, route.description_it, '
+                    . 'route.accesible, route.walkable, route.bikeable, route.cityId, route.userId from route '
                     . 'inner join city on route.cityId = city.id '
                     . 'inner join country on city.countryId = country.id '
                     . 'where country.id = :countryId');

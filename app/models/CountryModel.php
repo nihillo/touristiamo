@@ -24,7 +24,21 @@
          *
          * @var String 
          */
-        public $name;
+        public $name_en;
+
+        /**
+         *
+         * @var String 
+         */
+        public $name_es;
+
+        /**
+         *
+         * @var String 
+         */
+        public $name_it;
+
+
 
         /**
          * Create the model in memory with the data from the data base.
@@ -37,7 +51,7 @@
 
             if ($id != null) 
             {
-                $st = $this->connection->prepare('select id, name from country where id = :id');
+                $st = $this->connection->prepare('select id, name_en, name_es, name_it from country where id = :id');
                 $st->bindParam(':id', $id, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -50,7 +64,9 @@
 
                 //Insert value
                 $this->id = $rs->id;
-                $this->name = $rs->name;
+                $this->name_en = $rs->name_en;
+                $this->name_es = $rs->name_es;
+                $this->name_it = $rs->name_it;
             }
         }
 
@@ -64,10 +80,12 @@
         {
             try
             {
-                $st = $this->connection->prepare('insert into country (id, name) values (:id, :name)');
+                $st = $this->connection->prepare('insert into country (id, name_en, name_es, name_it) values (:id, :name_en, :name_es, :name_it)');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
-                $st->bindParam(':name', $this->name, \PDO::PARAM_INT);
-                if (!$st->execute()) 
+                $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_INT);
+                $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_INT);
+                $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_INT);
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
@@ -87,9 +105,15 @@
 
             try 
             {
-                $st = $this->connection->prepare('UPDATE country SET name=:name where id = :id');
-                $st->bindParam(':name', $this->name, \PDO::PARAM_STR);
+                $st = $this->connection->prepare('update country set '
+                        . 'name_en = :name_en, '
+                        . 'name_es = :name_es, '
+                        . 'name_it = :name_it '
+                        . 'where id = :id');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
+                $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_INT);
+                $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_INT);
+                $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
                     throw new BDException($st->errorInfo());

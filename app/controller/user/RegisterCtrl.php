@@ -36,15 +36,15 @@ class RegisterCtrl
         // Checking
         if ($appToken !== APP_TOKEN)
         {
-            HttpError::send(400, 'The app token is incorrect. App token is ' . APP_TOKEN . '. You sent ' . $appToken);
+            HttpError::send(400, 'access-appTokenError', 'Wrong app token');
         }
         if (empty($email) || empty($pass) || empty($userName))
         {
-            HttpError::send(400, 'You must fill the email, password and username.');
+            HttpError::send(400, 'access-missingInfo', 'You must fill the email, password and username.');
         }
         if (!filter_var($args['email'], FILTER_VALIDATE_EMAIL))
         {
-            HttpError::send(400, 'The email is not valid.');
+            HttpError::send(400, 'access-notValidEmail', 'The email is not valid.');
         }
 
         // Create model
@@ -64,10 +64,11 @@ class RegisterCtrl
                 $subject = 'Activate account';
                 $message = '<h1>Welcome to '. APP_NAME. '</h1>';
                 $message .= '<p>To finish the register process, click on the link below</p>';
-                $message .= '<a href="'. APP_URL_UI . '/users/register/activate/'. $userModel->getToken(). '">';
-                $message .= APP_URL_UI . '/users/register/activate/'. $userModel->getToken(). '</a>';
+                $message .= '<a href="'. APP_URL_UI . APP_UI_ACTIVATION_URL . $userModel->getToken(). '">';
+                $message .= APP_URL_UI . APP_UI_ACTIVATION_URL . $userModel->getToken(). '</a>';
                 if (EmailService::sendEmail($userModel->email, $subject, $message, $userModel->name))
                 {
+                    $json->msgKey = 'access-mailSuccess';
                     $json->message = 'The mail was sent successfuly.';
                 }
 
@@ -75,7 +76,7 @@ class RegisterCtrl
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 
@@ -88,7 +89,7 @@ class RegisterCtrl
         $userModel = new UserModel();
         if (!$userModel->fillByToken($token))
         {
-            HttpError::send(400, 'The token is not valid.');
+            HttpError::send(400, 'access-notValidToken', 'The token is not valid.');
         }
         $userModel->activated = true;
         try
@@ -97,6 +98,7 @@ class RegisterCtrl
             {
                 $json = new Json();
                 $json->email = $userModel->email;
+                $json->msgKey = 'access-activateSuccess';
                 $json->message = 'The user was activated sucessfully.';
                 return $json->render();
             }

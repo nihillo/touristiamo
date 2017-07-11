@@ -28,16 +28,16 @@ class UserCtrl
     {
         if (empty($args['email']) || empty($args['password']))
         {
-            HttpError::send(400, 'You must type email and password');
+            HttpError::send(400, 'login-missingInfo', 'You must type email and password');
         }
         $userModel = new UserModel();
         if (!$userModel->fillByEmail($args['email']))
         {
-            HttpError::send(400, 'The user '. $args['email']. ' not exist.');
+            HttpError::send(400, 'login-userNotFound', 'The user '. $args['email']. ' not exist.');
         }
         if (!UserHelper::isActive($userModel->id) || UserHelper::isBanned($userModel->id))
         {
-            HttpError::send(401, 'The user '. $userModel->email. ' is not activated or was banned');
+            HttpError::send(401, 'login-userNotActive', 'The user '. $userModel->email. ' is not activated or was banned');
         }
         if ($userModel->email === $args['email'] && $userModel->getPass() === sha1($args['password']))
         {
@@ -46,7 +46,7 @@ class UserCtrl
             return $json->render();
         } else
         {
-            HttpError::send(401, 'Email or password incorrect');
+            HttpError::send(401, "login-wrongInfo", "Wrong email or password");
         }
     }
 
@@ -64,7 +64,7 @@ class UserCtrl
 
             if (!UserHelper::isActive($userModel->id) || UserHelper::isBanned($userModel->id))
             {
-                HttpError::send(401, 'The user '. $userModel->email. ' is not activated or was banned');
+                HttpError::send(401, 'login-userNotActive', 'The user '. $userModel->email. ' is not activated or was banned');
             }
             $userModel->setToken(TokenHelper::generate($userModel->email, $userModel->getPass()));
             if ($userModel->update())
@@ -75,7 +75,7 @@ class UserCtrl
             } 
         } catch (BDException $e) 
         {
-            HttpError::send(500, $e->getBdMessage());
+            HttpError::send(500, 'db-error', $e->getBdMessage());
         }
 
     }
@@ -95,11 +95,11 @@ class UserCtrl
 
             if (!UserHelper::isActive($userModel->id) || UserHelper::isBanned($userModel->id))
             {
-                HttpError::send(401, 'The user '. $userModel->email. ' is not activated or was banned');
+                HttpError::send(401, 'login-userNotActive', 'The user '. $userModel->email. ' is not activated or was banned');
             }
             if ($id != $userModel->id && !UserHelper::isAdmin($id))
             {
-                HttpError::send(401, "The user doesn't have permissions to change this information");
+                HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to change this information");
             }
             $userModel->name = ( !isset($args['name'])) ? $userModel->name : htmlentities(trim($args['name']) , ENT_QUOTES );
             $userModel->setPassword( (!isset($args['password'])) ? $userModel->getPass() : sha1($args['password']) );
@@ -107,12 +107,13 @@ class UserCtrl
             if ($userModel->update())
             {
                 $json = new Json();
+                $json->msgKey = 'user-modifySuccess';
                 $json->message = "Ther user's information was updated successfully";
                 $json->render();
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 
@@ -131,13 +132,14 @@ class UserCtrl
 
             if ($id != $userModel->id && !UserHelper::isAdmin($id))
             {
-                HttpError::send(401, "You don't have permissions to delete this user");
+                HttpError::send(401, 'user-notAllowed', "You don't have permissions to delete this user");
             }
 
             $userModel->activated = false;
             if ($userModel->update())
             {
                 $json = new Json();
+                $json->msgKey = 'user-disableSuccess';
                 $json->message = 'The user was disabled successfuly';
 
                 $subject = 'Delete acount';
@@ -151,7 +153,7 @@ class UserCtrl
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 
@@ -170,7 +172,7 @@ class UserCtrl
 
             if ($id != $userModel->id && !UserHelper::isAdmin($id))
             {
-                HttpError::send(401, "You don't have permissions to see comments of other users.");
+                HttpError::send(401, 'user-notAllowed', "You don't have permissions to see comments of other users.");
             }
 
             $json = new Json();
@@ -178,13 +180,13 @@ class UserCtrl
             $commentModel = new CommentModel();
             if ( !($json->comments = $commentModel->getAllByUserId($userModel->id)) )
             {
-                HttpError::send(400, "There is not any comment");
+                HttpError::send(400, 'user-noCommentsFound', "There are no comments");
             }
 
             return $json->render();
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
 
 

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
@@ -19,12 +20,27 @@ import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from './transl
 import { CapitalizePipe } from './capitalize.pipe';
 import { SignupComponent } from './signup/signup.component';
 import { AjaxService } from './data/ajax.service';
+import { ActivationPendingComponent } from './activation-pending/activation-pending.component';
+import { ActivationComponent } from './activation/activation.component';
+import { RouteComponent } from './route/route.component';
+import { LocalStorageService } from './data/local-storage.service';
+import {JwtHelper} from 'angular2-jwt';
+
+import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsDirectionsDirective } from './google-maps-directions.directive';
+import { AddRouteComponent } from './add-route/add-route.component';
+import { RouteAddPointsComponent } from './route-add-points/route-add-points.component';
 
 const routes: Routes = [
   {path: '', component: MapViewComponent},
   {path: 'map', component: MapViewComponent},
   {path: 'catalog', component: CatalogViewComponent},
+  {path: 'routes/:id', component: RouteComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'signup/activation-pending', component: ActivationPendingComponent},
+  {path: 'signup/activate/:token', component: ActivationComponent},
+  {path: 'add-route', component: AddRouteComponent},
+  {path: 'route-add-points/:routeId', component: RouteAddPointsComponent},
   {path: '**', component: NotFoundComponent}
 
 ];
@@ -44,19 +60,31 @@ export const routing = RouterModule.forRoot(routes);
     CatalogViewComponent,
     TranslatePipe,
     CapitalizePipe,
-    SignupComponent
+    SignupComponent,
+    ActivationPendingComponent,
+    ActivationComponent,
+    RouteComponent,
+    GoogleMapsDirectionsDirective,
+    AddRouteComponent,
+    RouteAddPointsComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     FormsModule,
     HttpModule,
     routing,
-    MaterializeModule
+    MaterializeModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBlvH9gIvn1ELDGlF0-70H02254p7ibjYU'
+    })
   ],
   providers: [
     TRANSLATION_PROVIDERS,
     TranslateService,
-    AjaxService
+    AjaxService,
+    LocalStorageService,
+    JwtHelper
   ],
   bootstrap: [AppComponent]
 })

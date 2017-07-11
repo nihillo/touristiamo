@@ -1,4 +1,5 @@
 <ul id="nav-menu" class="right">
+	<li *ngIf="usersSrv.userHasEditPermission();"><a [routerLink]="'/add-route'"><i class="material-icons">add</i> <span class=" hide-on-med-and-down">{{ 'add route' | translate | capitalize}}</span></a></li>
 	<li><a [routerLink]="'/map'"><i class="material-icons">map</i> <span class=" hide-on-med-and-down">{{ 'map' | translate | capitalize}}</span></a></li>
 	<li><a [routerLink]="'/catalog'"><i class="material-icons">view_list</i> <span class=" hide-on-med-and-down">{{ 'catalog' | translate | capitalize}}</span></a></li>
 </ul>

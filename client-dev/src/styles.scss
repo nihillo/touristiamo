@@ -6,7 +6,7 @@ app-root {
 
 .main {
 	flex: 1 0 auto;
-	padding-top: 60px;
+	// padding-top: 60px;
 }
 
 nav {
@@ -65,4 +65,51 @@ nav {
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
+}
+
+.collection-item {
+	cursor: pointer;
+}
+
+.slogan, .card .card-content p.slogan {
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+.card.side-panel {
+	height: 100vh;
+    overflow-y: scroll;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+agm-map {
+    height: 100vh;
+    // width: 100%;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // z-index: -1;
+
+    &.map-view {
+    	width: 100%;
+    	// position: absolute;
+	    // top: 0;
+	    // left: 0;
+    }
+}
+
+
+app-header, app-footer {
+	// z-index: 0;
+}
+
+
+.icon-next {
+	vertical-align: middle;
+}
+
+.modal {
+	overflow-y: scroll;
 }

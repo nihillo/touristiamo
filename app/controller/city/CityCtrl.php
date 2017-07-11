@@ -33,15 +33,53 @@ class CityCtrl
             $json = new Json();
             $json->cities = $cityModel->getAll();
             return $json->render();
-        } catch (BDException $e) 
+        } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
-        
+
     }
-    
+
     /**
-     * 
+     * Get city by id
+     * @return Json
+     */
+    public static function getById($id)
+    {
+        try
+        {
+            $cityModel = new CityModel();
+            $json = new Json();
+            $json->city = $cityModel->getById($id);
+            return $json->render();
+        } catch (BDException $e)
+        {
+            HttpError::send(400, 'db-error', $e->getBdMessage());
+        }
+
+    }
+
+    /**
+     * Get all cities by country
+     * @return Json
+     */
+    public static function getByCountry($countryId)
+    {
+        try
+        {
+            $cityModel = new CityModel();
+            $json = new Json();
+            $json->cities = $cityModel->getAllByCountryId($countryId);
+            return $json->render();
+        } catch (BDException $e)
+        {
+            HttpError::send(400, 'db-error', $e->getBdMessage());
+        }
+
+    }
+
+    /**
+     *
      * @param \ArrayIterator $args
      * @param \ArrayIterator $publicToken
      * @return Json
@@ -51,27 +89,30 @@ class CityCtrl
         try
         {
             $userModel = TokenHelper::checkSign($publicToken);
-            if (!isset($args['name']) || !isset($args['countryId']))
+            if (!isset($args['name_en']) || !isset($args['name_es']) || !isset($args['name_it']) || !isset($args['countryId']))
             {
-                HttpError::send(400, 'You must fill the name and the countryId');
+                HttpError::send(400, 'city-missingInfo', 'You must fill the name and countryId');
             }
             if (!UserHelper::isTouristiamo($userModel->id) && !UserHelper::isAdmin($userModel->id))
             {
-                HttpError::send(401, "The user doesn't have permissions to create cities");
+                HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to create cities");
             }
             $countryModel = new CountryModel($args['countryId']);
             $cityModel = new CityModel();
             $cityModel->countryId = $countryModel->id;
-            $cityModel->name = htmlentities(trim($args['name']));
+            $cityModel->name_en = htmlentities(trim($args['name_en']));
+            $cityModel->name_es = htmlentities(trim($args['name_es']));
+            $cityModel->name_it = htmlentities(trim($args['name_it']));
             if ($cityModel->save())
             {
                 $json = new Json();
-                $json->message = "The city was saved successfuly.";
+                $json->msgKey = 'city-saveSuccess';
+                $json->message = "The city was saved successfully.";
                 return $json->render();
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
     
@@ -91,19 +132,22 @@ class CityCtrl
             $cityModel = new CityModel($cityId);
             if (!UserHelper::isTouristiamo($userModel->id) && !UserHelper::isAdmin($userModel->id))
             {
-                HttpError::send(401, "The user doesn't have permissions to update this city");
+                HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to update this city");
             }
-            $cityModel->name = (!isset($args['name'])) ? $cityModel->name : htmlentities(trim($args['name']));
+            $cityModel->name_en = (!isset($args['name_en'])) ? $cityModel->name_en : htmlentities(trim($args['name_en']));
+            $cityModel->name_es = (!isset($args['name_es'])) ? $cityModel->name_es : htmlentities(trim($args['name_es']));
+            $cityModel->name_it = (!isset($args['name_it'])) ? $cityModel->name_it : htmlentities(trim($args['name_it']));
             $cityModel->countryId = (!isset($args['countryId'])) ? $cityModel->countryId : htmlentities(trim($args['countryId']));
             if ($cityModel->update())
             {
                 $json = new Json();
+                $json->msgKey = 'city-modifySuccess';
                 $json->message = "The city was modified successfuly.";
                 return $json->render();
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
     
@@ -122,7 +166,7 @@ class CityCtrl
             $userModel = TokenHelper::checkSign($publicToken);
             if (!UserHelper::isTouristiamo($userModel->id) && !UserHelper::isAdmin($userModel->id))
             {
-                HttpError::send(401, "The user doesn't have permissions to delete cities");
+                HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to delete cities");
             }
             $cityModel = new CityModel($id);
             $routeModel = new RouteModel();
@@ -134,19 +178,20 @@ class CityCtrl
                 $routeMod = new RouteModel($route->id);
                 if (!$pictureModel->deleteAllByRouteId($routeMod->id) || !$commentModel->deleteAllByRouteId($routeMod->id))
                 {
-                    HttpError::send(500, 'Fail to delete images or comments from this route');
+                    HttpError::send(500, 'image-deleteError', 'Failed to delete images or comments from this route');
                 }
                 $routeMod->delete();
             }
             if ($cityModel->delete())
             {
                 $json = new Json();
+                $json->msgKey = 'city-deleteSuccess';
                 $json->message = "The city was deleted successfuly.";
                 return $json->render();
             }
         } catch (BDException $e)
         {
-            HttpError::send(400, $e->getBdMessage());
+            HttpError::send(400, 'db-error', $e->getBdMessage());
         }
     }
 }

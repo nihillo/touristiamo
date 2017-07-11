@@ -12,7 +12,7 @@
      * However, our variables are public, because we use json. 
      * It will get the variable. If the variable is public, it won't get it.
      */
-    class PictureModel extends Model
+    class RouteImageModel extends Model
     {
         /**
          *
@@ -24,13 +24,7 @@
          *
          * @var string
          */
-        public $image;
-        
-        /**
-         *
-         * @var integer
-         */
-        public $routeId;
+        public $path;
 
         /**
          * 
@@ -41,7 +35,7 @@
             parent::__construct();	
             if ($id != null) 
             {
-                $st = $this->connection->prepare('select id, image, routeId from pictures where id = :id');
+                $st = $this->connection->prepare('select id, path from image where id = :id');
                 $st->bindParam(':id', $id, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -54,8 +48,7 @@
 
                 //Insert value
                 $this->id = $rs->id;
-                $this->image = $rs->image;
-                $this->routeId = $rs->routeId;
+                $this->path = $rs->path;
             }
         }
 
@@ -67,10 +60,9 @@
         {
             try
             {
-                $st = $this->connection->prepare('insert into pictures (id, image, routeId) values (:id, :image, :routeId)');
+                $st = $this->connection->prepare('insert into image (id, path) values (:id, :path)');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
-                $st->bindParam(':image', $this->image, \PDO::PARAM_STR);
-                $st->bindParam(':routeId', $this->routeId, \PDO::PARAM_INT);
+                $st->bindParam(':path', $this->path, \PDO::PARAM_STR);
                 if (!$st->execute()) 
                 {
                     throw new BDException($st->errorInfo());
@@ -90,10 +82,9 @@
         {
             try
             {
-                $st = $this->connection->prepare('UPDATE pictures SET image = :image ,'
-                        . 'routeId = :routeId where id = :id');
-                $st->bindParam(':image', $this->image, \PDO::PARAM_STR);
-                $st->bindParam(':routeId', $this->routeId, \PDO::PARAM_INT);
+                $st = $this->connection->prepare('UPDATE image SET path = :path '
+                        . 'where id = :id');
+                $st->bindParam(':path', $this->path, \PDO::PARAM_STR);
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -116,7 +107,7 @@
         {
             try
             {
-                $st = $this->connection->prepare('delete FROM pictures where id = :id');
+                $st = $this->connection->prepare('delete FROM image where id = :id');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -140,7 +131,7 @@
         {
             try
             {
-                $st = $this->connection->prepare('select * from pictures where routeId = :routeId');
+                $st = $this->connection->prepare('select id, path from route_image join image on route_image.imageId = image.id where route_image.routeId = :routeId');
                 $st->bindParam(':routeId', $routeId, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
@@ -164,7 +155,7 @@
         {
             try 
             {
-                $st = $this->connection->prepare('delete from pictures where routeId = :routeId');
+                $st = $this->connection->prepare('delete from image where routeId = :routeId');
                 $st->bindParam(':routeId', $routeId, \PDO::PARAM_INT);
                 if (!$st->execute()) 
                 {
