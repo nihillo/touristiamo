@@ -1,7 +1,7 @@
 <div class="row" *ngIf="route != undefined" style="margin-bottom: 0">
   <div class="col s12 l3 card side-panel">
     <div class="card-image">
-      <img *ngIf="route.images != undefined" src="{{route.images[0].path}}">
+      <img *ngIf="route.image != undefined" src="{{route.image}}">
     </div>
   	<div class="card-content">
       <h4 class="card-title">{{route.name[translate.currentLang]}}</h4>

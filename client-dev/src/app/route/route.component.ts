@@ -49,6 +49,7 @@ export class RouteComponent implements OnInit, OnDestroy {
 
                                 // this.route['centerLat'] = centerLat;
                                 // this.route['centerLng'] = centerLng;
+                                console.log(this.route['image']);
                             }
                         );
                     },

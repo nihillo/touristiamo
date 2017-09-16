@@ -1202,6 +1202,7 @@ var RoutesService = (function () {
                     es: route.name_es,
                     it: route.name_it
                 },
+                image: route.image,
                 slogan: {
                     en: route.slogan_en,
                     es: route.slogan_es,
@@ -1250,11 +1251,13 @@ var RoutesService = (function () {
         var routes = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Subject"]();
         this.ajax.getData(resource, params).subscribe(function (resp) {
             var data = _this.jsonForm(resp);
-            data.forEach(function (route) {
-                _this.getImages(route.id).subscribe(function (respI) {
-                    route['images'] = respI.images;
-                });
-            });
+            // data.forEach(route => {
+            //     this.getImages(route.id).subscribe(
+            //         respI => {
+            //             route['images'] = respI.images;
+            //         }
+            //         );
+            // });
             routes.next(data);
         });
         return routes.asObservable();
@@ -1268,11 +1271,13 @@ var RoutesService = (function () {
         var routes = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Subject"]();
         this.ajax.getData(resource, params).subscribe(function (resp) {
             var data = _this.jsonForm(resp);
-            data.forEach(function (route) {
-                _this.getImages(route.id).subscribe(function (respI) {
-                    route['images'] = respI.images;
-                });
-            });
+            // data.forEach(route => {
+            //     this.getImages(route.id).subscribe(
+            //         respI => {
+            //             route['images'] = respI.images;
+            //         }
+            //         );
+            // });
             routes.next(data);
         });
         return routes.asObservable();
@@ -1286,11 +1291,13 @@ var RoutesService = (function () {
         var routes = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Subject"]();
         this.ajax.getData(resource, params).subscribe(function (resp) {
             var data = _this.jsonForm(resp);
-            data.forEach(function (route) {
-                _this.getImages(route.id).subscribe(function (respI) {
-                    route['images'] = respI.images;
-                });
-            });
+            // data.forEach(route => {
+            //     this.getImages(route.id).subscribe(
+            //         respI => {
+            //             route['images'] = respI.images;
+            //         }
+            //         );
+            // });
             routes.next(data);
         });
         return routes.asObservable();
@@ -1305,15 +1312,17 @@ var RoutesService = (function () {
         this.ajax.getData(resource, params).subscribe(function (resp) {
             var data = _this.jsonForm(resp);
             data = data[0];
-            _this.getImages(id).subscribe(function (respI) {
-                data['images'] = respI.images;
-            });
+            // this.getImages(id).subscribe(
+            //     respI => {
+            //         data['images'] = respI.images;
+            //     }
+            // );
             routes.next(data);
         });
         return routes.asObservable();
     };
-    RoutesService.prototype.getComments = function () { };
-    RoutesService.prototype.getScore = function () { };
+    // getComments() {}
+    // getScore() {}
     RoutesService.prototype.getPoints = function (id) {
         var _this = this;
         var resource = '/routes/' + id + '/points';
@@ -1365,20 +1374,6 @@ var RoutesService = (function () {
         };
         return this.ajax.postData(resource, params);
     };
-    RoutesService.prototype.modifyRoute = function () { };
-    RoutesService.prototype.deleteRoute = function () { };
-    RoutesService.prototype.publishComment = function () { };
-    RoutesService.prototype.modifyComment = function () { };
-    RoutesService.prototype.deleteComment = function () { };
-    RoutesService.prototype.getImages = function (routeId) {
-        var resource = '/routes/' + routeId + '/images';
-        var params = {
-            auth: false
-        };
-        return this.ajax.getData(resource, params);
-    };
-    RoutesService.prototype.insertImage = function () { };
-    RoutesService.prototype.deleteImage = function () { };
     return RoutesService;
 }());
 RoutesService = __decorate([
@@ -2287,7 +2282,7 @@ var _a, _b, _c, _d, _e;
 /***/ "./src/app/route/route.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" *ngIf=\"route != undefined\" style=\"margin-bottom: 0\">\n  <div class=\"col s12 l3 card side-panel\">\n    <div class=\"card-image\">\n      <img *ngIf=\"route.images != undefined\" src=\"{{route.images[0].path}}\">\n    </div>\n  \t<div class=\"card-content\">\n      <h4 class=\"card-title\">{{route.name[translate.currentLang]}}</h4>\n      <p class=\"slogan\">{{route.slogan[translate.currentLang]}}</p>\n      <div class=\"icons\">\n        <div><i *ngIf=\"route.accesible\" class=\"material-icons\">accessible</i>{{'accesible' | translate | capitalize}}</div>\n        <div><i *ngIf=\"route.walkable\" class=\"material-icons\">directions_walk</i>{{'walkable' | translate | capitalize}}</div>\n        <div><i *ngIf=\"route.bikeable\" class=\"material-icons\">directions_bike</i>{{'bikeable' | translate | capitalize}}</div>\n      </div>\n\t    <p>{{route.description[translate.currentLang]}}</p>\n    </div>\n  </div>\n  <agm-map *ngIf=\"route.latlngs != undefined\" class=\"map\" [latitude]=\"route.centerLat\" [longitude]=\"route.centerLng\" [zoom]=\"16\">\n    <agm-marker *ngFor=\"let point of route.points\" [latitude]=\"point.lat\" [longitude]=\"point.lng\">\n      <agm-info-window>\n        <h6>{{point.name[translate.currentLang]}}</h6>\n        <p>{{point.description[translate.currentLang]}}</p>\n      </agm-info-window>\n    </agm-marker>\n    <agm-directions [points]=\"route.latlngs\"></agm-directions>\n  </agm-map>\n</div>\n"
+module.exports = "<div class=\"row\" *ngIf=\"route != undefined\" style=\"margin-bottom: 0\">\n  <div class=\"col s12 l3 card side-panel\">\n    <div class=\"card-image\">\n      <img *ngIf=\"route.image != undefined\" src=\"{{route.image}}\">\n    </div>\n  \t<div class=\"card-content\">\n      <h4 class=\"card-title\">{{route.name[translate.currentLang]}}</h4>\n      <p class=\"slogan\">{{route.slogan[translate.currentLang]}}</p>\n      <div class=\"icons\">\n        <div><i *ngIf=\"route.accesible\" class=\"material-icons\">accessible</i>{{'accesible' | translate | capitalize}}</div>\n        <div><i *ngIf=\"route.walkable\" class=\"material-icons\">directions_walk</i>{{'walkable' | translate | capitalize}}</div>\n        <div><i *ngIf=\"route.bikeable\" class=\"material-icons\">directions_bike</i>{{'bikeable' | translate | capitalize}}</div>\n      </div>\n\t    <p>{{route.description[translate.currentLang]}}</p>\n    </div>\n  </div>\n  <agm-map *ngIf=\"route.latlngs != undefined\" class=\"map\" [latitude]=\"route.centerLat\" [longitude]=\"route.centerLng\" [zoom]=\"16\">\n    <agm-marker *ngFor=\"let point of route.points\" [latitude]=\"point.lat\" [longitude]=\"point.lng\">\n      <agm-info-window>\n        <h6>{{point.name[translate.currentLang]}}</h6>\n        <p>{{point.description[translate.currentLang]}}</p>\n      </agm-info-window>\n    </agm-marker>\n    <agm-directions [points]=\"route.latlngs\"></agm-directions>\n  </agm-map>\n</div>\n"
 
 /***/ }),
 
@@ -2358,6 +2353,7 @@ var RouteComponent = (function () {
                     // const centerLng = lngAcc / respP.points.length;
                     // this.route['centerLat'] = centerLat;
                     // this.route['centerLng'] = centerLng;
+                    console.log(_this.route['image']);
                 });
             }, function (err) {
                 err = err.json();

@@ -12,7 +12,7 @@ use touristiamo\controller\route\RouteImagesCtrl as RouteImageCtrl;
  * Routes for Routes Zone - Using Route controller
  */
 $app->group('/routes', function()
-{   
+{
     // Allow preflight
     $this->options('', function(Request $request, Response $response, $args)
     {
@@ -54,19 +54,19 @@ $app->group('/routes', function()
     /**
      * Get all comments from a route by id
      */
-    $this->get('/{id:[0-9]+}/comments', function(Request $request, Response $response, $args)
-    {
-        return $response->getBody()
-                ->write(RouteCtrl::getComments($args['id']));
-    });
+    // $this->get('/{id:[0-9]+}/comments', function(Request $request, Response $response, $args)
+    // {
+    //     return $response->getBody()
+    //             ->write(RouteCtrl::getComments($args['id']));
+    // });
     /**
      * Get route score
      */
-    $this->get('/{id:[0-9]+}/score', function(Request $request, Response $response, $args)
-    {
-        return $response->getBody()
-                ->write(RouteCtrl::getScore($args['id']));
-    });
+    // $this->get('/{id:[0-9]+}/score', function(Request $request, Response $response, $args)
+    // {
+    //     return $response->getBody()
+    //             ->write(RouteCtrl::getScore($args['id']));
+    // });
     /**
      * Get route points
      */
@@ -152,11 +152,11 @@ $app->group('/routes', function()
     /** 
      * Get all route images by route id.
      */
-    $this->get('/{id:[0-9]+}/images', function(Request $request, Response $response, $args)
-    {   
-        return $response->getBody()
-                ->write(RouteImageCtrl::getImages($args['id']));
-    });
+    // $this->get('/{id:[0-9]+}/images', function(Request $request, Response $response, $args)
+    // {   
+    //     return $response->getBody()
+    //             ->write(RouteImageCtrl::getImages($args['id']));
+    // });
     
     /**
      * Post new image into a route

@@ -17,6 +17,19 @@ use touristiamo\models\PointModel as PointModel;
 class RouteCtrl
 {
     /**
+     * Process route(s) JSON and return it with full image URLs
+     * @return Json
+     */
+    private static function setFullImgUrls($json) {
+
+        foreach ($json->routes as $route) {
+            $route->image = APP_URL_API . $route->image;
+        }
+
+        return $json;
+    }
+
+    /**
      * Get all routes
      * @return Json
      */
@@ -27,6 +40,7 @@ class RouteCtrl
         try
         {
             $json->routes = $routesModel->getAll();
+            $json = RouteCtrl::setFullImgUrls($json);
             return $json->render();
         } catch (BDException $e)
         {
@@ -49,6 +63,7 @@ class RouteCtrl
                 HttpError::send (400, 'country-noRoutesFound', "This country doesn't have routes yet!");
             }
             $json->routes = $routesModel->getAllByCountry($countryId);
+            $json = RouteCtrl::setFullImgUrls($json);
             return $json->render();
         } catch (BDException $e)
         {
@@ -72,6 +87,7 @@ class RouteCtrl
                 HttpError::send (400, 'city-noRoutesFound', "This city doesn't have routes yet!");
             }
             $json->routes = $routesModel->getAllByCity($cityId);
+            $json = RouteCtrl::setFullImgUrls($json);
             return $json->render();
         } catch (BDException $e)
         {
@@ -95,6 +111,8 @@ class RouteCtrl
                 HttpError::send (400, 'city-noRoutesFound', "Route not found");
             }
             $json->routes = $routesModel->getById($id);
+            $json = RouteCtrl::setFullImgUrls($json);
+
             return $json->render();
         } catch (BDException $e)
         {
@@ -107,51 +125,51 @@ class RouteCtrl
      * @param integer $routeId
      * @return Json
      */
-    public static function getComments($routeId)
-    {
-        try
-        {
-            $commentModel = new CommentModel();
-            $json = new Json();
-            if ( !($json->comments = $commentModel->getAllByRouteId($routeId)) )
-            {
-                HttpError::send(400, 'route-noCommentsFound', "This route doesn't have any comment.");
-            }
-            return $json->render();
-        } catch (BDException $e)
-        {
-            HttpError::send(400, 'db-error', $e->getBdMessage());
-        }
-    }
+    // public static function getComments($routeId)
+    // {
+    //     try
+    //     {
+    //         $commentModel = new CommentModel();
+    //         $json = new Json();
+    //         if ( !($json->comments = $commentModel->getAllByRouteId($routeId)) )
+    //         {
+    //             HttpError::send(400, 'route-noCommentsFound', "This route doesn't have any comment.");
+    //         }
+    //         return $json->render();
+    //     } catch (BDException $e)
+    //     {
+    //         HttpError::send(400, 'db-error', $e->getBdMessage());
+    //     }
+    // }
 
     /**
      * Get the total score from user comments
      * @param integer $routeId
      * @return Json
      */
-    public static function getScore($routeId)
-    {
-        try
-        {
-            $commentModel = new CommentModel();
-            $json = new Json();
-            if ( !($comments = $commentModel->getAllByRouteId($routeId)) )
-            {
-                HttpError::send(400, 'route-noScoreFound', "This route doesn't have any score.");
-            }
-            $score = 0;
-            $numComments = count($comments);
-            foreach ($comments as $comment)
-            {
-                $score += intval($comment->score);
-            }
-            $json->score = $score / $numComments;
-            return $json->render();
-        } catch (BDException $e)
-        {
-            HttpError::send(400, 'db-error', $e->getBdMessage());
-        }
-    }
+    // public static function getScore($routeId)
+    // {
+    //     try
+    //     {
+    //         $commentModel = new CommentModel();
+    //         $json = new Json();
+    //         if ( !($comments = $commentModel->getAllByRouteId($routeId)) )
+    //         {
+    //             HttpError::send(400, 'route-noScoreFound', "This route doesn't have any score.");
+    //         }
+    //         $score = 0;
+    //         $numComments = count($comments);
+    //         foreach ($comments as $comment)
+    //         {
+    //             $score += intval($comment->score);
+    //         }
+    //         $json->score = $score / $numComments;
+    //         return $json->render();
+    //     } catch (BDException $e)
+    //     {
+    //         HttpError::send(400, 'db-error', $e->getBdMessage());
+    //     }
+    // }
 
     /**
      * Get the route points
@@ -168,7 +186,7 @@ class RouteCtrl
             {
                 HttpError::send(400, 'route-noPointsFound', "This route doesn't have any points.");
             }
-            
+
             $json->points = $points;
             return $json->render();
         } catch (BDException $e)

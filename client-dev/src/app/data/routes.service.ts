@@ -19,6 +19,7 @@ export class RoutesService {
                         es: route.name_es,
                         it: route.name_it
                     },
+                    image: route.image,
                     slogan: {
                         en: route.slogan_en,
                         es: route.slogan_es,
@@ -76,13 +77,13 @@ export class RoutesService {
             resp => {
                 const data = this.jsonForm(resp);
 
-                data.forEach(route => {
-                    this.getImages(route.id).subscribe(
-                        respI => {
-                            route['images'] = respI.images;
-                        }
-                        );
-                });
+                // data.forEach(route => {
+                //     this.getImages(route.id).subscribe(
+                //         respI => {
+                //             route['images'] = respI.images;
+                //         }
+                //         );
+                // });
                 routes.next(data);
             }
             );
@@ -101,13 +102,13 @@ export class RoutesService {
             resp => {
                 const data = this.jsonForm(resp);
 
-                data.forEach(route => {
-                    this.getImages(route.id).subscribe(
-                        respI => {
-                            route['images'] = respI.images;
-                        }
-                        );
-                });
+                // data.forEach(route => {
+                //     this.getImages(route.id).subscribe(
+                //         respI => {
+                //             route['images'] = respI.images;
+                //         }
+                //         );
+                // });
                 routes.next(data);
             }
             );
@@ -127,13 +128,13 @@ export class RoutesService {
             resp => {
                 const data = this.jsonForm(resp);
 
-                data.forEach(route => {
-                    this.getImages(route.id).subscribe(
-                        respI => {
-                            route['images'] = respI.images;
-                        }
-                        );
-                });
+                // data.forEach(route => {
+                //     this.getImages(route.id).subscribe(
+                //         respI => {
+                //             route['images'] = respI.images;
+                //         }
+                //         );
+                // });
                 routes.next(data);
             }
             );
@@ -154,11 +155,11 @@ export class RoutesService {
                 let data = this.jsonForm(resp);
                 data = data[0];
 
-                this.getImages(id).subscribe(
-                    respI => {
-                        data['images'] = respI.images;
-                    }
-                    );
+                // this.getImages(id).subscribe(
+                //     respI => {
+                //         data['images'] = respI.images;
+                //     }
+                // );
 
                 routes.next(data);
             }
@@ -167,9 +168,9 @@ export class RoutesService {
         return routes.asObservable();
     }
 
-    getComments() {}
+    // getComments() {}
 
-    getScore() {}
+    // getScore() {}
 
     getPoints(id) {
         const resource = '/routes/' + id + '/points';
@@ -231,26 +232,26 @@ export class RoutesService {
         return this.ajax.postData(resource, params);
     }
 
-    modifyRoute() {}
+    // modifyRoute() {}
 
-    deleteRoute() {}
+    // deleteRoute() {}
 
-    publishComment() {}
+    // publishComment() {}
 
-    modifyComment() {}
+    // modifyComment() {}
 
-    deleteComment() {}
+    // deleteComment() {}
 
-    getImages(routeId) {
-        const resource = '/routes/' + routeId + '/images';
-        const params = {
-            auth: false
-        };
+    // getImages(routeId) {
+    //     const resource = '/routes/' + routeId + '/images';
+    //     const params = {
+    //         auth: false
+    //     };
 
-        return this.ajax.getData(resource, params);
-    }
+    //     return this.ajax.getData(resource, params);
+    // }
 
-    insertImage() {}
+    // insertImage() {}
 
-    deleteImage() {}
+    // deleteImage() {}
 }

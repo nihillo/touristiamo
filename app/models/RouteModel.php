@@ -1,43 +1,43 @@
 <?php
-    
+
     namespace touristiamo\models;
-    
+
     use touristiamo\Model as Model;
     use touristiamo\error\HttpError as HttpError;
     use touristiamo\exception\BDException as BDException;
 
     /**
-     * The class has protected or private variables , so you can protect them. 
-     * We will use the get methods to obtain the value and set methods to change the value. 
-     * However, our variables are public, because we use json. It will get the variable. 
+     * The class has protected or private variables , so you can protect them.
+     * We will use the get methods to obtain the value and set methods to change the value.
+     * However, our variables are public, because we use json. It will get the variable.
      * If the variable is public, it won't get it.
      */
     class RouteModel extends Model
     {
         /**
          *
-         * @var integer 
+         * @var integer
          */
         public $id;
-        
+
         /**
          *
-         * @var boolean 
+         * @var boolean
          */
         public $accesible;
 
         /**
          *
-         * @var boolean 
+         * @var boolean
          */
         public $walkable;
 
         /**
          *
-         * @var boolean 
+         * @var boolean
          */
         public $bikeable;
-        
+
         /**
          *
          * @var string
@@ -49,7 +49,7 @@
          * @var string
          */
         public $name_es;
-        
+
         /**
          *
          * @var string
@@ -58,22 +58,28 @@
 
         /**
          *
-         * @var string 
+         * @var string
+         */
+        public $image;
+
+        /**
+         *
+         * @var string
          */
         public $description_en;
 
         /**
          *
-         * @var string 
+         * @var string
          */
         public $description_es;
 
         /**
          *
-         * @var string 
+         * @var string
          */
         public $description_it;
-        
+
         /**
          *
          * @var string
@@ -91,16 +97,16 @@
          * @var string
          */
         public $slogan_it;
-        
+
         /**
          *
-         * @var integer 
+         * @var integer
          */
         public $cityId;
-        
+
         /**
          *
-         * @var integer 
+         * @var integer
          */
         public $userId;
 
@@ -111,13 +117,13 @@
          */
         public function __construct( $id = null)
         {
-            parent::__construct();	
-            if ($id != null) 
+            parent::__construct();
+            if ($id != null)
             {
-                $st = $this->connection->prepare('select id, accesible, name_en, name_es, name_it, description_en, description_es, description_it, '
+                $st = $this->connection->prepare('select id, accesible, name_en, name_es, name_it, image, description_en, description_es, description_it, '
                         . 'slogan_en, slogan_es, slogan_it, cityId, userId, walkable, bikeable from route where id = :id');
                 $st->bindParam(':id', $id, \PDO::PARAM_INT);
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
@@ -134,6 +140,7 @@
                 $this->name_en = $rs->name_en;
                 $this->name_es = $rs->name_es;
                 $this->name_it = $rs->name_it;
+                $this->image = $rs->image;
                 $this->description_en = $rs->description_en;
                 $this->description_es = $rs->description_es;
                 $this->description_it = $rs->description_it;
@@ -155,8 +162,8 @@
             try
             {
                 $st = $this->connection->prepare('insert into route '.
-                    '(id, accesible, name_en, name_es, name_it, description_en, description_es, description_it, slogan_en, slogan_es, slogan_it, cityId, userId, walkable, bikeable) '.
-                    ' values (:id, :accesible, :name_en, :name_es, :name_it, :description_en, :description_es, :description_it, :slogan_en, :slogan_es, :slogan_it, :cityId, :userId, :walkable, :bikeable)');
+                    '(id, accesible, name_en, name_es, name_it, image, description_en, description_es, description_it, slogan_en, slogan_es, slogan_it, cityId, userId, walkable, bikeable) '.
+                    ' values (:id, :accesible, :name_en, :name_es, :name_it, :image, :description_en, :description_es, :description_it, :slogan_en, :slogan_es, :slogan_it, :cityId, :userId, :walkable, :bikeable)');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
                 $st->bindParam(':accesible', $this->accesible, \PDO::PARAM_BOOL);
                 $st->bindParam(':walkable', $this->walkable, \PDO::PARAM_BOOL);
@@ -164,6 +171,7 @@
                 $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_STR);
                 $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_STR);
                 $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_STR);
+                $st->bindParam(':image', $this->image, \PDO::PARAM_STR);
                 $st->bindParam(':description_en', $this->description_en, \PDO::PARAM_STR);
                 $st->bindParam(':description_es', $this->description_es, \PDO::PARAM_STR);
                 $st->bindParam(':description_it', $this->description_it, \PDO::PARAM_STR);
@@ -172,7 +180,7 @@
                 $st->bindParam(':slogan_it', $this->slogan_it, \PDO::PARAM_STR);
                 $st->bindParam(':cityId', $this->cityId, \PDO::PARAM_INT);
                 $st->bindParam(':userId', $this->userId, \PDO::PARAM_INT);
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
@@ -182,7 +190,7 @@
                 HttpError::send(400, $e->getMessage());
             }
         }
-        
+
         /**
          * Update values from the data base with the current values in this object
          * @return boolean
@@ -194,12 +202,13 @@
             {
                 // id, accesible, name, description, slogan, cityId, userId
                 $st = $this->connection->prepare('UPDATE route SET id = :id ,'
-                        . 'name_en = :name_en, name_es = :name_es, name_it = :name_it, description_en = :description_en, description_es = :description_es, description_it = :description_it, slogan_en = :slogan_en, slogan_es = :slogan_es, slogan_it = :slogan_it, '
+                        . 'name_en = :name_en, name_es = :name_es, name_it = :name_it, image = :image, description_en = :description_en, description_es = :description_es, description_it = :description_it, slogan_en = :slogan_en, slogan_es = :slogan_es, slogan_it = :slogan_it, '
                         . 'cityId = :cityId, userId = :userId, accesible = :accesible, walkable = :walkable, bikeable = :bikeable where id = :id');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
                 $st->bindParam(':name_en', $this->name_en, \PDO::PARAM_STR);
                 $st->bindParam(':name_es', $this->name_es, \PDO::PARAM_STR);
                 $st->bindParam(':name_it', $this->name_it, \PDO::PARAM_STR);
+                $st->bindParam(':image', $this->image, \PDO::PARAM_STR);
                 $st->bindParam(':description_en', $this->description_en, \PDO::PARAM_STR);
                 $st->bindParam(':description_es', $this->description_es, \PDO::PARAM_STR);
                 $st->bindParam(':description_it', $this->description_it, \PDO::PARAM_STR);
@@ -211,7 +220,7 @@
                 $st->bindParam(':accesible', $this->accesible, \PDO::PARAM_STR);
                 $st->bindParam(':walkable', $this->walkable, \PDO::PARAM_STR);
                 $st->bindParam(':bikeable', $this->bikeable, \PDO::PARAM_STR);
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
@@ -234,7 +243,7 @@
             {
                 $st = $this->connection->prepare('delete from route where id = :id');
                 $st->bindParam(':id', $this->id);
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
@@ -244,7 +253,7 @@
                 HttpError::send(400, $e->getMessage());
             }
         }
-        
+
         /**
          * Return all routes from the data base.
          * @return \ArrayIterator
@@ -255,11 +264,11 @@
             try
             {
                 $st = $this->connection->prepare('select * from route');
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
-                
+
                 return $st->fetchAll(\PDO::FETCH_OBJ);
             } catch (\PDOException $e)
             {
@@ -326,25 +335,25 @@
         {
             try
             {
-                $st = $this->connection->prepare('select route.id, route.name_en, route.name_es, route.name_it, '
+                $st = $this->connection->prepare('select route.id, route.name_en, route.name_es, route.name_it, route.image, '
                     . 'route.slogan_en,route.slogan_es,route.slogan_it, route.description_en, route.description_es, route.description_it, '
                     . 'route.accesible, route.walkable, route.bikeable, route.cityId, route.userId from route '
                     . 'inner join city on route.cityId = city.id '
                     . 'inner join country on city.countryId = country.id '
                     . 'where country.id = :countryId');
                 $st->bindParam(':countryId', $countryId, \PDO::PARAM_INT);
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
-                
+
                 return $st->fetchAll(\PDO::FETCH_OBJ);
             } catch (\PDOException $e)
             {
                 HttpError::send(400, $e->getMessage());
             }
         }
-        
+
         /**
          * Return all routes from the data base by city id.
          * @return \ArrayIterator
@@ -357,16 +366,16 @@
                 $st = $this->connection->prepare('select * from route '
                     . 'where cityId = :cityId');
                 $st->bindParam(':cityId', $cityId, \PDO::PARAM_INT);
-                if (!$st->execute()) 
+                if (!$st->execute())
                 {
                     throw new BDException($st->errorInfo());
                 }
-                
+
                 return $st->fetchAll(\PDO::FETCH_OBJ);
             } catch (\PDOException $e)
             {
                 HttpError::send(400, $e->getMessage());
             }
         }
-        
+
     }
