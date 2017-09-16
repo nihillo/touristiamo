@@ -205,6 +205,7 @@ export class RoutesService {
             lng: point.lng
         };
 
+        console.log(params);
         return this.ajax.postData(resource, params);
     }
 

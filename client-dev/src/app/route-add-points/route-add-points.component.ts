@@ -52,7 +52,7 @@ export class RouteAddPointsComponent implements OnInit {
     }
 
     addPoint() {
-        this.newPoint['order'] = this.counter;
+        this.newPoint['pt_order'] = this.counter;
         this.newPoint['routeId'] = this.routeId;
         this.points.push(this.newPoint);
         this.newPoint = {
@@ -81,6 +81,7 @@ export class RouteAddPointsComponent implements OnInit {
     }
 
     save() {
+        console.log(this.points);
         this.points.forEach((point, index, points) => {
             this.routesSrv.addPoint(point).subscribe(
                 resp => {

@@ -219,7 +219,7 @@ class RouteAdminCtrl
             $pointModel->description_es = htmlentities(trim($args['description_es']));
             $pointModel->description_it = htmlentities(trim($args['description_it']));
             $pointModel->type = htmlentities(trim($args['type']));
-            $pointModel->order = $args['order'];
+            $pointModel->pt_order = $args['pt_order'];
             $pointModel->lat = $args['lat'];
             $pointModel->lng = $args['lng'];
             $pointModel->routeId = $routeId;

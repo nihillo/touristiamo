@@ -78,7 +78,7 @@
          *
          * @var Integer
          */
-        public $order;
+        public $pt_order;
 
         /**
          *
@@ -112,7 +112,7 @@
                 // Load values into model
                 $this->id = $rs->id;
                 $this->routeId = $rs->routeId;
-                $this->order = $rs->order;
+                $this->pt_order = $rs->pt_order;
                 $this->name_en = $rs->name_en;
                 $this->name_es = $rs->name_es;
                 $this->name_it = $rs->name_it;
@@ -161,10 +161,10 @@
                 }
                 $this->id = $st->fetch(\PDO::FETCH_OBJ)->id;
 
-                $st = $this->connection->prepare('insert into point_route (pointId, routeId, pt_order) values (:id, :routeId, :order)');
+                $st = $this->connection->prepare('insert into point_route (pointId, routeId, pt_order) values (:id, :routeId, :pt_order)');
                 $st->bindParam(':id', $this->id, \PDO::PARAM_INT);
                 $st->bindParam(':routeId', $this->routeId, \PDO::PARAM_INT);
-                $st->bindParam(':order', $this->order, \PDO::PARAM_INT);
+                $st->bindParam(':pt_order', $this->pt_order, \PDO::PARAM_INT);
 
                 if (!$st->execute())
                 {
