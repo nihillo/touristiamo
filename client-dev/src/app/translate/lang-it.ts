@@ -53,5 +53,6 @@ export const LANG_IT_TRANS = {
     'cultural': 'culturale',
     'point location':	'posizione del punto',
     'latitude': 'latitudine',
-    'longitude': 'longitudine'
+    'longitude': 'longitudine',
+    'route image': 'immagine del percorso'
 };

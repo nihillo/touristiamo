@@ -101,7 +101,7 @@ class UserCtrl
             {
                 HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to change this information");
             }
-            $userModel->name = ( !isset($args['name'])) ? $userModel->name : htmlentities(trim($args['name']) , ENT_QUOTES );
+            $userModel->name = ( !isset($args['name'])) ? $userModel->name : trim($args['name']);
             $userModel->setPassword( (!isset($args['password'])) ? $userModel->getPass() : sha1($args['password']) );
 
             if ($userModel->update())

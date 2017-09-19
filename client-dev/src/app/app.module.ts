@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
+import { ImageUploadModule } from 'angular2-image-upload';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -77,7 +78,8 @@ export const routing = RouterModule.forRoot(routes);
     MaterializeModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBlvH9gIvn1ELDGlF0-70H02254p7ibjYU'
-    })
+    }),
+    ImageUploadModule.forRoot(),
   ],
   providers: [
     TRANSLATION_PROVIDERS,

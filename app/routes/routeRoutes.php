@@ -159,22 +159,22 @@ $app->group('/routes', function()
     // });
     
     /**
-     * Post new image into a route
+     * Post new image
      */
-    $this->post('/{id:[0-9]+}/images', function(Request $request, Response $response, $args)
-    {
-        return $response->getBody()
-                ->write(RouteImageCtrl::newImage($args['id'], 
-                        $request->getHeader('Auth')));
-    });
+    // $this->post('/{id:[0-9]+}/image', function(Request $request, Response $response, $args)
+    // {
+    //     return $response->getBody()
+    //             ->write(RouteImageCtrl::newImage($args['id'], 
+    //                     $request->getHeader('Auth')));
+    // });
     
     /**
      * Delete image from a route
      */
-    $this->delete('/{routeId:[0-9]+}/images/{imageId:[0-9]+}', function(Request $request, Response $response, $args)
-    {
-        return $response->getBody()
-                ->write(RouteImageCtrl::deleteImage($args['routeId'], $args['imageId'], 
-                        $request->getHeader('Auth')));
-    });
+    // $this->delete('/{routeId:[0-9]+}/images/{imageId:[0-9]+}', function(Request $request, Response $response, $args)
+    // {
+    //     return $response->getBody()
+    //             ->write(RouteImageCtrl::deleteImage($args['routeId'], $args['imageId'], 
+    //                     $request->getHeader('Auth')));
+    // });
 });

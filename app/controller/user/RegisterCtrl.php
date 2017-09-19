@@ -30,7 +30,7 @@ class RegisterCtrl
     {
         $email = $args['email'];
         $pass = $args['pass'];
-        $userName = trim(htmlentities($args['userName'], ENT_QUOTES));
+        $userName = trim($args['userName']);
         $appToken = $args['appToken'];
 
         // Checking

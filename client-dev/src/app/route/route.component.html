@@ -7,9 +7,9 @@
       <h4 class="card-title">{{route.name[translate.currentLang]}}</h4>
       <p class="slogan">{{route.slogan[translate.currentLang]}}</p>
       <div class="icons">
-        <div><i *ngIf="route.accesible" class="material-icons">accessible</i>{{'accesible' | translate | capitalize}}</div>
-        <div><i *ngIf="route.walkable" class="material-icons">directions_walk</i>{{'walkable' | translate | capitalize}}</div>
-        <div><i *ngIf="route.bikeable" class="material-icons">directions_bike</i>{{'bikeable' | translate | capitalize}}</div>
+        <div *ngIf="route.accesible==true"><i class="material-icons">accessible</i>{{'accesible' | translate | capitalize}}</div>
+        <div *ngIf="route.walkable==true"><i class="material-icons">directions_walk</i>{{'walkable' | translate | capitalize}}</div>
+        <div  *ngIf="route.bikeable==true"><i class="material-icons">directions_bike</i>{{'bikeable' | translate | capitalize}}</div>
       </div>
 	    <p>{{route.description[translate.currentLang]}}</p>
     </div>

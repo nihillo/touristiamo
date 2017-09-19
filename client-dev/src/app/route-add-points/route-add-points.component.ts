@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {UsersService} from '../data/users.service';
 import { RoutesService } from '../data/routes.service';
@@ -6,6 +6,7 @@ import { TRANSLATION_PROVIDERS, TranslatePipe, TranslateService } from '../trans
 import {EventEmitter} from '@angular/core';
 import {MaterializeAction} from 'angular2-materialize';
 import {Router} from '@angular/router';
+import {AgmMap} from '@agm/core';
 
 
 @Component({
@@ -15,6 +16,10 @@ import {Router} from '@angular/router';
     providers: [UsersService, RoutesService]
 })
 export class RouteAddPointsComponent implements OnInit {
+
+    @ViewChild(AgmMap)
+    private map: AgmMap;
+
     public sub: any;
     public routeId: number;
     public route = {};
@@ -51,7 +56,13 @@ export class RouteAddPointsComponent implements OnInit {
         );
     }
 
+    placePoint($event) {
+        this.newPoint.lat = $event.coords.lat;
+        this.newPoint.lng = $event.coords.lng;
+    }
+
     addPoint() {
+        console.log(this.routeId);
         this.newPoint['pt_order'] = this.counter;
         this.newPoint['routeId'] = this.routeId;
         this.points.push(this.newPoint);
@@ -71,6 +82,9 @@ export class RouteAddPointsComponent implements OnInit {
           action: 'modal',
           params: ['open']
         });
+        this.map.triggerResize();
+        this.map.longitude = 0;
+        this.map.latitude = 45;
     }
 
     closeModal() {

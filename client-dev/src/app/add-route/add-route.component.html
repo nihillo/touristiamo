@@ -31,6 +31,16 @@
 	        </div>
 	      </div>
 	      <div class="row">
+			<h6>{{ 'route image' | translate | capitalize }}:</h6>
+	      </div>
+		  <image-upload
+			[max]="1"
+			[buttonCaption]="'select image'"
+			[url]="apiImgUploadUrl"
+			(onFileUploadFinish)="imageUploaded($event)"
+			[headers]="[{header: 'Auth', value: token}]"
+		  ></image-upload>
+	      <div class="row">
 	        <h6>{{ 'route location' | translate | capitalize }}:</h6>
 	        <div class="input-field col s8">
 			    <select name="country" materialize="material_select" [materializeSelectOptions]="countries" [(ngModel)]="selectedCountry" (change)="loadCities();">

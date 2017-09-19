@@ -50,7 +50,7 @@ class RouteCommentCtrl
             $routeModel = new RouteModel($routeId);
             $commentModel = new CommentModel();
             $commentModel->userId = $userModel->id;
-            $commentModel->comment = htmlentities(trim($args['comment']));
+            $commentModel->comment = trim($args['comment']);
             $commentModel->score = intval($args['score'] % PROHIBIT_LIMIT_SCORE); // The max score is 5
             $commentModel->date = date("Y-m-d");
             $commentModel->routeId = $routeModel->id;
@@ -92,9 +92,9 @@ class RouteCommentCtrl
             {
                 HttpError::send(401, 'user-notAllowed', 'You cannot change comments of other users');
             }
-            $commentModel->comment = (!$args['comment']) ? $commentModel->comment : htmlentities(trim($args['comment']));
+            $commentModel->comment = (!$args['comment']) ? $commentModel->comment : trim($args['comment']);
             $commentModel->date = date("Y-m-d");
-            $commentModel->score = (!$args['score'])? $commentModel->score : htmlentities(trim($args['score']));
+            $commentModel->score = (!$args['score'])? $commentModel->score : trim($args['score']);
             if ($commentModel->update())
             {
                 $json = new Json();

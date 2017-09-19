@@ -226,7 +226,8 @@ export class RoutesService {
             slogan_en: route.slogan_en,
             slogan_es: route.slogan_es,
             slogan_it: route.slogan_it,
-            walkable: route.walkable
+            walkable: route.walkable,
+            image: route.image
         };
 
         return this.ajax.postData(resource, params);

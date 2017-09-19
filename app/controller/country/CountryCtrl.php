@@ -54,9 +54,9 @@ class CountryCtrl
             HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to create countries");
         }
         $countryModel = new CountryModel();
-        $countryModel->name_en = htmlentities(trim($args['name_en']));
-        $countryModel->name_es = htmlentities(trim($args['name_es']));
-        $countryModel->name_it = htmlentities(trim($args['name_it']));
+        $countryModel->name_en = trim($args['name_en']);
+        $countryModel->name_es = trim($args['name_es']);
+        $countryModel->name_it = trim($args['name_it']);
         if ($countryModel->save())
         {
             $json = new Json();
@@ -83,9 +83,9 @@ class CountryCtrl
             {
                 HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to update this country");
             }
-            $countryModel->name_en = (!isset($args['name_en'])) ? $countryModel->name_en : htmlentities(trim($args['name_en']));
-            $countryModel->name_es = (!isset($args['name_es'])) ? $countryModel->name_es : htmlentities(trim($args['name_es']));
-            $countryModel->name_itn = (!isset($args['name_it'])) ? $countryModel->name_it : htmlentities(trim($args['name_it']));
+            $countryModel->name_en = (!isset($args['name_en'])) ? $countryModel->name_en : trim($args['name_en']);
+            $countryModel->name_es = (!isset($args['name_es'])) ? $countryModel->name_es : trim($args['name_es']);
+            $countryModel->name_itn = (!isset($args['name_it'])) ? $countryModel->name_it : trim($args['name_it']);
             if ($countryModel->update())
             {
                 $json = new Json();

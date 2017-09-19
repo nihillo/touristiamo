@@ -80,7 +80,7 @@ AgmCoreModule.ctorParameters = function () { return []; };
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_map__ = __webpack_require__("./node_modules/@agm/core/directives/map.js");
-/* unused harmony reexport AgmMap */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__directives_map__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_circle__ = __webpack_require__("./node_modules/@agm/core/directives/circle.js");
 /* unused harmony reexport AgmCircle */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_info_window__ = __webpack_require__("./node_modules/@agm/core/directives/info-window.js");
@@ -1928,9 +1928,9 @@ AgmPolyline.propDecorators = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives__ = __webpack_require__("./node_modules/@agm/core/directives.js");
-/* unused harmony namespace reexport */
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services__ = __webpack_require__("./node_modules/@agm/core/services.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_module__ = __webpack_require__("./node_modules/@agm/core/core.module.js");
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_2__core_module__["a"]; });
 // main modules
@@ -2959,54 +2959,55 @@ var BROWSER_GLOBALS_PROVIDERS = [WindowRef, DocumentRef];
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
-/* unused harmony export NgLocaleLocalization */
-/* unused harmony export NgLocalization */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommonModule; });
-/* unused harmony export NgClass */
-/* unused harmony export NgFor */
-/* unused harmony export NgForOf */
-/* unused harmony export NgForOfContext */
-/* unused harmony export NgIf */
-/* unused harmony export NgIfContext */
-/* unused harmony export NgPlural */
-/* unused harmony export NgPluralCase */
-/* unused harmony export NgStyle */
-/* unused harmony export NgSwitch */
-/* unused harmony export NgSwitchCase */
-/* unused harmony export NgSwitchDefault */
-/* unused harmony export NgTemplateOutlet */
-/* unused harmony export NgComponentOutlet */
-/* unused harmony export AsyncPipe */
-/* unused harmony export DatePipe */
-/* unused harmony export I18nPluralPipe */
-/* unused harmony export I18nSelectPipe */
-/* unused harmony export JsonPipe */
-/* unused harmony export LowerCasePipe */
-/* unused harmony export CurrencyPipe */
-/* unused harmony export DecimalPipe */
-/* unused harmony export PercentPipe */
-/* unused harmony export SlicePipe */
-/* unused harmony export UpperCasePipe */
-/* unused harmony export TitleCasePipe */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return PLATFORM_BROWSER_ID; });
-/* unused harmony export ɵPLATFORM_SERVER_ID */
-/* unused harmony export ɵPLATFORM_WORKER_APP_ID */
-/* unused harmony export ɵPLATFORM_WORKER_UI_ID */
-/* unused harmony export isPlatformBrowser */
-/* unused harmony export isPlatformServer */
-/* unused harmony export isPlatformWorkerApp */
-/* unused harmony export isPlatformWorkerUi */
-/* unused harmony export VERSION */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PlatformLocation; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return LOCATION_INITIALIZED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return LocationStrategy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return APP_BASE_HREF; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return HashLocationStrategy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return PathLocationStrategy; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return Location; });
-/* unused harmony export ɵa */
-/* unused harmony export ɵb */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocaleLocalization", function() { return NgLocaleLocalization; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgLocalization", function() { return NgLocalization; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommonModule", function() { return CommonModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgClass", function() { return NgClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgFor", function() { return NgFor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgForOf", function() { return NgForOf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgForOfContext", function() { return NgForOfContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgIf", function() { return NgIf; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgIfContext", function() { return NgIfContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgPlural", function() { return NgPlural; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgPluralCase", function() { return NgPluralCase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgStyle", function() { return NgStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgSwitch", function() { return NgSwitch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgSwitchCase", function() { return NgSwitchCase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgSwitchDefault", function() { return NgSwitchDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgTemplateOutlet", function() { return NgTemplateOutlet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgComponentOutlet", function() { return NgComponentOutlet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AsyncPipe", function() { return AsyncPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatePipe", function() { return DatePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nPluralPipe", function() { return I18nPluralPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "I18nSelectPipe", function() { return I18nSelectPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonPipe", function() { return JsonPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LowerCasePipe", function() { return LowerCasePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CurrencyPipe", function() { return CurrencyPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DecimalPipe", function() { return DecimalPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PercentPipe", function() { return PercentPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlicePipe", function() { return SlicePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UpperCasePipe", function() { return UpperCasePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TitleCasePipe", function() { return TitleCasePipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_BROWSER_ID", function() { return PLATFORM_BROWSER_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_SERVER_ID", function() { return PLATFORM_SERVER_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_WORKER_APP_ID", function() { return PLATFORM_WORKER_APP_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵPLATFORM_WORKER_UI_ID", function() { return PLATFORM_WORKER_UI_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformBrowser", function() { return isPlatformBrowser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformServer", function() { return isPlatformServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformWorkerApp", function() { return isPlatformWorkerApp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPlatformWorkerUi", function() { return isPlatformWorkerUi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return VERSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlatformLocation", function() { return PlatformLocation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOCATION_INITIALIZED", function() { return LOCATION_INITIALIZED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocationStrategy", function() { return LocationStrategy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_BASE_HREF", function() { return APP_BASE_HREF; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HashLocationStrategy", function() { return HashLocationStrategy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PathLocationStrategy", function() { return PathLocationStrategy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Location", function() { return Location; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵa", function() { return COMMON_DIRECTIVES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵb", function() { return COMMON_PIPES; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -55613,7 +55614,7 @@ var INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS = [
         useValue: { providers: [{ provide: __WEBPACK_IMPORTED_MODULE_0__angular_compiler__["a" /* ResourceLoader */], useClass: ResourceLoaderImpl }] },
         multi: true
     },
-    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_2__angular_common__["c" /* ɵPLATFORM_BROWSER_ID */] },
+    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_2__angular_common__["ɵPLATFORM_BROWSER_ID"] },
 ];
 /**
  * @license
@@ -57753,7 +57754,7 @@ var BrowserPlatformLocation = (function (_super) {
      */
     BrowserPlatformLocation.prototype.back = function () { this._history.back(); };
     return BrowserPlatformLocation;
-}(__WEBPACK_IMPORTED_MODULE_0__angular_common__["b" /* PlatformLocation */]));
+}(__WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"]));
 BrowserPlatformLocation.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
@@ -59877,9 +59878,9 @@ var SafeResourceUrlImpl = (function (_super) {
  * found in the LICENSE file at https://angular.io/license
  */
 var INTERNAL_BROWSER_PLATFORM_PROVIDERS = [
-    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_0__angular_common__["c" /* ɵPLATFORM_BROWSER_ID */] },
+    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"], useValue: __WEBPACK_IMPORTED_MODULE_0__angular_common__["ɵPLATFORM_BROWSER_ID"] },
     { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_INITIALIZER"], useValue: initDomAdapter, multi: true },
-    { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["b" /* PlatformLocation */], useClass: BrowserPlatformLocation },
+    { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"], useClass: BrowserPlatformLocation },
     { provide: DOCUMENT, useFactory: _document, deps: [] },
 ];
 /**
@@ -59969,7 +59970,7 @@ BrowserModule.decorators = [
                     Meta,
                     Title,
                 ],
-                exports: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["a" /* CommonModule */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationModule"]]
+                exports: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationModule"]]
             },] },
 ];
 /**
@@ -65334,7 +65335,7 @@ RouterLinkWithHref.decorators = [
 RouterLinkWithHref.ctorParameters = function () { return [
     { type: Router, },
     { type: ActivatedRoute, },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* LocationStrategy */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_common__["LocationStrategy"], },
 ]; };
 RouterLinkWithHref.propDecorators = {
     'target': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["HostBinding"], args: ['attr.target',] }, { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
@@ -66010,13 +66011,13 @@ var ROUTER_CONFIGURATION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inje
  */
 var ROUTER_FORROOT_GUARD = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["InjectionToken"]('ROUTER_FORROOT_GUARD');
 var ROUTER_PROVIDERS = [
-    __WEBPACK_IMPORTED_MODULE_0__angular_common__["e" /* Location */],
+    __WEBPACK_IMPORTED_MODULE_0__angular_common__["Location"],
     { provide: UrlSerializer, useClass: DefaultUrlSerializer },
     {
         provide: Router,
         useFactory: setupRouter,
         deps: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationRef"], UrlSerializer, RouterOutletMap, __WEBPACK_IMPORTED_MODULE_0__angular_common__["e" /* Location */], __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModuleFactoryLoader"],
+            __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationRef"], UrlSerializer, RouterOutletMap, __WEBPACK_IMPORTED_MODULE_0__angular_common__["Location"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModuleFactoryLoader"],
             __WEBPACK_IMPORTED_MODULE_1__angular_core__["Compiler"], ROUTES, ROUTER_CONFIGURATION, [UrlHandlingStrategy, new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()],
             [RouteReuseStrategy, new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()]
         ]
@@ -66120,10 +66121,10 @@ var RouterModule = (function () {
                 },
                 { provide: ROUTER_CONFIGURATION, useValue: config ? config : {} },
                 {
-                    provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["d" /* LocationStrategy */],
+                    provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["LocationStrategy"],
                     useFactory: provideLocationStrategy,
                     deps: [
-                        __WEBPACK_IMPORTED_MODULE_0__angular_common__["b" /* PlatformLocation */], [new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"](__WEBPACK_IMPORTED_MODULE_0__angular_common__["f" /* APP_BASE_HREF */]), new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()], ROUTER_CONFIGURATION
+                        __WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"], [new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"](__WEBPACK_IMPORTED_MODULE_0__angular_common__["APP_BASE_HREF"]), new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"]()], ROUTER_CONFIGURATION
                     ]
                 },
                 {
@@ -66164,8 +66165,8 @@ RouterModule.ctorParameters = function () { return [
  */
 function provideLocationStrategy(platformLocationStrategy, baseHref, options) {
     if (options === void 0) { options = {}; }
-    return options.useHash ? new __WEBPACK_IMPORTED_MODULE_0__angular_common__["g" /* HashLocationStrategy */](platformLocationStrategy, baseHref) :
-        new __WEBPACK_IMPORTED_MODULE_0__angular_common__["h" /* PathLocationStrategy */](platformLocationStrategy, baseHref);
+    return options.useHash ? new __WEBPACK_IMPORTED_MODULE_0__angular_common__["HashLocationStrategy"](platformLocationStrategy, baseHref) :
+        new __WEBPACK_IMPORTED_MODULE_0__angular_common__["PathLocationStrategy"](platformLocationStrategy, baseHref);
 }
 /**
  * @param {?} router
@@ -66269,7 +66270,7 @@ var RouterInitializer = (function () {
      */
     RouterInitializer.prototype.appInitializer = function () {
         var _this = this;
-        var /** @type {?} */ p = this.injector.get(__WEBPACK_IMPORTED_MODULE_0__angular_common__["i" /* LOCATION_INITIALIZED */], Promise.resolve(null));
+        var /** @type {?} */ p = this.injector.get(__WEBPACK_IMPORTED_MODULE_0__angular_common__["LOCATION_INITIALIZED"], Promise.resolve(null));
         return p.then(function () {
             var /** @type {?} */ resolve = null;
             var /** @type {?} */ res = new Promise(function (r) { return resolve = r; });
@@ -66436,6 +66437,337 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.0.0'
 
 //# sourceMappingURL=router.es5.js.map
 
+
+/***/ }),
+
+/***/ "./node_modules/angular2-image-upload/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports.ImageUploadModule = __webpack_require__("./node_modules/angular2-image-upload/lib/image-upload.module.js").ImageUploadModule;
+
+
+/***/ }),
+
+/***/ "./node_modules/angular2-image-upload/lib/file-drop.directive.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var FileDropDirective = (function () {
+    function FileDropDirective() {
+        this.isFileOver = new core_1.EventEmitter();
+        this.fileDrop = new core_1.EventEmitter();
+    }
+    FileDropDirective.prototype.onDragOver = function (event) {
+        var dataTransfer = FileDropDirective.getDataTransfer(event);
+        if (!FileDropDirective.hasFiles(dataTransfer.types)) {
+            return;
+        }
+        dataTransfer.dropEffect = 'copy';
+        event.preventDefault();
+        this.isFileOver.emit(true);
+    };
+    FileDropDirective.prototype.onDragLeave = function (event) {
+        this.isFileOver.emit(false);
+    };
+    FileDropDirective.prototype.onDrop = function (event) {
+        var dataTransfer = FileDropDirective.getDataTransfer(event);
+        if (!FileDropDirective.hasFiles(dataTransfer.types)) {
+            return;
+        }
+        event.preventDefault();
+        var files = this.filterFiles(dataTransfer.files);
+        event.preventDefault();
+        this.isFileOver.emit(false);
+        this.fileDrop.emit(files);
+    };
+    FileDropDirective.prototype.filterFiles = function (files) {
+        if (!this.accept || this.accept.length === 0) {
+            return files;
+        }
+        var acceptedFiles = [];
+        for (var i = 0; i < files.length; i++) {
+            for (var j = 0; j < this.accept.length; j++) {
+                if (FileDropDirective.matchRule(this.accept[j], files[i].type)) {
+                    acceptedFiles.push(files[i]);
+                    break;
+                }
+            }
+        }
+        return acceptedFiles;
+    };
+    FileDropDirective.matchRule = function (rule, candidate) {
+        return new RegExp("^" + rule.split("*").join(".*") + "$").test(candidate);
+    };
+    FileDropDirective.getDataTransfer = function (event) {
+        return event.dataTransfer ? event.dataTransfer : event.originalEvent.dataTransfer;
+    };
+    FileDropDirective.hasFiles = function (types) {
+        if (!types) {
+            return false;
+        }
+        if (types.indexOf) {
+            return types.indexOf('Files') !== -1;
+        }
+        if (types.contains) {
+            return types.contains('Files');
+        }
+        return false;
+    };
+    return FileDropDirective;
+}());
+FileDropDirective.decorators = [
+    { type: core_1.Directive, args: [{
+                selector: '[fileDrop]'
+            },] },
+];
+FileDropDirective.ctorParameters = function () { return []; };
+FileDropDirective.propDecorators = {
+    'accept': [{ type: core_1.Input },],
+    'isFileOver': [{ type: core_1.Output },],
+    'fileDrop': [{ type: core_1.Output },],
+    'onDragOver': [{ type: core_1.HostListener, args: ['dragover', ['$event'],] },],
+    'onDragLeave': [{ type: core_1.HostListener, args: ['dragleave', ['$event'],] },],
+    'onDrop': [{ type: core_1.HostListener, args: ['drop', ['$event'],] },],
+};
+exports.FileDropDirective = FileDropDirective;
+//# sourceMappingURL=file-drop.directive.js.map
+
+/***/ }),
+
+/***/ "./node_modules/angular2-image-upload/lib/image-upload.module.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var common_1 = __webpack_require__("./node_modules/@angular/common/@angular/common.es5.js");
+var core_1 = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var http_1 = __webpack_require__("./node_modules/@angular/http/@angular/http.es5.js");
+var file_drop_directive_1 = __webpack_require__("./node_modules/angular2-image-upload/lib/file-drop.directive.js");
+var image_upload_component_1 = __webpack_require__("./node_modules/angular2-image-upload/lib/image-upload/image-upload.component.js");
+var image_service_1 = __webpack_require__("./node_modules/angular2-image-upload/lib/image.service.js");
+var ImageUploadModule = (function () {
+    function ImageUploadModule() {
+    }
+    ImageUploadModule.forRoot = function () {
+        return {
+            ngModule: ImageUploadModule,
+            providers: [image_service_1.ImageService]
+        };
+    };
+    return ImageUploadModule;
+}());
+ImageUploadModule.decorators = [
+    { type: core_1.NgModule, args: [{
+                imports: [
+                    common_1.CommonModule,
+                    http_1.HttpModule
+                ],
+                declarations: [
+                    image_upload_component_1.ImageUploadComponent,
+                    file_drop_directive_1.FileDropDirective
+                ],
+                exports: [image_upload_component_1.ImageUploadComponent]
+            },] },
+];
+ImageUploadModule.ctorParameters = function () { return []; };
+exports.ImageUploadModule = ImageUploadModule;
+//# sourceMappingURL=image-upload.module.js.map
+
+/***/ }),
+
+/***/ "./node_modules/angular2-image-upload/lib/image-upload/image-upload.component.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var image_service_1 = __webpack_require__("./node_modules/angular2-image-upload/lib/image.service.js");
+var FileHolder = (function () {
+    function FileHolder(src, file) {
+        this.src = src;
+        this.file = file;
+        this.pending = false;
+    }
+    return FileHolder;
+}());
+exports.FileHolder = FileHolder;
+var ImageUploadComponent = (function () {
+    function ImageUploadComponent(imageService) {
+        this.imageService = imageService;
+        this.max = 100;
+        this.preview = true;
+        this.withCredentials = false;
+        this.isPending = new core_1.EventEmitter();
+        this.onFileUploadFinish = new core_1.EventEmitter();
+        this.onRemove = new core_1.EventEmitter();
+        this.files = [];
+        this.showFileTooLargeMessage = false;
+        this.fileCounter = 0;
+        this.isFileOver = false;
+        this.buttonCaption = 'Select Images';
+        this.dropBoxMessage = 'Drop your images here!';
+        this.pendingFilesCounter = 0;
+    }
+    ImageUploadComponent.prototype.ngOnInit = function () {
+        if (!this.fileTooLargeMessage) {
+            this.fileTooLargeMessage = 'An image was too large and was not uploaded.' + (this.maxFileSize ? (' The maximum file size is ' + this.maxFileSize / 1024) + 'KiB.' : '');
+        }
+        this.supportedExtensions = this.supportedExtensions ? this.supportedExtensions.map(function (ext) { return 'image/' + ext; }) : ['image/*'];
+    };
+    ImageUploadComponent.prototype.fileChange = function (files) {
+        var remainingSlots = this.countRemainingSlots();
+        var filesToUploadNum = files.length > remainingSlots ? remainingSlots : files.length;
+        if (this.url && filesToUploadNum != 0) {
+            this.isPending.emit(true);
+        }
+        this.fileCounter += filesToUploadNum;
+        this.showFileTooLargeMessage = false;
+        this.uploadFiles(files, filesToUploadNum);
+    };
+    ImageUploadComponent.prototype.deleteFile = function (file) {
+        var index = this.files.indexOf(file);
+        this.files.splice(index, 1);
+        this.fileCounter--;
+        this.inputElement.nativeElement.value = '';
+        this.onRemove.emit(file);
+    };
+    ImageUploadComponent.prototype.deleteAll = function () {
+        var _this = this;
+        this.files.forEach(function (f) { return _this.onRemove.emit(f); });
+        this.files = [];
+        this.fileCounter = 0;
+        this.inputElement.nativeElement.value = '';
+    };
+    ImageUploadComponent.prototype.fileOver = function (isOver) {
+        this.isFileOver = isOver;
+    };
+    ImageUploadComponent.prototype.uploadFiles = function (files, filesToUploadNum) {
+        var _this = this;
+        var _loop_1 = function (i) {
+            var file = files[i];
+            if (this_1.maxFileSize && file.size > this_1.maxFileSize) {
+                this_1.showFileTooLargeMessage = true;
+                return "continue";
+            }
+            var img = document.createElement('img');
+            img.src = window.URL.createObjectURL(file);
+            var reader = new FileReader();
+            reader.addEventListener('load', function (event) {
+                var fileHolder = new FileHolder(event.target.result, file);
+                _this.uploadSingleFile(fileHolder);
+                _this.files.push(fileHolder);
+            }, false);
+            reader.readAsDataURL(file);
+        };
+        var this_1 = this;
+        for (var i = 0; i < filesToUploadNum; i++) {
+            _loop_1(i);
+        }
+    };
+    ImageUploadComponent.prototype.onResponse = function (response, fileHolder) {
+        fileHolder.serverResponse = response;
+        fileHolder.pending = false;
+        this.onFileUploadFinish.emit(fileHolder);
+        if (--this.pendingFilesCounter == 0) {
+            this.isPending.emit(false);
+        }
+    };
+    ImageUploadComponent.prototype.uploadSingleFile = function (fileHolder) {
+        var _this = this;
+        if (this.url) {
+            this.pendingFilesCounter++;
+            fileHolder.pending = true;
+            this.imageService
+                .postImage(this.url, fileHolder.file, this.headers, this.partName, this.withCredentials)
+                .subscribe(function (response) { return _this.onResponse(response, fileHolder); }, function (error) {
+                _this.onResponse(error, fileHolder);
+                _this.deleteFile(fileHolder);
+            });
+        }
+        else {
+            this.onFileUploadFinish.emit(fileHolder);
+        }
+    };
+    ImageUploadComponent.prototype.countRemainingSlots = function () {
+        return this.max - this.fileCounter;
+    };
+    return ImageUploadComponent;
+}());
+ImageUploadComponent.decorators = [
+    { type: core_1.Component, args: [{
+                selector: 'image-upload',
+                template: "\n    <div class=\"image-upload\"\n         fileDrop\n         [accept]=\"supportedExtensions\"\n         (isFileOver)=\"fileOver($event)\"\n         (fileDrop)=\"fileChange($event)\"\n         [ngClass]=\"{'file-is-over': isFileOver}\"\n    >\n      <div class=\"file-upload hr-inline-group\">\n        <label class=\"upload button\">\n          <span [innerText]=\"buttonCaption\"></span>\n          <input\n            type=\"file\"\n            [accept]=\"supportedExtensions\"\n            multiple (change)=\"fileChange(input.files)\"\n            #input>\n        </label>\n        <label *ngIf=\"fileCounter > 0\" class=\"clear button\" (click)=\"deleteAll()\">\n          <span [innerText]=\"'Clear'\"></span>\n        </label>\n\n        <div class=\"drag-box-message\" [innerText]=\"dropBoxMessage\"></div>\n      </div>\n\n      <p class=\"file-too-large\" *ngIf=\"showFileTooLargeMessage\" [innerText]=\"fileTooLargeMessage\">\n      </p>\n\n      <div *ngIf=\"preview\" class=\"image-container hr-inline-group\">\n        <div\n          class=\"image\"\n          *ngFor=\"let file of files\"\n          [ngStyle]=\"{'background-image': 'url('+ file.src +')'}\"\n        >\n          <div *ngIf=\"file.pending\" class=\"loading-overlay\">\n            <div class=\"spinningCircle\"></div>\n          </div>\n          <div *ngIf=\"!file.pending\" class=\"x-mark\" (click)=\"deleteFile(file)\">\n            <span class=\"close\"></span>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+                styles: ["\n    .image-upload {\n      --common-radius: 3px;\n      --active-color: #33CC99;\n      position: relative;\n      border-radius: var(--common-radius);\n      border: #d0d0d0 dashed 1px;\n      font-family: sans-serif;\n    }\n\n    .file-is-over {\n      border-color: var(--active-color);\n      border-style: solid;\n    }\n\n    .hr-inline-group:after {\n      display: table;\n      clear: both;\n      content: \"\";\n    }\n\n    .file-upload {\n      padding: 16px;\n      background-color: #f8f8f8;\n    }\n\n    .drag-box-message {\n      float: left;\n      display: inline-block;\n      margin-left: 12px;\n      padding-top: 14px;\n      color: #9b9b9b;\n      font-weight: 600;\n    }\n\n    label.button input[type=file] {\n      display: none;\n      position: fixed;\n      top: -99999px;\n    }\n\n    .clear {\n      background-color: #FF0000;\n    }\n\n    .button {\n      cursor: pointer;\n      padding: 10px;\n      color: white;\n      font-size: 1.25em;\n      font-weight: 500;\n      text-transform: uppercase;\n      display: inline-block;\n      float: left;\n      -webkit-box-shadow: 2px 2px 4px 0px rgba(148, 148, 148, 0.6);\n      -moz-box-shadow: 2px 2px 4px 0px rgba(148, 148, 148, 0.6);\n      box-shadow: 2px 2px 4px 0px rgba(148, 148, 148, 0.6);\n    }\n\n    .button:active span {\n      position: relative;\n      display: block;\n      top: 1px;\n    }\n\n    .upload {\n      background-color: var(--active-color);\n    }\n\n    .image-container {\n      background-color: #fdfdfd;\n      padding: 0 10px 0 10px;\n    }\n\n    .image {\n      float: left;\n      display: inline-block;\n      margin: 6px;\n      width: 86px;\n      height: 86px;\n      background: center center no-repeat;\n      background-size: contain;\n      position: relative;\n    }\n\n    .x-mark {\n      width: 20px;\n      height: 20px;\n      text-align: center;\n      cursor: pointer;\n      border-radius: 2px;\n      float: right;\n      background-color: black;\n      opacity: .7;\n      color: white;\n      margin: 2px;\n    }\n\n    .close {\n      width: 20px;\n      height: 20px;\n      opacity: .7;\n      position: relative;\n      padding-right: 3px;\n    }\n\n    .x-mark:hover .close {\n      opacity: 1;\n    }\n\n    .close:before, .close:after {\n      border-radius: 2px;\n      position: absolute;\n      content: '';\n      height: 16px;\n      width: 2px;\n      top: 2px;\n      background-color: #FFFFFF;\n    }\n\n    .close:before {\n      transform: rotate(45deg);\n    }\n\n    .close:after {\n      transform: rotate(-45deg);\n    }\n\n    .loading-overlay {\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n      background-color: black;\n      opacity: .7;\n    }\n\n    .spinningCircle {\n      height: 30px;\n      width: 30px;\n      margin: auto;\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n      border-radius: 50%;\n      border: 3px solid rgba(255, 255, 255, 0);\n      border-top: 3px solid white;\n      border-right: 3px solid white;\n      -webkit-animation: spinner 2s infinite cubic-bezier(0.085, 0.625, 0.855, 0.360);\n      animation: spinner 2s infinite cubic-bezier(0.085, 0.625, 0.855, 0.360);\n    }\n\n    .file-too-large {\n      color: red;\n      padding: 0 15px;\n    }\n\n    @-webkit-keyframes spinner {\n      0% {\n        -webkit-transform: rotate(0deg);\n        transform: rotate(0deg);\n      }\n      100% {\n        -webkit-transform: rotate(360deg);\n        transform: rotate(360deg);\n      }\n    }\n\n    @keyframes spinner {\n      0% {\n        -webkit-transform: rotate(0deg);\n        transform: rotate(0deg);\n      }\n      100% {\n        -webkit-transform: rotate(360deg);\n        transform: rotate(360deg);\n\n      }\n    }\n  "]
+            },] },
+];
+ImageUploadComponent.ctorParameters = function () { return [
+    { type: image_service_1.ImageService, },
+]; };
+ImageUploadComponent.propDecorators = {
+    'max': [{ type: core_1.Input },],
+    'url': [{ type: core_1.Input },],
+    'headers': [{ type: core_1.Input },],
+    'preview': [{ type: core_1.Input },],
+    'maxFileSize': [{ type: core_1.Input },],
+    'withCredentials': [{ type: core_1.Input },],
+    'partName': [{ type: core_1.Input },],
+    'isPending': [{ type: core_1.Output },],
+    'onFileUploadFinish': [{ type: core_1.Output },],
+    'onRemove': [{ type: core_1.Output },],
+    'buttonCaption': [{ type: core_1.Input },],
+    'dropBoxMessage': [{ type: core_1.Input },],
+    'fileTooLargeMessage': [{ type: core_1.Input },],
+    'supportedExtensions': [{ type: core_1.Input, args: ['extensions',] },],
+    'inputElement': [{ type: core_1.ViewChild, args: ['input',] },],
+};
+exports.ImageUploadComponent = ImageUploadComponent;
+//# sourceMappingURL=image-upload.component.js.map
+
+/***/ }),
+
+/***/ "./node_modules/angular2-image-upload/lib/image.service.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var http_1 = __webpack_require__("./node_modules/@angular/http/@angular/http.es5.js");
+var ImageService = (function () {
+    function ImageService(http) {
+        this.http = http;
+    }
+    ImageService.prototype.postImage = function (url, image, headers, partName, withCredentials) {
+        if (partName === void 0) { partName = 'image'; }
+        if (!url || url === '') {
+            throw new Error('Url is not set! Please set it before doing queries');
+        }
+        var options = new http_1.RequestOptions();
+        if (withCredentials) {
+            options.withCredentials = withCredentials;
+        }
+        if (headers) {
+            options.headers = new http_1.Headers();
+            for (var _i = 0, headers_1 = headers; _i < headers_1.length; _i++) {
+                var header = headers_1[_i];
+                options.headers.append(header.header, header.value);
+            }
+        }
+        var formData = new FormData();
+        formData.append(partName, image);
+        return this.http.post(url, formData, options);
+    };
+    return ImageService;
+}());
+ImageService.decorators = [
+    { type: core_1.Injectable },
+];
+ImageService.ctorParameters = function () { return [
+    { type: http_1.Http, },
+]; };
+exports.ImageService = ImageService;
+//# sourceMappingURL=image.service.js.map
 
 /***/ }),
 
@@ -67261,7 +67593,7 @@ MaterializeModule.decorators = [
                     __WEBPACK_IMPORTED_MODULE_2__materialize_directive__["a" /* MaterializeDirective */]
                 ],
                 imports: [
-                    __WEBPACK_IMPORTED_MODULE_1__angular_common__["a" /* CommonModule */]
+                    __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]
                 ],
                 exports: [
                     __WEBPACK_IMPORTED_MODULE_2__materialize_directive__["a" /* MaterializeDirective */]

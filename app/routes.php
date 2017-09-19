@@ -10,3 +10,4 @@ require_once APP_DIRECTORY. DS. 'routes'. DS. 'userRoutes.php';
 require_once APP_DIRECTORY. DS. 'routes'. DS. 'routeRoutes.php';
 require_once APP_DIRECTORY. DS. 'routes'. DS. 'cityRoutes.php';
 require_once APP_DIRECTORY. DS. 'routes'. DS. 'countryRoutes.php';
+require_once APP_DIRECTORY. DS. 'routes'. DS. 'imageRoutes.php';

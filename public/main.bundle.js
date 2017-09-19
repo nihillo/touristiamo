@@ -70,7 +70,7 @@ ActivationPendingComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], ActivationPendingComponent);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/activation-pending.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/activation-pending.component.js.map
 
 /***/ }),
 
@@ -157,14 +157,14 @@ ActivationComponent = __decorate([
 ], ActivationComponent);
 
 var _a, _b;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/activation.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/activation.component.js.map
 
 /***/ }),
 
 /***/ "./src/app/add-route/add-route.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'not allowed-title' | translate | capitalize }}</h4>\n\t\t\t<p>{{'not allowed-text' | translate | capitalize }}</p>\n\t\t</div>\n\t</div>\n</div>\n<div *ngIf=\"usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'add route' | translate | capitalize }}</h4>\n\t\t\t<p>{{ 'all fields mandatory' | translate | capitalize }}</p>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<form class=\"col s12 l6 offset-l3\">\n\t\t  <div class=\"row\">\n\t\t  \t<h6>{{ 'route name' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"route.name_en\">\n\t          <label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"route.name_es\">\n\t          <label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"route.name_it\">\n\t          <label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t        </div>\n\t      </div>\n\t      <div class=\"row\">\n\t        <h6>{{ 'route location' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s8\">\n\t\t\t    <select name=\"country\" materialize=\"material_select\" [materializeSelectOptions]=\"countries\" [(ngModel)]=\"selectedCountry\" (change)=\"loadCities();\">\n\t\t\t      <option value=\"\" selected>{{ 'select country' | translate | capitalize }}</option>\n\t\t\t      <option *ngFor=\"let country of countries\" [ngValue]=\"country\" [innerHTML]=\"country.name[translate.currentLang]\"></option>\n\t\t\t    </select>\n\t\t\t    <label>{{ 'country' | translate | capitalize }}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s4\">\n\t\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"openModalCountry();\">{{ 'add country' | translate | capitalize }}</a>\n\t\t\t</div>\n\t        <div class=\"input-field col s8\" [hidden]=\"!selectedCountry\">\n\t\t\t    <select name=\"city\" materialize=\"material_select\" [materializeSelectOptions]=\"cities\" [(ngModel)]=\"route.cityId\">\n\t\t\t      <option value=\"\" selected>{{ 'select city' | translate | capitalize }}</option>\n\t\t\t      <option *ngFor=\"let city of cities\" value=\"{{city.id}}\" [innerHTML]=\"city.name[translate.currentLang]\"></option>\n\t\t\t    </select>\n\t\t\t    <label>{{ 'city' | translate | capitalize }}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s4\" [hidden]=\"!selectedCountry\">\n\t\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"openModalCity();\">{{ 'add city' | translate | capitalize }}</a>\n\t\t\t</div>\n\t      </div>\n\t      <div class=\"row\">\n\t        <h6>{{ 'route tagline' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t        \t<textarea id=\"slogan_en\" name=\"slogan_en\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.slogan_en\"></textarea>\n                <label for=\"slogan_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"slogan_es\" name=\"slogan_es\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.slogan_es\"></textarea>\n                <label for=\"slogan_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"slogan_it\" name=\"slogan_it\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.slogan_it\"></textarea>\n                <label for=\"slogan_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t  </div>\n\t\t  <div class=\"row\">\n\t        <h6>{{ 'route description' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t        \t<textarea id=\"description_en\" name=\"description_en\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.description_en\"></textarea>\n                <label for=\"description_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"description_es\" name=\"description_es\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.description_es\"></textarea>\n                <label for=\"description_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"description_it\" name=\"description_it\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.description_it\"></textarea>\n                <label for=\"description_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t  </div>\n\t\t  <div class=\"row\">\n\t\t  \t<h6>{{ 'access information' | translate | capitalize }}:</h6>\n\t\t  \t<div class=\"input-field col s12\">\n                <input type=\"checkbox\" id=\"accesible\" name=\"accesible\" [(ngModel)]=\"route.accesible\"/>\n                <label for=\"accesible\">{{ 'accesible' | translate | capitalize }}</label>\n            </div>\n            <div class=\"input-field col s12\">\n                <input type=\"checkbox\" id=\"walkable\" name=\"walkable\" [(ngModel)]=\"route.walkable\"/>\n                <label for=\"walkable\">{{ 'walkable' | translate | capitalize }}</label>\n            </div>\n            <div class=\"input-field col s12\">\n                <input type=\"checkbox\" id=\"bikeable\" name=\"bikeable\" [(ngModel)]=\"route.bikeable\"/>\n                <label for=\"bikeable\">{{ 'bikeable' | translate | capitalize }}</label>\n            </div>\n          </div>\n          <div class=\"row center\">\n\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"addRoute();\">{{ 'next' | translate | capitalize }} <i class=\"material-icons icon-next\">navigate_next</i></a>\n\t\t\t</div>\n          </div>\n\t    </form>\n\t</div>\n</div>\n\n\n\n<!-- MODAL ADD COUNTRY -->\n<div id=\"login\" class=\"modal \" materialize=\"modal\" [materializeActions]=\"modalCountryActions\">\n  <div class=\"modal-content\">\n\t  <div class=\"row\">\n\t  \t<h4 class=\"center\">{{ 'add country' | translate | capitalize }}</h4>\n\t    <form materialize class=\"col s12\">\n\t      <h6>{{ 'country name' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCountry.name_en\">\n\t          <label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCountry.name_es\">\n\t          <label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCountry.name_it\">\n\t          <label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"modal-form-row center\">\n\t      \t<button class=\"waves-effect waves-light btn-large light-green\" (click)=\"addCountry()\">{{ 'add' | translate | capitalize}}</button>\n\t      </div>\n\t    </form>\n\t  </div>\n  </div>\n</div>\n\n\n<!-- MODAL ADD CITY -->\n<div id=\"login\" class=\"modal \" materialize=\"modal\" [materializeActions]=\"modalCityActions\">\n  <div class=\"modal-content\">\n\t  <div class=\"row\">\n\t  \t<h4 class=\"center\">{{ 'add city' | translate | capitalize }}</h4>\n\t    <form materialize class=\"col s12\">\n\t        <div class=\"input-field col s12\">\n\t\t\t    <select name=\"country\" materialize=\"material_select\" [materializeSelectOptions]=\"countries\" [(ngModel)]=\"selectedCountry\">\n\t\t\t      <option value=\"selectedCountry.id\" selected disabled [innerHTML]=\"selectedCountry.name[translate.currentLang]\"></option>\n\t\t\t    </select>\n\t\t\t    <label>{{ 'country' | translate | capitalize }}</label>\n\t\t\t</div>\n\t\t\t<h6>{{ 'city name' | translate | capitalize }}:</h6>\n\t\t\t<div class=\"input-field col s12\">\n\t          <input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCity.name_en\">\n\t          <label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCity.name_es\">\n\t          <label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCity.name_it\">\n\t          <label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"modal-form-row center\">\n\t      \t<button class=\"waves-effect waves-light btn-large light-green\" (click)=\"addCity()\">{{ 'add' | translate | capitalize}}</button>\n\t      </div>\n\t    </form>\n\t  </div>\n  </div>\n</div>\n"
+module.exports = "<div *ngIf=\"!usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'not allowed-title' | translate | capitalize }}</h4>\n\t\t\t<p>{{'not allowed-text' | translate | capitalize }}</p>\n\t\t</div>\n\t</div>\n</div>\n<div *ngIf=\"usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'add route' | translate | capitalize }}</h4>\n\t\t\t<p>{{ 'all fields mandatory' | translate | capitalize }}</p>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<form class=\"col s12 l6 offset-l3\">\n\t\t  <div class=\"row\">\n\t\t  \t<h6>{{ 'route name' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"route.name_en\">\n\t          <label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"route.name_es\">\n\t          <label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"route.name_it\">\n\t          <label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t        </div>\n\t      </div>\n\t      <div class=\"row\">\n\t\t\t<h6>{{ 'route image' | translate | capitalize }}:</h6>\n\t      </div>\n\t\t  <image-upload\n\t\t\t[max]=\"1\"\n\t\t\t[buttonCaption]=\"'select image'\"\n\t\t\t[url]=\"apiImgUploadUrl\"\n\t\t\t(onFileUploadFinish)=\"imageUploaded($event)\"\n\t\t\t[headers]=\"[{header: 'Auth', value: token}]\"\n\t\t  ></image-upload>\n\t      <div class=\"row\">\n\t        <h6>{{ 'route location' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s8\">\n\t\t\t    <select name=\"country\" materialize=\"material_select\" [materializeSelectOptions]=\"countries\" [(ngModel)]=\"selectedCountry\" (change)=\"loadCities();\">\n\t\t\t      <option value=\"\" selected>{{ 'select country' | translate | capitalize }}</option>\n\t\t\t      <option *ngFor=\"let country of countries\" [ngValue]=\"country\" [innerHTML]=\"country.name[translate.currentLang]\"></option>\n\t\t\t    </select>\n\t\t\t    <label>{{ 'country' | translate | capitalize }}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s4\">\n\t\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"openModalCountry();\">{{ 'add country' | translate | capitalize }}</a>\n\t\t\t</div>\n\t        <div class=\"input-field col s8\" [hidden]=\"!selectedCountry\">\n\t\t\t    <select name=\"city\" materialize=\"material_select\" [materializeSelectOptions]=\"cities\" [(ngModel)]=\"route.cityId\">\n\t\t\t      <option value=\"\" selected>{{ 'select city' | translate | capitalize }}</option>\n\t\t\t      <option *ngFor=\"let city of cities\" value=\"{{city.id}}\" [innerHTML]=\"city.name[translate.currentLang]\"></option>\n\t\t\t    </select>\n\t\t\t    <label>{{ 'city' | translate | capitalize }}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s4\" [hidden]=\"!selectedCountry\">\n\t\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"openModalCity();\">{{ 'add city' | translate | capitalize }}</a>\n\t\t\t</div>\n\t      </div>\n\t      <div class=\"row\">\n\t        <h6>{{ 'route tagline' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t        \t<textarea id=\"slogan_en\" name=\"slogan_en\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.slogan_en\"></textarea>\n                <label for=\"slogan_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"slogan_es\" name=\"slogan_es\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.slogan_es\"></textarea>\n                <label for=\"slogan_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"slogan_it\" name=\"slogan_it\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.slogan_it\"></textarea>\n                <label for=\"slogan_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t  </div>\n\t\t  <div class=\"row\">\n\t        <h6>{{ 'route description' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t        \t<textarea id=\"description_en\" name=\"description_en\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.description_en\"></textarea>\n                <label for=\"description_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"description_es\" name=\"description_es\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.description_es\"></textarea>\n                <label for=\"description_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t\t<div class=\"input-field col s12\">\n\t        \t<textarea id=\"description_it\" name=\"description_it\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"route.description_it\"></textarea>\n                <label for=\"description_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t</div>\n\t\t  </div>\n\t\t  <div class=\"row\">\n\t\t  \t<h6>{{ 'access information' | translate | capitalize }}:</h6>\n\t\t  \t<div class=\"input-field col s12\">\n                <input type=\"checkbox\" id=\"accesible\" name=\"accesible\" [(ngModel)]=\"route.accesible\"/>\n                <label for=\"accesible\">{{ 'accesible' | translate | capitalize }}</label>\n            </div>\n            <div class=\"input-field col s12\">\n                <input type=\"checkbox\" id=\"walkable\" name=\"walkable\" [(ngModel)]=\"route.walkable\"/>\n                <label for=\"walkable\">{{ 'walkable' | translate | capitalize }}</label>\n            </div>\n            <div class=\"input-field col s12\">\n                <input type=\"checkbox\" id=\"bikeable\" name=\"bikeable\" [(ngModel)]=\"route.bikeable\"/>\n                <label for=\"bikeable\">{{ 'bikeable' | translate | capitalize }}</label>\n            </div>\n          </div>\n          <div class=\"row center\">\n\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"addRoute();\">{{ 'next' | translate | capitalize }} <i class=\"material-icons icon-next\">navigate_next</i></a>\n\t\t\t</div>\n          </div>\n\t    </form>\n\t</div>\n</div>\n\n\n\n<!-- MODAL ADD COUNTRY -->\n<div id=\"login\" class=\"modal \" materialize=\"modal\" [materializeActions]=\"modalCountryActions\">\n  <div class=\"modal-content\">\n\t  <div class=\"row\">\n\t  \t<h4 class=\"center\">{{ 'add country' | translate | capitalize }}</h4>\n\t    <form materialize class=\"col s12\">\n\t      <h6>{{ 'country name' | translate | capitalize }}:</h6>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCountry.name_en\">\n\t          <label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCountry.name_es\">\n\t          <label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCountry.name_it\">\n\t          <label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"modal-form-row center\">\n\t      \t<button class=\"waves-effect waves-light btn-large light-green\" (click)=\"addCountry()\">{{ 'add' | translate | capitalize}}</button>\n\t      </div>\n\t    </form>\n\t  </div>\n  </div>\n</div>\n\n\n<!-- MODAL ADD CITY -->\n<div id=\"login\" class=\"modal \" materialize=\"modal\" [materializeActions]=\"modalCityActions\">\n  <div class=\"modal-content\">\n\t  <div class=\"row\">\n\t  \t<h4 class=\"center\">{{ 'add city' | translate | capitalize }}</h4>\n\t    <form materialize class=\"col s12\">\n\t        <div class=\"input-field col s12\">\n\t\t\t    <select name=\"country\" materialize=\"material_select\" [materializeSelectOptions]=\"countries\" [(ngModel)]=\"selectedCountry\">\n\t\t\t      <option value=\"selectedCountry.id\" selected disabled [innerHTML]=\"selectedCountry.name[translate.currentLang]\"></option>\n\t\t\t    </select>\n\t\t\t    <label>{{ 'country' | translate | capitalize }}</label>\n\t\t\t</div>\n\t\t\t<h6>{{ 'city name' | translate | capitalize }}:</h6>\n\t\t\t<div class=\"input-field col s12\">\n\t          <input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCity.name_en\">\n\t          <label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCity.name_es\">\n\t          <label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"input-field col s12\">\n\t          <input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"newCity.name_it\">\n\t          <label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t        </div>\n\t        <div class=\"modal-form-row center\">\n\t      \t<button class=\"waves-effect waves-light btn-large light-green\" (click)=\"addCity()\">{{ 'add' | translate | capitalize}}</button>\n\t      </div>\n\t    </form>\n\t  </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -197,6 +197,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__translate__ = __webpack_require__("./src/app/translate/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__data_routes_service__ = __webpack_require__("./src/app/data/routes.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_config__ = __webpack_require__("./src/app/app-config.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddRouteComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -215,6 +216,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AddRouteComponent = (function () {
     function AddRouteComponent(usersSrv, countriesSrv, citiesSrv, translate, routeSrv, router) {
         this.usersSrv = usersSrv;
@@ -223,6 +225,7 @@ var AddRouteComponent = (function () {
         this.translate = translate;
         this.routeSrv = routeSrv;
         this.router = router;
+        this.token = localStorage.getItem('token');
         this.selectedCountry = {
             name: { en: '', es: '', it: '' },
             id: 0
@@ -230,7 +233,8 @@ var AddRouteComponent = (function () {
         this.route = {
             accesible: false,
             walkable: false,
-            bikeable: false
+            bikeable: false,
+            image: ''
         };
         this.modalCountryActions = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.modalCityActions = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -242,6 +246,7 @@ var AddRouteComponent = (function () {
     }
     AddRouteComponent.prototype.ngOnInit = function () {
         this.loadCountries();
+        this.apiImgUploadUrl = __WEBPACK_IMPORTED_MODULE_7__app_config__["a" /* app_config */].API_URL + '/image';
     };
     AddRouteComponent.prototype.loadCountries = function () {
         var _this = this;
@@ -315,6 +320,10 @@ var AddRouteComponent = (function () {
             _this.closeModalCity();
         });
     };
+    AddRouteComponent.prototype.imageUploaded = function ($event) {
+        var response = JSON.parse($event.serverResponse._body);
+        this.route['image'] = response.image;
+    };
     return AddRouteComponent;
 }());
 AddRouteComponent = __decorate([
@@ -328,7 +337,7 @@ AddRouteComponent = __decorate([
 ], AddRouteComponent);
 
 var _a, _b, _c, _d, _e, _f;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/add-route.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/add-route.component.js.map
 
 /***/ }),
 
@@ -338,11 +347,11 @@ var _a, _b, _c, _d, _e, _f;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return app_config; });
 var app_config = {
-    API_URL: 'http://api.touristiamo',
+    API_URL: '/api',
     // API_URL: 'http://api.touristiamo.nihillo.es',
     APP_TOKEN: '815c7f63628608a65582e6aead6fcb9eb178b3ef24bf4677fb185ddb187c6da2' // Touristiamo_2016 - sha256
 };
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/app-config.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/app-config.js.map
 
 /***/ }),
 
@@ -403,7 +412,7 @@ AppComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], AppComponent);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/app.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/app.component.js.map
 
 /***/ }),
 
@@ -417,30 +426,32 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("./node_modules/@angular/http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_materialize__ = __webpack_require__("./node_modules/angular2-materialize/dist/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("./src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__header_header_component__ = __webpack_require__("./src/app/header/header.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__footer_footer_component__ = __webpack_require__("./src/app/footer/footer.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__not_found_not_found_component__ = __webpack_require__("./src/app/not-found/not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__navbar_access_navbar_access_component__ = __webpack_require__("./src/app/navbar-access/navbar-access.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__navbar_menu_navbar_menu_component__ = __webpack_require__("./src/app/navbar-menu/navbar-menu.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__navbar_language_navbar_language_component__ = __webpack_require__("./src/app/navbar-language/navbar-language.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__map_view_map_view_component__ = __webpack_require__("./src/app/map-view/map-view.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__catalog_view_catalog_view_component__ = __webpack_require__("./src/app/catalog-view/catalog-view.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__translate__ = __webpack_require__("./src/app/translate/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__capitalize_pipe__ = __webpack_require__("./src/app/capitalize.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__signup_signup_component__ = __webpack_require__("./src/app/signup/signup.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__data_ajax_service__ = __webpack_require__("./src/app/data/ajax.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__activation_pending_activation_pending_component__ = __webpack_require__("./src/app/activation-pending/activation-pending.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__activation_activation_component__ = __webpack_require__("./src/app/activation/activation.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__route_route_component__ = __webpack_require__("./src/app/route/route.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__data_local_storage_service__ = __webpack_require__("./src/app/data/local-storage.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_angular2_jwt__ = __webpack_require__("./node_modules/angular2-jwt/angular2-jwt.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_angular2_jwt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__agm_core__ = __webpack_require__("./node_modules/@agm/core/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__google_maps_directions_directive__ = __webpack_require__("./src/app/google-maps-directions.directive.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__add_route_add_route_component__ = __webpack_require__("./src/app/add-route/add-route.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__route_add_points_route_add_points_component__ = __webpack_require__("./src/app/route-add-points/route-add-points.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_image_upload__ = __webpack_require__("./node_modules/angular2-image-upload/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_image_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_image_upload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("./src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__header_header_component__ = __webpack_require__("./src/app/header/header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__footer_footer_component__ = __webpack_require__("./src/app/footer/footer.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__not_found_not_found_component__ = __webpack_require__("./src/app/not-found/not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__navbar_access_navbar_access_component__ = __webpack_require__("./src/app/navbar-access/navbar-access.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__navbar_menu_navbar_menu_component__ = __webpack_require__("./src/app/navbar-menu/navbar-menu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__navbar_language_navbar_language_component__ = __webpack_require__("./src/app/navbar-language/navbar-language.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__map_view_map_view_component__ = __webpack_require__("./src/app/map-view/map-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__catalog_view_catalog_view_component__ = __webpack_require__("./src/app/catalog-view/catalog-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__translate__ = __webpack_require__("./src/app/translate/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__capitalize_pipe__ = __webpack_require__("./src/app/capitalize.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__signup_signup_component__ = __webpack_require__("./src/app/signup/signup.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__data_ajax_service__ = __webpack_require__("./src/app/data/ajax.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__activation_pending_activation_pending_component__ = __webpack_require__("./src/app/activation-pending/activation-pending.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__activation_activation_component__ = __webpack_require__("./src/app/activation/activation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__route_route_component__ = __webpack_require__("./src/app/route/route.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__data_local_storage_service__ = __webpack_require__("./src/app/data/local-storage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_angular2_jwt__ = __webpack_require__("./node_modules/angular2-jwt/angular2-jwt.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_angular2_jwt__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__agm_core__ = __webpack_require__("./node_modules/@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__google_maps_directions_directive__ = __webpack_require__("./src/app/google-maps-directions.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__add_route_add_route_component__ = __webpack_require__("./src/app/add-route/add-route.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__route_add_points_route_add_points_component__ = __webpack_require__("./src/app/route-add-points/route-add-points.component.ts");
 /* unused harmony export routing */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -478,19 +489,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var routes = [
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_14__map_view_map_view_component__["a" /* MapViewComponent */] },
-    { path: 'map', component: __WEBPACK_IMPORTED_MODULE_14__map_view_map_view_component__["a" /* MapViewComponent */] },
-    { path: 'catalog', component: __WEBPACK_IMPORTED_MODULE_15__catalog_view_catalog_view_component__["a" /* CatalogViewComponent */] },
-    { path: 'routes/:id', component: __WEBPACK_IMPORTED_MODULE_22__route_route_component__["a" /* RouteComponent */] },
-    { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_18__signup_signup_component__["a" /* SignupComponent */] },
-    { path: 'signup/activation-pending', component: __WEBPACK_IMPORTED_MODULE_20__activation_pending_activation_pending_component__["a" /* ActivationPendingComponent */] },
-    { path: 'signup/activate/:token', component: __WEBPACK_IMPORTED_MODULE_21__activation_activation_component__["a" /* ActivationComponent */] },
-    { path: 'add-route', component: __WEBPACK_IMPORTED_MODULE_27__add_route_add_route_component__["a" /* AddRouteComponent */] },
-    { path: 'route-add-points/:routeId', component: __WEBPACK_IMPORTED_MODULE_28__route_add_points_route_add_points_component__["a" /* RouteAddPointsComponent */] },
-    { path: '**', component: __WEBPACK_IMPORTED_MODULE_10__not_found_not_found_component__["a" /* NotFoundComponent */] }
+    { path: '', component: __WEBPACK_IMPORTED_MODULE_15__map_view_map_view_component__["a" /* MapViewComponent */] },
+    { path: 'map', component: __WEBPACK_IMPORTED_MODULE_15__map_view_map_view_component__["a" /* MapViewComponent */] },
+    { path: 'catalog', component: __WEBPACK_IMPORTED_MODULE_16__catalog_view_catalog_view_component__["a" /* CatalogViewComponent */] },
+    { path: 'routes/:id', component: __WEBPACK_IMPORTED_MODULE_23__route_route_component__["a" /* RouteComponent */] },
+    { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_19__signup_signup_component__["a" /* SignupComponent */] },
+    { path: 'signup/activation-pending', component: __WEBPACK_IMPORTED_MODULE_21__activation_pending_activation_pending_component__["a" /* ActivationPendingComponent */] },
+    { path: 'signup/activate/:token', component: __WEBPACK_IMPORTED_MODULE_22__activation_activation_component__["a" /* ActivationComponent */] },
+    { path: 'add-route', component: __WEBPACK_IMPORTED_MODULE_28__add_route_add_route_component__["a" /* AddRouteComponent */] },
+    { path: 'route-add-points/:routeId', component: __WEBPACK_IMPORTED_MODULE_29__route_add_points_route_add_points_component__["a" /* RouteAddPointsComponent */] },
+    { path: '**', component: __WEBPACK_IMPORTED_MODULE_11__not_found_not_found_component__["a" /* NotFoundComponent */] }
 ];
-var routing = __WEBPACK_IMPORTED_MODULE_9__angular_router__["a" /* RouterModule */].forRoot(routes);
+var routing = __WEBPACK_IMPORTED_MODULE_10__angular_router__["a" /* RouterModule */].forRoot(routes);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -499,48 +511,49 @@ var AppModule = (function () {
 AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__header_header_component__["a" /* HeaderComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__footer_footer_component__["a" /* FooterComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__not_found_not_found_component__["a" /* NotFoundComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__navbar_access_navbar_access_component__["a" /* NavbarAccessComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__navbar_menu_navbar_menu_component__["a" /* NavbarMenuComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__navbar_language_navbar_language_component__["a" /* NavbarLanguageComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__map_view_map_view_component__["a" /* MapViewComponent */],
-            __WEBPACK_IMPORTED_MODULE_15__catalog_view_catalog_view_component__["a" /* CatalogViewComponent */],
-            __WEBPACK_IMPORTED_MODULE_16__translate__["a" /* TranslatePipe */],
-            __WEBPACK_IMPORTED_MODULE_17__capitalize_pipe__["a" /* CapitalizePipe */],
-            __WEBPACK_IMPORTED_MODULE_18__signup_signup_component__["a" /* SignupComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__activation_pending_activation_pending_component__["a" /* ActivationPendingComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__activation_activation_component__["a" /* ActivationComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__route_route_component__["a" /* RouteComponent */],
-            __WEBPACK_IMPORTED_MODULE_26__google_maps_directions_directive__["a" /* GoogleMapsDirectionsDirective */],
-            __WEBPACK_IMPORTED_MODULE_27__add_route_add_route_component__["a" /* AddRouteComponent */],
-            __WEBPACK_IMPORTED_MODULE_28__route_add_points_route_add_points_component__["a" /* RouteAddPointsComponent */]
+            __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__header_header_component__["a" /* HeaderComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__footer_footer_component__["a" /* FooterComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__not_found_not_found_component__["a" /* NotFoundComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__navbar_access_navbar_access_component__["a" /* NavbarAccessComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__navbar_menu_navbar_menu_component__["a" /* NavbarMenuComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__navbar_language_navbar_language_component__["a" /* NavbarLanguageComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__map_view_map_view_component__["a" /* MapViewComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__catalog_view_catalog_view_component__["a" /* CatalogViewComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__translate__["a" /* TranslatePipe */],
+            __WEBPACK_IMPORTED_MODULE_18__capitalize_pipe__["a" /* CapitalizePipe */],
+            __WEBPACK_IMPORTED_MODULE_19__signup_signup_component__["a" /* SignupComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__activation_pending_activation_pending_component__["a" /* ActivationPendingComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__activation_activation_component__["a" /* ActivationComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__route_route_component__["a" /* RouteComponent */],
+            __WEBPACK_IMPORTED_MODULE_27__google_maps_directions_directive__["a" /* GoogleMapsDirectionsDirective */],
+            __WEBPACK_IMPORTED_MODULE_28__add_route_add_route_component__["a" /* AddRouteComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__route_add_points_route_add_points_component__["a" /* RouteAddPointsComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_common__["a" /* CommonModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common__["CommonModule"],
             __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_http__["HttpModule"],
             routing,
             __WEBPACK_IMPORTED_MODULE_5_angular2_materialize__["a" /* MaterializeModule */],
-            __WEBPACK_IMPORTED_MODULE_25__agm_core__["a" /* AgmCoreModule */].forRoot({
+            __WEBPACK_IMPORTED_MODULE_26__agm_core__["a" /* AgmCoreModule */].forRoot({
                 apiKey: 'AIzaSyBlvH9gIvn1ELDGlF0-70H02254p7ibjYU'
-            })
+            }),
+            __WEBPACK_IMPORTED_MODULE_6_angular2_image_upload__["ImageUploadModule"].forRoot(),
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_16__translate__["b" /* TRANSLATION_PROVIDERS */],
-            __WEBPACK_IMPORTED_MODULE_16__translate__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_19__data_ajax_service__["a" /* AjaxService */],
-            __WEBPACK_IMPORTED_MODULE_23__data_local_storage_service__["a" /* LocalStorageService */],
-            __WEBPACK_IMPORTED_MODULE_24_angular2_jwt__["JwtHelper"]
+            __WEBPACK_IMPORTED_MODULE_17__translate__["b" /* TRANSLATION_PROVIDERS */],
+            __WEBPACK_IMPORTED_MODULE_17__translate__["c" /* TranslateService */],
+            __WEBPACK_IMPORTED_MODULE_20__data_ajax_service__["a" /* AjaxService */],
+            __WEBPACK_IMPORTED_MODULE_24__data_local_storage_service__["a" /* LocalStorageService */],
+            __WEBPACK_IMPORTED_MODULE_25_angular2_jwt__["JwtHelper"]
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/app.module.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/app.module.js.map
 
 /***/ }),
 
@@ -574,7 +587,7 @@ CapitalizePipe = __decorate([
     })
 ], CapitalizePipe);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/capitalize.pipe.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/capitalize.pipe.js.map
 
 /***/ }),
 
@@ -744,7 +757,7 @@ CatalogViewComponent = __decorate([
 ], CatalogViewComponent);
 
 var _a, _b, _c, _d, _e;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/catalog-view.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/catalog-view.component.js.map
 
 /***/ }),
 
@@ -854,7 +867,7 @@ AjaxService = __decorate([
 ], AjaxService);
 
 var _a;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/ajax.service.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/ajax.service.js.map
 
 /***/ }),
 
@@ -968,7 +981,7 @@ var _a;
 //         };
 //         return this.ajax.postData(resource, params);
 //     }
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/cities.service.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/cities.service.js.map
 
 /***/ }),
 
@@ -1040,7 +1053,7 @@ CountriesService = __decorate([
 ], CountriesService);
 
 var _a;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/countries.service.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/countries.service.js.map
 
 /***/ }),
 
@@ -1161,7 +1174,7 @@ LocalStorageService = __decorate([
     __metadata("design:paramtypes", [])
 ], LocalStorageService);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/local-storage.service.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/local-storage.service.js.map
 
 /***/ }),
 
@@ -1370,7 +1383,8 @@ var RoutesService = (function () {
             slogan_en: route.slogan_en,
             slogan_es: route.slogan_es,
             slogan_it: route.slogan_it,
-            walkable: route.walkable
+            walkable: route.walkable,
+            image: route.image
         };
         return this.ajax.postData(resource, params);
     };
@@ -1382,7 +1396,7 @@ RoutesService = __decorate([
 ], RoutesService);
 
 var _a;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/routes.service.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/routes.service.js.map
 
 /***/ }),
 
@@ -1475,7 +1489,7 @@ UsersService = __decorate([
 ], UsersService);
 
 var _a, _b, _c;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/users.service.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/users.service.js.map
 
 /***/ }),
 
@@ -1536,7 +1550,7 @@ FooterComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], FooterComponent);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/footer.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/footer.component.js.map
 
 /***/ }),
 
@@ -1611,7 +1625,7 @@ GoogleMapsDirectionsDirective = __decorate([
 ], GoogleMapsDirectionsDirective);
 
 var _a;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/google-maps-directions.directive.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/google-maps-directions.directive.js.map
 
 /***/ }),
 
@@ -1672,7 +1686,7 @@ HeaderComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], HeaderComponent);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/header.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/header.component.js.map
 
 /***/ }),
 
@@ -1798,11 +1812,11 @@ MapViewComponent = __decorate([
         styles: [__webpack_require__("./src/app/map-view/map-view.component.scss")],
         providers: [__WEBPACK_IMPORTED_MODULE_1__data_routes_service__["a" /* RoutesService */], __WEBPACK_IMPORTED_MODULE_2__data_cities_service__["a" /* CitiesService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__data_routes_service__["a" /* RoutesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__data_routes_service__["a" /* RoutesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__data_cities_service__["a" /* CitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_cities_service__["a" /* CitiesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__translate__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__translate__["c" /* TranslateService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__data_routes_service__["a" /* RoutesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__data_routes_service__["a" /* RoutesService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__data_cities_service__["a" /* CitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_cities_service__["a" /* CitiesService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__translate__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__translate__["c" /* TranslateService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__agm_core__["c" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__agm_core__["c" /* MapsAPILoader */]) === "function" && _d || Object])
 ], MapViewComponent);
 
 var _a, _b, _c, _d;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/map-view.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/map-view.component.js.map
 
 /***/ }),
 
@@ -1924,7 +1938,7 @@ NavbarAccessComponent = __decorate([
 ], NavbarAccessComponent);
 
 var _a, _b, _c;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/navbar-access.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/navbar-access.component.js.map
 
 /***/ }),
 
@@ -2015,7 +2029,7 @@ NavbarLanguageComponent = __decorate([
 ], NavbarLanguageComponent);
 
 var _a, _b;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/navbar-language.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/navbar-language.component.js.map
 
 /***/ }),
 
@@ -2081,7 +2095,7 @@ NavbarMenuComponent = __decorate([
 ], NavbarMenuComponent);
 
 var _a;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/navbar-menu.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/navbar-menu.component.js.map
 
 /***/ }),
 
@@ -2142,14 +2156,14 @@ NotFoundComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], NotFoundComponent);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/not-found.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/not-found.component.js.map
 
 /***/ }),
 
 /***/ "./src/app/route-add-points/route-add-points.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'not allowed-title' | translate | capitalize }}</h4>\n\t\t\t<p>{{'not allowed-text' | translate | capitalize }}</p>\n\t\t</div>\n\t</div>\n</div>\n<div *ngIf=\"usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'add route points' | translate | capitalize }}</h4>\n\t\t\t<h5 *ngIf=\"route && route.name\">\n\t\t\t\t<span [innerHTML]=\"route.name[translate.currentLang]\"></span>\n\n\t\t\t</h5>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<ul class=\"collection\" *ngIf=\"points && points[0]\">\n\t\t\t\t<li class=\"collection-item\" *ngFor=\"let point of points\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t{{point.name[translate.currentLang]}}\n\t\t\t\t\t\t<span class=\"secondary-content\">{{point.pt_order + 1}}</span>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t\t<ul class=\"collection\">\n\t\t\t\t<li class=\"collection-item active\" (click)=\"openModal();\">\n\t\t\t\t\t<div>{{'add point' | translate | capitalize }}<span class=\"secondary-content\"><i class=\"material-icons\">add</i></span></div>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</div>\n\t</div>\n\t<div class=\"row center\">\n\t\t<div class=\"input-field col s12\">\n\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"save();\">{{ 'save' | translate | capitalize }}</a>\n\t\t</div>\n\t</div>\n</div>\n\n\n\n<!-- MODAL ADD POINT -->\n<div id=\"login\" class=\"modal \" materialize=\"modal\" [materializeActions]=\"modalActions\">\n\t<div class=\"modal-content\">\n\t\t<div class=\"row\">\n\t\t\t<h4 class=\"center\">{{ 'add point' | translate | capitalize }}</h4>\n\t\t\t<form materialize class=\"col s12\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point name' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.name.en\">\n\t\t\t\t\t\t<label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.name.es\">\n\t\t\t\t\t\t<label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.name.it\">\n\t\t\t\t\t\t<label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point description' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<textarea id=\"description_en\" name=\"description_en\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"newPoint.description.en\"></textarea>\n\t\t\t\t\t\t<label for=\"description_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<textarea id=\"description_es\" name=\"description_es\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"newPoint.description.es\"></textarea>\n\t\t\t\t\t\t<label for=\"description_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<textarea id=\"description_it\" name=\"description_it\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"newPoint.description.it\"></textarea>\n\t\t\t\t\t\t<label for=\"description_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point type' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<select name=\"country\" materialize=\"material_select\" [materializeSelectOptions]=\"countries\" [(ngModel)]=\"newPoint.type\">\n\t\t\t\t\t\t\t<option value=\"\" selected>{{ 'type' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"historic\" selected>{{ 'historic' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"monument\" selected>{{ 'monument' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"natural\" selected>{{ 'natural' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"cultural\" selected>{{ 'cultural' | translate | capitalize }}</option>\n\t\t\t\t\t\t</select>\n\t\t\t\t\t\t<label>{{ 'type' | translate | capitalize }}</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point location' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s3\">\n\t\t\t\t\t\t<input id=\"lat\" name=\"lat\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.lat\">\n\t\t\t\t\t\t<label for=\"lat\">{{ 'latitude' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s3\">\n\t\t\t\t\t\t<input id=\"lng\" name=\"lng\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.lng\">\n\t\t\t\t\t\t<label for=\"lng\">{{ 'longitude' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-form-row center\">\n\t\t\t\t\t<button class=\"waves-effect waves-light btn-large light-green\" (click)=\"addPoint()\">{{ 'add' | translate | capitalize}}</button>\n\t\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div *ngIf=\"!usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'not allowed-title' | translate | capitalize }}</h4>\n\t\t\t<p>{{'not allowed-text' | translate | capitalize }}</p>\n\t\t</div>\n\t</div>\n</div>\n<div *ngIf=\"usersSrv.userHasEditPermission()\">\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<h4>{{'add route points' | translate | capitalize }}</h4>\n\t\t\t<h5 *ngIf=\"route && route.name\">\n\t\t\t\t<span [innerHTML]=\"route.name[translate.currentLang]\"></span>\n\n\t\t\t</h5>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div class=\"col s12 l6 offset-l3\">\n\t\t\t<ul class=\"collection\" *ngIf=\"points && points[0]\">\n\t\t\t\t<li class=\"collection-item\" *ngFor=\"let point of points\">\n\t\t\t\t\t<div>\n\t\t\t\t\t\t{{point.name[translate.currentLang]}}\n\t\t\t\t\t\t<span class=\"secondary-content\">{{point.pt_order + 1}}</span>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t\t<ul class=\"collection\">\n\t\t\t\t<li class=\"collection-item active\" (click)=\"openModal();\">\n\t\t\t\t\t<div>{{'add point' | translate | capitalize }}<span class=\"secondary-content\"><i class=\"material-icons\">add</i></span></div>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</div>\n\t</div>\n\t<div class=\"row center\">\n\t\t<div class=\"input-field col s12\">\n\t\t\t<a class=\"waves-effect waves-light btn light-green\" (click)=\"save();\">{{ 'save' | translate | capitalize }}</a>\n\t\t</div>\n\t</div>\n</div>\n\n\n\n<!-- MODAL ADD POINT -->\n<div id=\"login\" class=\"modal \" materialize=\"modal\" [materializeActions]=\"modalActions\">\n\t<div class=\"modal-content\">\n\t\t<div class=\"row\">\n\t\t\t<h4 class=\"center\">{{ 'add point' | translate | capitalize }}</h4>\n\t\t\t<form materialize class=\"col s12\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point name' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"name_en\" name=\"name_en\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.name.en\">\n\t\t\t\t\t\t<label for=\"name_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"name_es\" name=\"name_es\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.name.es\">\n\t\t\t\t\t\t<label for=\"name_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<input id=\"name_it\" name=\"name_it\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.name.it\">\n\t\t\t\t\t\t<label for=\"name_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point description' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<textarea id=\"description_en\" name=\"description_en\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"newPoint.description.en\"></textarea>\n\t\t\t\t\t\t<label for=\"description_en\">{{ 'english' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<textarea id=\"description_es\" name=\"description_es\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"newPoint.description.es\"></textarea>\n\t\t\t\t\t\t<label for=\"description_es\">{{ 'spanish' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<textarea id=\"description_it\" name=\"description_it\" class=\"materialize-textarea\" materialize=\"characterCounter\" [(ngModel)]=\"newPoint.description.it\"></textarea>\n\t\t\t\t\t\t<label for=\"description_it\">{{ 'italian' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point type' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<select name=\"country\" materialize=\"material_select\" [materializeSelectOptions]=\"countries\" [(ngModel)]=\"newPoint.type\">\n\t\t\t\t\t\t\t<option value=\"\" selected>{{ 'type' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"historic\" selected>{{ 'historic' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"monument\" selected>{{ 'monument' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"natural\" selected>{{ 'natural' | translate | capitalize }}</option>\n\t\t\t\t\t\t\t<option value=\"cultural\" selected>{{ 'cultural' | translate | capitalize }}</option>\n\t\t\t\t\t\t</select>\n\t\t\t\t\t\t<label>{{ 'type' | translate | capitalize }}</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<h6>{{ 'point location' | translate | capitalize }}:</h6>\n\t\t\t\t\t<div class=\"input-field col s3\">\n\t\t\t\t\t\t<input id=\"lat\" name=\"lat\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.lat\">\n\t\t\t\t\t\t<label for=\"lat\">{{ 'latitude' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"input-field col s3\">\n\t\t\t\t\t\t<input id=\"lng\" name=\"lng\" type=\"text\" class=\"validate\" [(ngModel)]=\"newPoint.lng\">\n\t\t\t\t\t\t<label for=\"lng\">{{ 'longitude' | translate | capitalize}}</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t<agm-map class=\"map map-view\" [latitude]=\"58\" [longitude]=\"-15\" [zoom]=\"4\" (mapClick)=\"placePoint($event);\">\n\t\t\t\t\t\t<agm-marker *ngIf=\"newPoint.lat != undefined\" [latitude]=\"newPoint.lat\" [longitude]=\"newPoint.lng\">\n\t\t\t\t\t\t</agm-marker>\n\t\t\t\t\t</agm-map>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-form-row center\">\n\t\t\t\t\t<button class=\"waves-effect waves-light btn-large light-green\" (click)=\"addPoint()\">{{ 'add' | translate | capitalize}}</button>\n\t\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -2161,7 +2175,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "agm-map {\n  height: 400px; }\n", ""]);
 
 // exports
 
@@ -2180,6 +2194,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_users_service__ = __webpack_require__("./src/app/data/users.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_routes_service__ = __webpack_require__("./src/app/data/routes.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__translate__ = __webpack_require__("./src/app/translate/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__agm_core__ = __webpack_require__("./node_modules/@agm/core/index.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RouteAddPointsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2190,6 +2205,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2225,7 +2241,12 @@ var RouteAddPointsComponent = (function () {
             });
         });
     };
+    RouteAddPointsComponent.prototype.placePoint = function ($event) {
+        this.newPoint.lat = $event.coords.lat;
+        this.newPoint.lng = $event.coords.lng;
+    };
     RouteAddPointsComponent.prototype.addPoint = function () {
+        console.log(this.routeId);
         this.newPoint['pt_order'] = this.counter;
         this.newPoint['routeId'] = this.routeId;
         this.points.push(this.newPoint);
@@ -2244,6 +2265,9 @@ var RouteAddPointsComponent = (function () {
             action: 'modal',
             params: ['open']
         });
+        this.map.triggerResize();
+        this.map.longitude = 0;
+        this.map.latitude = 45;
     };
     RouteAddPointsComponent.prototype.closeModal = function () {
         this.modalActions.emit({
@@ -2264,6 +2288,10 @@ var RouteAddPointsComponent = (function () {
     };
     return RouteAddPointsComponent;
 }());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* AgmMap */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* AgmMap */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__agm_core__["b" /* AgmMap */]) === "function" && _a || Object)
+], RouteAddPointsComponent.prototype, "map", void 0);
 RouteAddPointsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-route-add-points',
@@ -2271,18 +2299,18 @@ RouteAddPointsComponent = __decorate([
         styles: [__webpack_require__("./src/app/route-add-points/route-add-points.component.scss")],
         providers: [__WEBPACK_IMPORTED_MODULE_2__data_users_service__["a" /* UsersService */], __WEBPACK_IMPORTED_MODULE_3__data_routes_service__["a" /* RoutesService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__data_users_service__["a" /* UsersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_users_service__["a" /* UsersService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__data_routes_service__["a" /* RoutesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__data_routes_service__["a" /* RoutesService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__translate__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__translate__["c" /* TranslateService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__data_users_service__["a" /* UsersService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_users_service__["a" /* UsersService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__data_routes_service__["a" /* RoutesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__data_routes_service__["a" /* RoutesService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__translate__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__translate__["c" /* TranslateService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _f || Object])
 ], RouteAddPointsComponent);
 
-var _a, _b, _c, _d, _e;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/route-add-points.component.js.map
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/route-add-points.component.js.map
 
 /***/ }),
 
 /***/ "./src/app/route/route.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" *ngIf=\"route != undefined\" style=\"margin-bottom: 0\">\n  <div class=\"col s12 l3 card side-panel\">\n    <div class=\"card-image\">\n      <img *ngIf=\"route.image != undefined\" src=\"{{route.image}}\">\n    </div>\n  \t<div class=\"card-content\">\n      <h4 class=\"card-title\">{{route.name[translate.currentLang]}}</h4>\n      <p class=\"slogan\">{{route.slogan[translate.currentLang]}}</p>\n      <div class=\"icons\">\n        <div><i *ngIf=\"route.accesible\" class=\"material-icons\">accessible</i>{{'accesible' | translate | capitalize}}</div>\n        <div><i *ngIf=\"route.walkable\" class=\"material-icons\">directions_walk</i>{{'walkable' | translate | capitalize}}</div>\n        <div><i *ngIf=\"route.bikeable\" class=\"material-icons\">directions_bike</i>{{'bikeable' | translate | capitalize}}</div>\n      </div>\n\t    <p>{{route.description[translate.currentLang]}}</p>\n    </div>\n  </div>\n  <agm-map *ngIf=\"route.latlngs != undefined\" class=\"map\" [latitude]=\"route.centerLat\" [longitude]=\"route.centerLng\" [zoom]=\"16\">\n    <agm-marker *ngFor=\"let point of route.points\" [latitude]=\"point.lat\" [longitude]=\"point.lng\">\n      <agm-info-window>\n        <h6>{{point.name[translate.currentLang]}}</h6>\n        <p>{{point.description[translate.currentLang]}}</p>\n      </agm-info-window>\n    </agm-marker>\n    <agm-directions [points]=\"route.latlngs\"></agm-directions>\n  </agm-map>\n</div>\n"
+module.exports = "<div class=\"row\" *ngIf=\"route != undefined\" style=\"margin-bottom: 0\">\n  <div class=\"col s12 l3 card side-panel\">\n    <div class=\"card-image\">\n      <img *ngIf=\"route.image != undefined\" src=\"{{route.image}}\">\n    </div>\n  \t<div class=\"card-content\">\n      <h4 class=\"card-title\">{{route.name[translate.currentLang]}}</h4>\n      <p class=\"slogan\">{{route.slogan[translate.currentLang]}}</p>\n      <div class=\"icons\">\n        <div *ngIf=\"route.accesible==true\"><i class=\"material-icons\">accessible</i>{{'accesible' | translate | capitalize}}</div>\n        <div *ngIf=\"route.walkable==true\"><i class=\"material-icons\">directions_walk</i>{{'walkable' | translate | capitalize}}</div>\n        <div  *ngIf=\"route.bikeable==true\"><i class=\"material-icons\">directions_bike</i>{{'bikeable' | translate | capitalize}}</div>\n      </div>\n\t    <p>{{route.description[translate.currentLang]}}</p>\n    </div>\n  </div>\n  <agm-map *ngIf=\"route.latlngs != undefined\" class=\"map\" [latitude]=\"route.centerLat\" [longitude]=\"route.centerLng\" [zoom]=\"16\">\n    <agm-marker *ngFor=\"let point of route.points\" [latitude]=\"point.lat\" [longitude]=\"point.lng\">\n      <agm-info-window>\n        <h6>{{point.name[translate.currentLang]}}</h6>\n        <p>{{point.description[translate.currentLang]}}</p>\n      </agm-info-window>\n    </agm-marker>\n    <agm-directions [points]=\"route.latlngs\"></agm-directions>\n  </agm-map>\n</div>\n"
 
 /***/ }),
 
@@ -2353,7 +2381,6 @@ var RouteComponent = (function () {
                     // const centerLng = lngAcc / respP.points.length;
                     // this.route['centerLat'] = centerLat;
                     // this.route['centerLng'] = centerLng;
-                    console.log(_this.route['image']);
                 });
             }, function (err) {
                 err = err.json();
@@ -2377,7 +2404,7 @@ RouteComponent = __decorate([
 ], RouteComponent);
 
 var _a, _b, _c;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/route.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/route.component.js.map
 
 /***/ }),
 
@@ -2464,7 +2491,7 @@ SignupComponent = __decorate([
 ], SignupComponent);
 
 var _a, _b;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/signup.component.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/signup.component.js.map
 
 /***/ }),
 
@@ -2481,7 +2508,7 @@ var _a, _b;
 
 
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/index.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/index.js.map
 
 /***/ }),
 
@@ -2584,9 +2611,10 @@ var LANG_EN_TRANS = {
     'cultural': 'cultural',
     'point location': 'point location',
     'latitude': 'latitude',
-    'longitude': 'longitude'
+    'longitude': 'longitude',
+    'route image': 'route image'
 };
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/lang-en.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/lang-en.js.map
 
 /***/ }),
 
@@ -2690,9 +2718,10 @@ var LANG_ES_TRANS = {
     'cultural': 'cultural',
     'point location': 'ubicación del punto',
     'latitude': 'latitud',
-    'longitude': 'longitud'
+    'longitude': 'longitud',
+    'route image': 'imagen de la ruta'
 };
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/lang-es.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/lang-es.js.map
 
 /***/ }),
 
@@ -2756,9 +2785,10 @@ var LANG_IT_TRANS = {
     'cultural': 'culturale',
     'point location': 'posizione del punto',
     'latitude': 'latitudine',
-    'longitude': 'longitudine'
+    'longitude': 'longitudine',
+    'route image': 'immagine del percorso'
 };
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/lang-it.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/lang-it.js.map
 
 /***/ }),
 
@@ -2801,7 +2831,7 @@ TranslatePipe = __decorate([
 ], TranslatePipe);
 
 var _a;
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/translate.pipe.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/translate.pipe.js.map
 
 /***/ }),
 
@@ -2863,7 +2893,7 @@ TranslateService = __decorate([
     __metadata("design:paramtypes", [Object])
 ], TranslateService);
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/translate.service.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/translate.service.js.map
 
 /***/ }),
 
@@ -2896,7 +2926,7 @@ var dictionary = {
 var TRANSLATION_PROVIDERS = [
     { provide: TRANSLATIONS, useValue: dictionary },
 ];
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/translation.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/translation.js.map
 
 /***/ }),
 
@@ -2913,7 +2943,7 @@ var TRANSLATION_PROVIDERS = [
 var environment = {
     production: false
 };
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/environment.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/environment.js.map
 
 /***/ }),
 
@@ -2936,7 +2966,7 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["enableProdMode"])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app_app_module__["a" /* AppModule */]);
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/main.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/main.js.map
 
 /***/ }),
 
@@ -2994,7 +3024,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 
 
-//# sourceMappingURL=/var/www/html/touristiamo/client-dev/src/polyfills.js.map
+//# sourceMappingURL=/var/www/html/touristiamo2/client-dev/src/polyfills.js.map
 
 /***/ }),
 

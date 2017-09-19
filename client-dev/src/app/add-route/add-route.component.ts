@@ -7,6 +7,7 @@ import {RoutesService} from '../data/routes.service';
 import {EventEmitter} from '@angular/core';
 import {MaterializeAction} from 'angular2-materialize';
 import {Router} from '@angular/router';
+import {app_config} from '../app-config';
 
 declare var $;
 
@@ -18,6 +19,9 @@ declare var $;
 })
 export class AddRouteComponent implements OnInit {
 
+    public apiImgUploadUrl;
+    public token = localStorage.getItem('token');
+
     public countries;
     public cities;
     public selectedCountry = {
@@ -27,7 +31,8 @@ export class AddRouteComponent implements OnInit {
     public route = {
         accesible: false,
         walkable: false,
-        bikeable: false
+        bikeable: false,
+        image: ''
     };
     public modalCountryActions = new EventEmitter<string|MaterializeAction>();
     public modalCityActions = new EventEmitter<string|MaterializeAction>();
@@ -37,6 +42,7 @@ export class AddRouteComponent implements OnInit {
     };
     public newCity = {};
 
+
     constructor(
         private usersSrv: UsersService,
         private countriesSrv: CountriesService,
@@ -44,10 +50,12 @@ export class AddRouteComponent implements OnInit {
         private translate: TranslateService,
         private routeSrv: RoutesService,
         private router: Router
-        ) { }
+    ) {}
 
     ngOnInit() {
         this.loadCountries();
+
+        this.apiImgUploadUrl = app_config.API_URL + '/image';
     }
 
 
@@ -143,4 +151,12 @@ export class AddRouteComponent implements OnInit {
         );
 
     }
+
+
+    imageUploaded($event) {
+        const response = JSON.parse($event.serverResponse._body);
+        this.route['image'] = response.image;
+    }
+
+
 }

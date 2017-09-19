@@ -6,8 +6,9 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "../public/client",
+      "outDir": "../public",
       "assets": [
+        "api",
         "assets",
         "favicon.ico",
         ".htaccess"

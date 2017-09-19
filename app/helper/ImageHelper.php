@@ -13,28 +13,29 @@ class ImageHelper
 {
     /**
      * 
-     * @param integer $routeId
      * @param string $imgArrayName
      * @return array
      */
-    public static function upload($routeId, $imgArrayName)
+    public static function upload($imgArrayName)
     {
-        $routeDirectory = APP_IMAGES_DIRECTORY. DS. 'routes'. DS. $routeId;
-        if (!is_dir($routeDirectory) && !mkdir($routeDirectory, 0755) && 
-                !is_readable($routeDirectory))
+        $directory = APP_IMAGES_DIRECTORY;
+        if (!is_dir($directory) && !mkdir($directory, 0755) && 
+                !is_readable($directory))
         {
             HttpError::send(500, "The routes image directory cannot be accessed. You must look permissions please.");
         }
         
-        $images = [];
-        for ($i = 0; $i < count($_FILES[$imgArrayName]['name']); $i++)
-        {
-            $fileName = time(). '_'. $_FILES[$imgArrayName]['name'][$i];
-            $fileType = $_FILES[$imgArrayName]['type'][$i];
-            array_push($images, self::uploadImage($routeId, $fileName, $fileType, 
-                    $routeDirectory, $_FILES[$imgArrayName]['tmp_name'][$i]) );
-        }      
-        return $images;
+
+        $image =self::uploadImage(time() . '_' . $_FILES[$imgArrayName]['name'], $_FILES[$imgArrayName]['type'], $directory, $_FILES[$imgArrayName]['tmp_name']);
+        // $images = [];
+        // for ($i = 0; $i < count($_FILES[$imgArrayName]['name']); $i++)
+        // {
+        //     $fileName = time(). '_'. $_FILES[$imgArrayName]['name'][$i];
+        //     $fileType = $_FILES[$imgArrayName]['type'][$i];
+        //     array_push($images, self::uploadImage($fileName, $fileType, 
+        //             $directory, $_FILES[$imgArrayName]['tmp_name'][$i]) );
+        // }      
+        return $image;
     }
     
     /**
@@ -45,8 +46,8 @@ class ImageHelper
      */
     public static function delete($routeId, $imageId)
     {
-        $routeDirectory = APP_IMAGES_DIRECTORY. DS. 'routes'. DS. $routeId;
-        if (!is_dir($routeDirectory) && !is_readable($routeDirectory))
+        $directory = APP_IMAGES_DIRECTORY. DS. 'routes'. DS. $routeId;
+        if (!is_dir($directory) && !is_readable($directory))
         {
             HttpError::send(500, "The routes image directory cannot be accessed. You must look permissions please.");
         }
@@ -54,7 +55,7 @@ class ImageHelper
         $fileUrl = explode('/', $pictureModel->image);
         $file = $fileUrl[count($fileUrl) - 1];
         
-        if (!unlink($routeDirectory. DS. $file) || !$pictureModel->delete())
+        if (!unlink($directory. DS. $file) || !$pictureModel->delete())
         {
             HttpError::send(500, "There was an error to delete the file ". $file);
         }
@@ -68,22 +69,23 @@ class ImageHelper
      * 
      * @param string $fileName
      * @param string $fileType
-     * @param string $routeDirectory
+     * @param string $directory
      * @param string $imgArrayName
      * @return PictureModel
      */
-    private static function uploadImage($routeId, $fileName, $fileType, $routeDirectory, $tmpName)
+    private static function uploadImage($fileName, $fileType, $directory, $tmpName)
     {
         if (preg_match('/.+\.(jpg|png|gif)$/', $fileName) && 
                     preg_match('/image\/(jpeg|png|gif)$/', $fileType) )
         {
-            if (move_uploaded_file($tmpName, $routeDirectory. DS. $fileName))
+            if (move_uploaded_file($tmpName, $directory. DS. $fileName))
             {
-                $pictureModel = new PictureModel();
-                $pictureModel->image = APP_URL. '/images/routes/'. $routeId. '/'. $fileName;
-                $pictureModel->routeId = $routeId;
-                $pictureModel->save();
-                return $pictureModel;
+                // $pictureModel = new PictureModel();
+                // $pictureModel->image = APP_URL. '/images/routes/'. $routeId. '/'. $fileName;
+                // $pictureModel->routeId = $routeId;
+                // $pictureModel->save();
+                // return $pictureModel;
+                return '/images' . DS . $fileName;
             }
         }
     }

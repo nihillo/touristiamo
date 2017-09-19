@@ -100,9 +100,9 @@ class CityCtrl
             $countryModel = new CountryModel($args['countryId']);
             $cityModel = new CityModel();
             $cityModel->countryId = $countryModel->id;
-            $cityModel->name_en = htmlentities(trim($args['name_en']));
-            $cityModel->name_es = htmlentities(trim($args['name_es']));
-            $cityModel->name_it = htmlentities(trim($args['name_it']));
+            $cityModel->name_en = trim($args['name_en']);
+            $cityModel->name_es = trim($args['name_es']);
+            $cityModel->name_it = trim($args['name_it']);
             if ($cityModel->save())
             {
                 $json = new Json();
@@ -134,10 +134,10 @@ class CityCtrl
             {
                 HttpError::send(401, 'user-notAllowed', "The user doesn't have permissions to update this city");
             }
-            $cityModel->name_en = (!isset($args['name_en'])) ? $cityModel->name_en : htmlentities(trim($args['name_en']));
-            $cityModel->name_es = (!isset($args['name_es'])) ? $cityModel->name_es : htmlentities(trim($args['name_es']));
-            $cityModel->name_it = (!isset($args['name_it'])) ? $cityModel->name_it : htmlentities(trim($args['name_it']));
-            $cityModel->countryId = (!isset($args['countryId'])) ? $cityModel->countryId : htmlentities(trim($args['countryId']));
+            $cityModel->name_en = (!isset($args['name_en'])) ? $cityModel->name_en : trim($args['name_en']);
+            $cityModel->name_es = (!isset($args['name_es'])) ? $cityModel->name_es : trim($args['name_es']);
+            $cityModel->name_it = (!isset($args['name_it'])) ? $cityModel->name_it : trim($args['name_it']);
+            $cityModel->countryId = (!isset($args['countryId'])) ? $cityModel->countryId : trim($args['countryId']);
             if ($cityModel->update())
             {
                 $json = new Json();
